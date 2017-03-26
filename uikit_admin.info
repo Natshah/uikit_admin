@@ -1,0 +1,13 @@
+name = UIkit Admin
+description = A one-column administration theme based on UIkit for Drupal.
+core = 7.x
+base theme = uikit
+
+stylesheets[all][] = css/uikit-admin.css
+scripts[] = js/uikit-admin.js
+
+regions[help] = 'Help'
+regions[content] = 'Content'
+
+settings[base_style] = 'gradient'
+settings[page_margin] = 0
