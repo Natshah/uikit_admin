@@ -75,7 +75,7 @@
  * @ingroup uikit_themeable
  */
 ?>
-<div class="uk-panel uk-panel-box uk-admin-panel-box">
+<header id="page-header" class="uk-panel uk-panel-box uk-admin-panel-box">
   <?php print render($title_prefix); ?>
   <?php if ($title): ?>
     <h1 id="page-title" class="uk-article-title uk-display-inline-block"><?php print $title; ?></h1>
@@ -83,9 +83,9 @@
   <?php print render($title_suffix); ?>
 
   <?php print render($primary_local_tasks); ?>
-</div>
+</header>
 
-<div<?php print $page_container_attributes; ?>>
+<main<?php print $page_container_attributes; ?>>
   <div<?php print $content_attributes; ?>>
 
     <?php if ($secondary_local_tasks = render($secondary_local_tasks)): ?>
@@ -114,4 +114,4 @@
     <?php print $feed_icons; ?>
   </div>
 
-</div>
+</main>

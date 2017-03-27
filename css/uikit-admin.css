@@ -157,6 +157,12 @@ div.vertical-tabs {
 #edit-options .form-submit {
   margin-top: 15px;
 }
+#page-header {
+  border: 0;
+  border-bottom: 1px solid #afafaf;
+  border-radius: 0;
+  padding: 15px 35px 0 35px;
+}
 [type="hidden"] + .form-item {
   margin-top: 15px;
 }
@@ -286,9 +292,6 @@ div.vertical-tabs {
 .uk-admin-panel-box {
   background: #e0e0d8;
   color: #444;
-  border: 0;
-  border-radius: 0;
-  padding: 15px 35px 0 35px;
 }
 .uk-admin-panel-box-light {
   background: #fff;
@@ -394,6 +397,8 @@ div.vertical-tabs {
  * Primary/secondary tasks.
  */
 #primary-local-tasks {
+  position: relative;
+  bottom: -1px;
   border: 0;
 }
 #primary-local-tasks>li {
@@ -401,8 +406,7 @@ div.vertical-tabs {
 }
 #primary-local-tasks>li>a {
   background: #f5f5f5;
-  border: 1px solid #bfbfbf;
-  border-bottom: 0;
+  border: 1px solid #afafaf;
   border-radius: 0;
   padding: 7px 2em 7px 2em;
   text-shadow: none;
@@ -420,9 +424,8 @@ div.vertical-tabs {
 #primary-local-tasks>li.uk-active>a {
   position: relative;
   background: #fff;
-  border-color: #afafaf;
+  border-bottom-color: transparent;
   border-radius: 4px 4px 0 0;
-  margin: 0 -4px;
   z-index: 1;
 }
 #primary-local-tasks>li:not(.uk-active)>a:hover {
