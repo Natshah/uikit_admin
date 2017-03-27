@@ -131,11 +131,19 @@ function uikit_admin_preprocess_form_element_label(&$variables) {
  * Implements template_preprocess_HOOK() for theme_menu_local_tasks().
  */
 function uikit_admin_preprocess_menu_local_tasks(&$variables) {
-  $variables['primary_attributes_array']['class'] = array('uk-tab');
-  $variables['secondary_attributes_array']['class'] = array(
-    'uk-subnav',
-    'uk-margin-top-remove',
-  );
+  global $theme_key;
+  $secondary_style = theme_get_setting('secondary_tasks_style', $theme_key);
+
+  switch ($secondary_style) {
+    case '0':
+    case 'uk-subnav-line':
+      $variables['secondary_attributes_array']['class'][] = 'uk-margin-remove';
+      break;
+
+    case 'uk-subnav-pill':
+      $variables['secondary_attributes_array']['class'][] = 'uk-margin-small-top';
+      break;
+  }
 }
 
 /**
