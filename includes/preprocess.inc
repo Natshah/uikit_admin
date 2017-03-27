@@ -108,9 +108,30 @@ function uikit_admin_preprocess_fieldset(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_HOOK() for theme_form().
+ */
+function uikit_admin_preprocess_form(&$variables) {
+  $variables['element']['#attributes']['class'] = array('uk-form');
+  $form_id = $variables['element']['#form_id'];
+
+  $horizontal_forms = array(
+    'node_admin_content',
+    'user_filter_form',
+  );
+
+  if (in_array($form_id, $horizontal_forms)) {
+    $variables['element']['#attributes']['class'][] = 'uk-form-horizontal';
+  }
+  else {
+    $variables['element']['#attributes']['class'][] = 'uk-form-stacked';
+  }
+}
+
+/**
  * Implements template_preprocess_HOOK() for theme_form_element().
  */
 function uikit_admin_preprocess_form_element(&$variables) {
+  $type = $variables['element']['#type'];
   $variables['element']['#wrapper_attributes']['class'][] = 'form-item';
 }
 
@@ -279,5 +300,4 @@ function uikit_admin_preprocess_status_report(&$variables) {
 function uikit_admin_preprocess_table(&$variables) {
   $variables['attributes']['class'][] = 'uk-table-hover';
   $variables['attributes']['class'][] = 'uk-table-striped';
-  $variables['attributes']['class'][] = 'uk-text-nowrap';
 }

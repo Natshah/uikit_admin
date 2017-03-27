@@ -14,7 +14,6 @@
   Drupal.behaviors.tableDrag = {
     attach: function (context, settings) {
       for (var base in settings.tableDrag) {
-        console.log(base);
         $('#' + base, context).once('tabledrag', function () {
           // Create the new tableDrag instance. Save in the Drupal variable
           // to allow other scripts access to the object.

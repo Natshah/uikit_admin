@@ -123,9 +123,6 @@ ul.action-links {
 .exposed-filters .form-select {
   width: 15em;
 }
-.form-actions {
-  margin: 15px 0;
-}
 .form-actions .uk-button + .uk-button {
   margin-left: 10px;
 }
@@ -164,18 +161,27 @@ div.vertical-tabs {
   border-color: #afafaf;
   margin-top: 0;
 }
-#page-title {
-  font-size: 30px;
-}
-#edit-basic-toggle .form-submit,
-#edit-options .form-submit {
-  margin-top: 15px;
-}
 #page-header {
   border: 0;
   border-bottom: 1px solid #afafaf;
   border-radius: 0;
   padding: 15px 35px 0 35px;
+}
+#overlay-content #page-header {
+  background: #fff;
+  border: 0;
+  padding-top: 0;
+}
+#page-title {
+  font-size: 30px;
+}
+#overlay-content #page-title {
+  margin-bottom: 0;
+  margin-top: 15px;
+}
+#edit-basic-toggle .form-submit,
+#edit-options .form-submit {
+  margin-top: 15px;
 }
 [type="hidden"] + .form-item {
   margin-top: 15px;
@@ -207,6 +213,9 @@ div.vertical-tabs {
   .uk-container {
     max-width: 1920px;
   }
+}
+.uk-form>div>*:not(:last-child) {
+  margin-bottom: 15px;
 }
 .uk-form fieldset {
   margin: 15px 0;
@@ -261,6 +270,10 @@ div.vertical-tabs {
 .uk-table th {
   border-top: 1px solid #afafaf;
   border-bottom: 1px solid #afafaf;
+}
+.uk-table td,
+.uk-table th {
+  border-color: #afafaf;
 }
 .uk-text-muted {
   color: #7f7f7f !important;
@@ -410,9 +423,6 @@ div.vertical-tabs {
 /**
  * Overlay module.
  */
-.overlay #page-title {
-  display: none;
-}
 #overlay-title {
   line-height: 20px;
 }

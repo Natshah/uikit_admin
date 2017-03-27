@@ -28,16 +28,10 @@ function uikit_admin_css_alter(&$css) {
  * Implements hook_form_FORM_ID_alter() for filter_admin_format_form().
  */
 function uikit_admin_form_filter_admin_format_form_alter(&$form, &$form_state) {
+  // Add the uk-form-row class to the enabled filters prefix so the proper
+  // margin is added.
   $prefix = $form['filters']['status']['#prefix'];
   $form['filters']['status']['#prefix'] = str_replace('">', '" class="uk-form-row">', $prefix);
-}
-
-/**
- * Implements hook_form_FORM_ID_alter() for field_ui_display_overview_form().
- */
-function uikit_admin_form_field_ui_display_overview_form_alter(&$form, &$form_state) {
-  $form['fields']['#prefix'] = '';
-  $form['fields']['#suffix'] = '';
 }
 
 /**
