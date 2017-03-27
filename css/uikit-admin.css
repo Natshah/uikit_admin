@@ -161,6 +161,7 @@ ul.action-links {
   border: 1px solid #afafaf;
 }
 div.vertical-tabs {
+  border-color: #afafaf;
   margin-top: 0;
 }
 #page-title {
