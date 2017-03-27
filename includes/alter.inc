@@ -63,12 +63,22 @@ function uikit_admin_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   // Define various icons.
   $plus = '<i class="uk-icon-plus"></i> ';
 
+  $action_paths = array(
+    'admin/reports/updates/install',
+  );
+
   foreach ($data['actions']['output'] as $key => $action) {
-    preg_match('/(shortcut.*)\/add-link/', $action['#link']['path'], $matches);
+    $path = isset($action['#link']['path']) ? $action['#link']['path'] : $action['#link']['href'];
+    preg_match('/(shortcut.*)\/add-link/', $path, $matches);
     $shortcut_add_link = isset($matches[0]) && $matches[0] == 'shortcut/%/add-link';
 
     // Add icon for any shorcut add link path.
-    if (isset($action['#link']['path']) && $shortcut_add_link) {
+    if ($shortcut_add_link) {
+      $title = $plus . $data['actions']['output'][$key]['#link']['title'];
+      $data['actions']['output'][$key]['#link']['title'] = $title;
+      $data['actions']['output'][$key]['#link']['localized_options']['html'] = TRUE;
+    }
+    elseif (in_array($path, $action_paths)) {
       $title = $plus . $data['actions']['output'][$key]['#link']['title'];
       $data['actions']['output'][$key]['#link']['title'] = $title;
       $data['actions']['output'][$key]['#link']['localized_options']['html'] = TRUE;

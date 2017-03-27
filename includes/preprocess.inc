@@ -70,9 +70,11 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Save role':
     case 'Save settings':
     case 'Save field settings':
+    case 'Update':
       $variables['element']['#attributes']['class'][] = 'uk-button-primary';
       break;
 
+    case 'Cancel':
     case 'Delete':
     case 'Delete content type':
     case 'Delete role':
