@@ -142,7 +142,7 @@ function uikit_admin_fieldset($variables) {
     }
   }
 
-  $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
+  $output = '<div' . drupal_attributes($element['#attributes']) . '>';
 
   if (!empty($element['#title'])) {
     $output .= '<h3 class="uk-panel-title uk-admin-panel-title-toggle">';
@@ -177,7 +177,7 @@ function uikit_admin_fieldset($variables) {
   }
 
   $output .= '</div>';
-  $output .= '</fieldset>';
+  $output .= '</div>';
   return $output;
 }
 
