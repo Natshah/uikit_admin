@@ -1,6 +1,10 @@
 /**
  * Common elements from Drupal core.
  */
+.uk-link:hover,
+a:hover {
+  color: #07D;
+}
 a.button {
   -webkit-appearance: none;
   margin: 0;
@@ -38,7 +42,7 @@ table th {
   white-space: nowrap;
 }
 table th {
-  background: #eaeaea;
+  background: #f5f5f5;
   text-transform: uppercase;
 }
 table th > a {
@@ -144,8 +148,17 @@ ul.action-links {
 .form-managed-file .uk-button {
   margin-left: 15px;
 }
-.theme-selector h3 {
-  margin: 12px 0;
+.system-themes-list-disabled .theme-selector {
+  opacity: 0.75;
+  padding-right: 75px;
+  transition: opacity 0.2s;
+}
+.system-themes-list-disabled .theme-selector:focus,
+.system-themes-list-disabled .theme-selector:hover {
+  opacity: 1;
+}
+.theme-selector .screenshot {
+  border: 1px solid #afafaf;
 }
 div.vertical-tabs {
   margin-top: 0;
@@ -212,6 +225,8 @@ div.vertical-tabs {
 .uk-form input[type=time],
 .uk-form input[type=week],
 .uk-form input[type=color],
+.uk-form input[type=radio],
+.uk-form input[type=checkbox],
 .uk-form select,
 .uk-form textarea {
   border-color: #afafaf;
@@ -221,6 +236,9 @@ div.vertical-tabs {
 }
 .uk-form .uk-panel-box > fieldset {
   margin-top: 0;
+}
+.uk-grid-divider:empty {
+  border-color: #afafaf;
 }
 .uk-overflow-container:not(:last-child) {
   margin-bottom: 15px;
@@ -235,6 +253,9 @@ div.vertical-tabs {
 .uk-panel-box .uk-panel-box:first-of-type,
 .uk-panel-box .uk-panel-box:first-of-type .uk-panel-box .uk-panel-box:first-of-type,
 .uk-panel-box .uk-panel-box:first-of-type .uk-panel-box .uk-panel-box:first-of-type .uk-panel-box .uk-panel-box:first-of-type {
+}
+.uk-subnav-line>:nth-child(n+2):before {
+  border-color: #afafaf;
 }
 .uk-table th {
   border-top: 1px solid #afafaf;
@@ -301,6 +322,16 @@ div.vertical-tabs {
 }
 .uk-admin-panel-title-toggle + .uk-admin-panel-content-toggle {
   margin-top: 15px;
+}
+.uk-admin-theme-operations>*>* {
+  color: #07D;
+}
+.uk-admin-theme-operations>*>a:focus,
+.uk-admin-theme-operations>*>a:hover {
+  text-decoration: underline;
+}
+.uk-admin-theme-operations>li:first-child {
+  padding-left: 0;
 }
 .uk-admin-vertical-align-top {
   vertical-align: top;

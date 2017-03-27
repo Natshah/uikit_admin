@@ -111,7 +111,7 @@ function uikit_admin_fieldset($variables) {
   $element = $variables['element'];
   $collapsed = $element['#collapsed'];
   element_set_attributes($element, array('id'));
-  _form_set_class($element, array('uk-panel', 'uk-panel-box'));
+  _form_set_class($element, array('uk-panel', 'uk-panel-box', 'form-wrapper'));
   $id = $element['#attributes']['id'];
 
   // When viewing the theme settings page for a specific theme, add the
@@ -142,7 +142,7 @@ function uikit_admin_fieldset($variables) {
     }
   }
 
-  $output = '<div' . drupal_attributes($element['#attributes']) . '>';
+  $output = '<fieldset' . drupal_attributes($element['#attributes']) . '>';
 
   if (!empty($element['#title'])) {
     $output .= '<h3 class="uk-panel-title uk-admin-panel-title-toggle">';
@@ -177,7 +177,7 @@ function uikit_admin_fieldset($variables) {
   }
 
   $output .= '</div>';
-  $output .= '</div>';
+  $output .= '</fieldset>';
   return $output;
 }
 
@@ -240,7 +240,7 @@ function uikit_admin_menu_local_action($variables) {
     $output .= check_plain($link['title']);
   }
 
-  $output .= "</li>\n";
+  $output .= '</li>';
 
   return $output;
 }
@@ -298,6 +298,148 @@ function uikit_admin_node_add_list($variables) {
   else {
     $output .= '<p>' . t('You have not created any content types yet. Go to the <a href="@create-content">content type creation page</a> to add a new content type.', array('@create-content' => url('admin/structure/types/add'))) . '</p>';
   }
+
+  return $output;
+}
+
+/**
+ * Implements theme_system_themes_page().
+ */
+function uikit_admin_system_themes_page($variables) {
+  $theme_groups = $variables['theme_groups'];
+
+  $output = '<div id="system-themes-page">';
+
+  foreach ($variables['theme_group_titles'] as $state => $title) {
+    if (!count($theme_groups[$state])) {
+      // Skip this group of themes if no theme is there.
+      continue;
+    }
+
+    $grid = $state == 'disabled' ? ' uk-grid uk-margin' : ' uk-margin-large-bottom';
+    $title_width = $state == 'disabled' ? ' class="uk-width-1-1 uk-margin"' : '';
+
+    // Start new theme group.
+    $output .= $state == 'disabled' ? '<div class="uk-grid-divider"></div>' : '';
+    $output .= '<div class="system-themes-list system-themes-list-' . $state . $grid . '"><h2' . $title_width . '>' . $title . '</h2>';
+
+    foreach ($theme_groups[$state] as $theme) {
+      // Localize the theme description.
+      $description = t('@description', array('@description' => $theme->info['description']));
+
+      // Style theme info.
+      $notes = count($theme->notes) ? ' (' . implode(', ', $theme->notes) . ')' : '';
+      $version = isset($theme->info['version']) ? $theme->info['version'] : '';
+
+      if ($state == 'enabled') {
+        $screenshot_variables = array(
+          'path' => $theme->screenshot['path'],
+          'width' => '294',
+          'alt' => $theme->screenshot['alt'],
+          'title' => $theme->screenshot['title'],
+          'attributes' => array(
+            'class' => array('screenshot', 'uk-float-left', 'uk-margin-right'),
+          ),
+        );
+
+        // Theme the screenshot.
+        $screenshot = $theme->screenshot ? theme('image', $screenshot_variables) : '<div class="no-screenshot">' . t('no screenshot') . '</div>';
+
+        $theme->classes[] = 'theme-selector';
+        $theme->classes[] = 'uk-margin-bottom';
+        $theme->classes[] = 'uk-clearfix';
+        $theme_default = in_array('theme-default', $theme->classes) ? ' uk-text-bold' : '';
+        $output .= '<div class="' . implode(' ', $theme->classes) . '">';
+        $output .= $screenshot;
+        $output .= '<div class="theme-info">';
+        $output .= '<h3 class="uk-margin-bottom-remove' . $theme_default . '">' . $theme->info['name'] . ' ' . $version . $notes . '</h3>';
+        $output .= '<div class="theme-description">' . html_entity_decode($description) . '</div>';
+
+        // Make sure to provide feedback on compatibility.
+        if (!empty($theme->incompatible_core)) {
+          $output .= '<div class="incompatible">' . t('This version is not compatible with Drupal !core_version and should be replaced.', array('!core_version' => DRUPAL_CORE_COMPATIBILITY)) . '</div>';
+        }
+        elseif (!empty($theme->incompatible_php)) {
+          if (substr_count($theme->info['php'], '.') < 2) {
+            $theme->info['php'] .= '.*';
+          }
+          $output .= '<div class="incompatible">' . t('This theme requires PHP version @php_required and is incompatible with PHP version !php_version.', array(
+            '@php_required' => $theme->info['php'],
+            '!php_version' => phpversion(),
+          )) . '</div>';
+        }
+        else {
+          $output .= theme('links', array(
+            'links' => $theme->operations,
+            'attributes' => array(
+              'class' => array(
+                'uk-subnav',
+                'uk-subnav-line',
+                'uk-margin-remove',
+                'uk-admin-theme-operations',
+              ),
+            ),
+          ));
+        }
+        $output .= '</div></div>';
+      }
+      else {
+        $screenshot_variables = array(
+          'path' => $theme->screenshot['path'],
+          'width' => '194',
+          'alt' => $theme->screenshot['alt'],
+          'title' => $theme->screenshot['title'],
+          'attributes' => array(
+            'class' => array('screenshot'),
+          ),
+        );
+
+        // Theme the screenshot.
+        $screenshot = $theme->screenshot ? theme('image', $screenshot_variables) : '<div class="no-screenshot">' . t('no screenshot') . '</div>';
+
+        $theme->classes[] = 'theme-selector';
+        $theme->classes[] = 'uk-width-1-3';
+        $theme->classes[] = 'uk-margin';
+        $output .= '<div class="' . implode(' ', $theme->classes) . '">';
+        $output .= $screenshot;
+        $output .= '<div class="theme-info uk-margin-top">';
+        $output .= '<h3 class="uk-margin-bottom-remove">' . $theme->info['name'] . ' ' . $version . $notes . '</h3>';
+        $output .= '<div class="theme-description">' . html_entity_decode($description) . '</div>';
+
+        // Make sure to provide feedback on compatibility.
+        if (!empty($theme->incompatible_core)) {
+          $output .= '<div class="incompatible">' . t('This version is not compatible with Drupal !core_version and should be replaced.', array('!core_version' => DRUPAL_CORE_COMPATIBILITY)) . '</div>';
+        }
+        elseif (!empty($theme->incompatible_php)) {
+          if (substr_count($theme->info['php'], '.') < 2) {
+            $theme->info['php'] .= '.*';
+          }
+          $output .= '<div class="incompatible">' . t('This theme requires PHP version @php_required and is incompatible with PHP version !php_version.', array(
+            '@php_required' => $theme->info['php'],
+            '!php_version' => phpversion(),
+          )) . '</div>';
+        }
+        else {
+          $output .= theme('links', array(
+            'links' => $theme->operations,
+            'attributes' => array(
+              'class' => array(
+                'uk-subnav',
+                'uk-subnav-line',
+                'uk-margin-remove',
+                'uk-admin-theme-operations',
+              ),
+            ),
+          ));
+        }
+        $output .= '</div></div>';
+      }
+    }
+
+    $output .= '</div>';
+    $output .= $state == 'disabled' ? '<div class="uk-grid-divider"></div>' : '';
+  }
+  $output .= '</div>';
 
   return $output;
 }

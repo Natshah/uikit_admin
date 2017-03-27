@@ -17,6 +17,14 @@
  */
 
 /**
+ * Implements hook_css_alter().
+ */
+function uikit_admin_css_alter(&$css) {
+  // Stop Drupal core stylesheets from being loaded.
+  unset($css[drupal_get_path('module', 'system') . '/system.admin.css']);
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for filter_admin_format_form().
  */
 function uikit_admin_form_filter_admin_format_form_alter(&$form, &$form_state) {
@@ -51,5 +59,25 @@ function uikit_admin_js_alter(&$javascript) {
   $tabledrag = 'misc/tabledrag.js';
   if (isset($javascript[$tabledrag])) {
     $javascript[$tabledrag]['data'] = $uikit_admin . '/tabledrag.js';
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function uikit_admin_menu_local_tasks_alter(&$data, $router_item, $root_path) {
+  // Define various icons.
+  $plus = '<i class="uk-icon-plus"></i> ';
+
+  foreach ($data['actions']['output'] as $key => $action) {
+    preg_match('/(shortcut.*)\/add-link/', $action['#link']['path'], $matches);
+    $shortcut_add_link = isset($matches[0]) && $matches[0] == 'shortcut/%/add-link';
+
+    // Add icon for any shorcut add link path.
+    if (isset($action['#link']['path']) && $shortcut_add_link) {
+      $title = $plus . $data['actions']['output'][$key]['#link']['title'];
+      $data['actions']['output'][$key]['#link']['title'] = $title;
+      $data['actions']['output'][$key]['#link']['localized_options']['html'] = TRUE;
+    }
   }
 }

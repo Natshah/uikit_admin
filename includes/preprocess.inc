@@ -15,7 +15,13 @@ function uikit_admin_preprocess_html(&$variables) {
   // NOTE: You can use uk-icon-* and uk-text-* classes to make these icons match
   // the styles of UIkit/Font Awesome icons you use in your sub-theme.
   // See http://fizzed.com/oss/font-mfizz for usage and available icons.
-  drupal_add_css('//cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.css', 'external');
+  drupal_add_css('//cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.css', array(
+    'type' => 'external',
+    'group' => CSS_THEME,
+    'every_page' => TRUE,
+    'weight' => -10,
+    'version' => '2.4.1',
+  ));
 }
 
 /**
@@ -58,6 +64,7 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Create new set':
     case 'Save':
     case 'Save block':
+    case 'Save blocks':
     case 'Save configuration':
     case 'Save content type':
     case 'Save role':
