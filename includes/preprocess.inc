@@ -22,6 +22,14 @@ function uikit_admin_preprocess_html(&$variables) {
     'weight' => -10,
     'version' => '2.4.1',
   ));
+
+  // Retrieve the Open Sans font from Google fonts.
+  drupal_add_css('//fonts.googleapis.com/css?family=Open+Sans:300,400,600', array(
+    'type' => 'external',
+    'group' => CSS_THEME,
+    'every_page' => TRUE,
+    'weight' => -10,
+  ));
 }
 
 /**
@@ -200,6 +208,10 @@ function uikit_admin_preprocess_status_report(&$variables) {
     'error' => array(
       'count' => 0,
     ),
+    'warning' => array(
+      'count' => 0,
+    ),
+    'grid_width' => 'uk-width-1-1',
   );
 
   foreach ($requirements as $key => $requirement) {
@@ -238,7 +250,9 @@ function uikit_admin_preprocess_status_report(&$variables) {
     // REQUIREMENT_WARNING (1).
     if ($severity == REQUIREMENT_WARNING) {
       $status_counters['checked']['count']++;
+      $status_counters['warning']['count']++;
       $grouped_requirements['warning'][] = $requirement;
+      unset($variables['requirements'][$key]);
     }
 
     // REQUIREMENT_ERROR (2).
@@ -287,10 +301,19 @@ function uikit_admin_preprocess_status_report(&$variables) {
     }
   }
 
-  // Assign error title based on plurality of error count.
+  // Assign error/warning titles based on plurality of error/warning counts.
   $status_counters['error']['title'] = $status_counters['error']['count'] == 1 ? t('Error') : t('Errors');
+  $status_counters['warning']['title'] = $status_counters['warning']['count'] == 1 ? t('Warning') : t('Warnings');
+
+  if ($status_counters['error']['count'] && $status_counters['warning']['count']) {
+    $status_counters['grid_width'] = 'uk-width-small-1-1 uk-width-medium-1-3';
+  }
+  elseif ($status_counters['error']['count'] || $status_counters['warning']['count']) {
+    $status_counters['grid_width'] = 'uk-width-small-1-1 uk-width-medium-1-2';
+  }
 
   $variables['errors'] = $status_counters['error']['count'];
+  $variables['warnings'] = $status_counters['warning']['count'];
   $variables['general_information'] = $general_information;
   $variables['grouped_requirements'] = $grouped_requirements;
   $variables['status_counters'] = $status_counters;

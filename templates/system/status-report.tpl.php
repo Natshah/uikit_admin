@@ -7,19 +7,32 @@
 ?>
 
 <div id="status-report-counters" class="uk-grid" data-uk-grid-match>
-  <div id="status-report-counter-errors" class="status-report-counter uk-width-small-1-1 uk-width-medium-1-2">
-    <div class="uk-panel uk-panel-box" style="height: 55px">
-      <i class="uk-icon-times-circle uk-icon-large uk-text-danger status-report-counter-icon"></i>
-      <h3 class="uk-panel-title"><?php print $status_counters['error']['count']; ?> <?php print $status_counters['error']['title']; ?></h3>
-      <?php if ($errors): ?>
+
+  <?php if ($errors): ?>
+    <div id="status-report-counter-errors" class="status-report-counter <?php print $status_counters['grid_width']; ?>">
+      <div class="uk-panel uk-panel-box" style="height: 55px">
+        <i class="uk-icon-times-circle uk-icon-large uk-text-danger status-report-counter-icon"></i>
+        <h3 class="uk-panel-title"><?php print $status_counters['error']['count']; ?> <?php print $status_counters['error']['title']; ?></h3>
         <div class="uk-width-1-1 uk-float-left uk-margin-large-left uk-clearfix">
           <a href="#errors">Details</a>
         </div>
-      <?php endif; ?>
+      </div>
     </div>
-  </div>
+  <?php endif; ?>
 
-  <div id="status-report-counter-checked" class="status-report-counter uk-width-small-1-1 uk-width-medium-1-2">
+  <?php if ($warnings): ?>
+    <div id="status-report-counter-warnings" class="status-report-counter <?php print $status_counters['grid_width']; ?>">
+      <div class="uk-panel uk-panel-box" style="height: 55px">
+        <i class="uk-icon-exclamation-triangle uk-icon-large uk-text-warning status-report-counter-icon"></i>
+        <h3 class="uk-panel-title"><?php print $status_counters['warning']['count']; ?> <?php print $status_counters['warning']['title']; ?></h3>
+        <div class="uk-width-1-1 uk-float-left uk-margin-large-left uk-clearfix">
+          <a href="#warnings">Details</a>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
+  <div id="status-report-counter-checked" class="status-report-counter <?php print $status_counters['grid_width']; ?>">
     <div class="uk-panel uk-panel-box" style="height: 55px">
       <i class="uk-icon-check uk-icon-large uk-text-success status-report-counter-icon"></i>
       <h3 class="uk-panel-title"><?php print $status_counters['checked']['count']; ?> <?php print $status_counters['checked']['title']; ?></h3>
@@ -28,6 +41,7 @@
       </div>
     </div>
   </div>
+
 </div>
 
 <div id="status-report-general-information" class="uk-grid">
@@ -40,9 +54,9 @@
           <i class="uk-icon-drupal uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">Drupal</h3>
-            <h4 class="uk-margin-remove uk-margin-small-bottom uk-text-bold">Version</h4>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Version</h4>
             <div><?php print $general_information['drupal']['version']; ?></div>
-            <h4 class="uk-margin-remove uk-margin-small-bottom uk-text-bold">Installation Profile</h4>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Installation Profile</h4>
             <div><?php print $general_information['drupal']['install_profile']; ?></div>
           </div>
         </div>
@@ -73,9 +87,9 @@
           <i class="icon-php-alt uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">PHP</h3>
-            <h4 class="uk-margin-remove uk-margin-small-bottom uk-text-bold">Version</h4>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Version</h4>
             <div><?php print $general_information['php']['version']; ?></div>
-            <h4 class="uk-margin-remove uk-margin-small-bottom uk-text-bold">Memory Limit</h4>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Memory Limit</h4>
             <div><?php print $general_information['php']['memory_limit']; ?></div>
           </div>
         </div>
@@ -84,9 +98,9 @@
           <i class="uk-icon-database uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">Database</h3>
-            <h4 class="uk-margin-remove uk-margin-small-bottom uk-text-bold">Version</h4>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Version</h4>
             <div><?php print $general_information['database']['version']; ?></div>
-            <h4 class="uk-margin-remove uk-margin-small-bottom uk-text-bold">System</h4>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">System</h4>
             <div><?php print $general_information['database']['system']; ?></div>
           </div>
         </div>
@@ -109,6 +123,30 @@
             </td>
             <td class="system-status-error-description uk-width-small-1-2 uk-width-medium-3-4">
               <div class="system-status-value uk-text-danger"><?php print $requirement['value']; ?></div>
+              <?php if (!empty($requirement['description'])): ?>
+                <div class="system-status-description uk-text-muted"><?php print $requirement['description']; ?></div>
+              <?php endif; ?>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </table>
+    </div>
+  </div>
+<?php endif; ?>
+
+<?php if ($warnings): ?>
+  <div id="warnings" class="uk-grid">
+    <h2 class="uk-margin-bottom">Warnings found</h2>
+    <div class="uk-width-1-1">
+      <table id="system-status-warnings" class="uk-table">
+        <?php foreach ($grouped_requirements['warning'] as $requirement): ?>
+          <tr>
+            <td class="system-status-title uk-text-warning uk-text-uppercase uk-width-small-1-2 uk-width-medium-1-4">
+              <i class="uk-icon-exclamation-triangle uk-icon-small uk-text-warning uk-margin-right"></i>
+              <span class="uk-text-bold"><?php print $requirement['title']; ?></span>
+            </td>
+            <td class="system-status-warning-description uk-width-small-1-2 uk-width-medium-3-4">
+              <div class="system-status-value uk-text-warning"><?php print $requirement['value']; ?></div>
               <?php if (!empty($requirement['description'])): ?>
                 <div class="system-status-description uk-text-muted"><?php print $requirement['description']; ?></div>
               <?php endif; ?>

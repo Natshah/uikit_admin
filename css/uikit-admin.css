@@ -1,10 +1,18 @@
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
+}
+em {
+  color: #444;
+}
 /**
  * Common elements from Drupal core.
  */
-.uk-link:hover,
-a:hover {
-  color: #07D;
-}
 a.button {
   -webkit-appearance: none;
   margin: 0;
@@ -259,6 +267,10 @@ div.vertical-tabs {
 }
 .uk-grid-divider:empty {
   border-color: #afafaf;
+}
+.uk-link:hover,
+a:hover {
+  color: #07D;
 }
 .uk-overflow-container:not(:last-child) {
   margin-bottom: 15px;
