@@ -272,6 +272,18 @@ function uikit_admin_preprocess_status_report(&$variables) {
       unset($variables['requirements'][$key]);
     }
     elseif ($title == 'Cron maintenance tasks') {
+      $last_cron = time() - variable_get('cron_last');
+
+      if ($last_cron < 86400) {
+        $general_information['cron']['last_cron'] = 'uk-admin-last-cron-less-day';
+      }
+      elseif ($last_cron >= 86400 && $last_cron < 604800) {
+        $general_information['cron']['last_cron'] = 'uk-admin-last-cron-week';
+      }
+      elseif ($last_cron >= 604800) {
+        $general_information['cron']['last_cron'] = 'uk-admin-last-cron-over-week';
+      }
+
       $run_cron = '/admin/reports/status/run-cron';
       $more_information = '/admin/config/system/cron';
       $general_information['cron']['last_run'] = $requirement['value'];
@@ -280,6 +292,19 @@ function uikit_admin_preprocess_status_report(&$variables) {
       unset($variables['requirements'][$key]);
     }
     elseif ($title == 'Web server') {
+      $apache = substr($requirement['value'], 0, 6) === 'Apache';
+      $nginx = substr($requirement['value'], 0, 5) === 'nginx';
+
+      if ($apache) {
+        $general_information['web_server']['icon'] = 'icon-apache';
+      }
+      elseif ($nginx) {
+        $general_information['web_server']['icon'] = 'icon-nginx';
+      }
+      else {
+        $general_information['web_server']['icon'] = 'uk-icon-server uk-text-muted';
+      }
+
       $general_information['web_server']['value'] = $requirement['value'];
       unset($variables['requirements'][$key]);
     }

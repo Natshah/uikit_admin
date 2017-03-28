@@ -51,7 +51,7 @@
 
       <div class="uk-grid uk-margin-bottom">
         <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-margin-bottom">
-          <i class="uk-icon-drupal uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <i class="uk-icon-drupal uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">Drupal</h3>
             <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Version</h4>
@@ -62,7 +62,7 @@
         </div>
 
         <div class="uk-width-small-1-1 uk-width-medium-1-3">
-          <i class="uk-icon-clock-o uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <i class="uk-icon-clock-o <?php print $general_information['cron']['last_cron']; ?> uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">Last Cron Run</h3>
             <div class="uk-float-right"><?php print $general_information['cron']['run_cron']; ?></div>
@@ -76,7 +76,7 @@
 
       <div class="uk-grid">
         <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-margin-bottom">
-          <i class="uk-icon-server uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <i class="<?php print $general_information['web_server']['icon']; ?> uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">Web Server</h3>
             <div><?php print $general_information['web_server']['value']; ?></div>
@@ -84,7 +84,7 @@
         </div>
 
         <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-margin-bottom">
-          <i class="icon-php-alt uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <i class="icon-php-alt uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">PHP</h3>
             <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Version</h4>
@@ -95,7 +95,7 @@
         </div>
 
         <div class="uk-width-small-1-1 uk-width-medium-1-3">
-          <i class="uk-icon-database uk-icon-large uk-text-muted uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <i class="uk-icon-database uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
           <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
             <h3 class="uk-text-bold uk-margin-small-bottom">Database</h3>
             <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Version</h4>
