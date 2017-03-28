@@ -111,6 +111,14 @@ ul.action-links {
 .form-item-operation+.form-submit {
   margin: 0 0 0 5px !important;
 }
+.draggable a.tabledrag-handle {
+  height: auto;
+}
+a.tabledrag-handle .handle {
+  height: auto;
+  padding-top: 0;
+  padding-bottom: 6px;
+}
 .exposed-filters .filters {
   float: left;
 }
@@ -280,9 +288,6 @@ div.vertical-tabs {
 .uk-table:not(.update) th {
   border-color: #afafaf;
 }
-.uk-table-striped:not(.update) tbody tr:nth-of-type(odd) {
-  background: #afafaf;
-}
 .uk-table-hover tbody tr.uk-alert:nth-of-type(odd),
 tr.uk-alert tr:nth-of-type(odd),
 .uk-table-hover tbody tr.uk-alert:hover {
@@ -389,8 +394,11 @@ tr.uk-alert-danger tr:nth-of-type(odd),
 .uk-admin-theme-operations>li:first-child {
   padding-left: 0;
 }
+.uk-admin-vertical-align-middle {
+  vertical-align: middle !important;
+}
 .uk-admin-vertical-align-top {
-  vertical-align: top;
+  vertical-align: top !important;
 }
 
 /**

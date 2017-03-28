@@ -36,7 +36,7 @@
   }
 ?>
 <div class="uk-overflow-container">
-  <table id="blocks" class="uk-table uk-table-hover uk-text-nowrap sticky-enabled">
+  <table id="blocks" class="uk-table uk-table-hover sticky-enabled">
     <thead>
       <tr>
         <th><?php print t('Block'); ?></th>
@@ -56,11 +56,11 @@
         </tr>
         <?php foreach ($block_listing[$region] as $delta => $data): ?>
         <tr class="draggable <?php print $row % 2 == 0 ? 'odd' : 'even'; ?><?php print $data->row_class ? ' ' . $data->row_class : ''; ?>">
-          <td class="block"><?php print $data->block_title; ?></td>
-          <td><?php print $data->region_select; ?></td>
-          <td><?php print $data->weight_select; ?></td>
-          <td><?php print $data->configure_link; ?></td>
-          <td><?php print $data->delete_link; ?></td>
+          <td class="block uk-admin-vertical-align-middle"><?php print $data->block_title; ?></td>
+          <td class="uk-admin-vertical-align-middle"><?php print $data->region_select; ?></td>
+          <td class="uk-admin-vertical-align-middle"><?php print $data->weight_select; ?></td>
+          <td class="uk-admin-vertical-align-middle"><?php print $data->configure_link; ?></td>
+          <td class="uk-admin-vertical-align-middle"><?php print $data->delete_link; ?></td>
         </tr>
         <?php $row++; ?>
         <?php endforeach; ?>
