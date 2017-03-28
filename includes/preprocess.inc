@@ -141,7 +141,6 @@ function uikit_admin_preprocess_form(&$variables) {
  * Implements template_preprocess_HOOK() for theme_form_element().
  */
 function uikit_admin_preprocess_form_element(&$variables) {
-  $type = $variables['element']['#type'];
   $variables['element']['#wrapper_attributes']['class'][] = 'form-item';
 }
 
