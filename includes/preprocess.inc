@@ -78,8 +78,12 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Save role':
     case 'Save settings':
     case 'Save field settings':
-    case 'Update':
+    case 'Upload':
       $variables['element']['#attributes']['class'][] = 'uk-button-primary';
+      break;
+
+    case 'Preview':
+      $variables['element']['#attributes']['class'][] = 'uk-button-warning';
       break;
 
     case 'Cancel':
@@ -112,6 +116,14 @@ function uikit_admin_preprocess_fieldset(&$variables) {
   foreach ($parents as $parent) {
     if (in_array($parent, $non_collapsible)) {
       $variables['theme_hook_suggestions'] = array('fieldset__non_collapsible');
+      $help = isset($variables['element']['help']);
+      $guidelines = isset($variables['element']['guidelines']);
+
+      if ($help && $guidelines) {
+        $variables['element']['#attributes']['class'][] = 'uk-panel';
+        $variables['element']['#attributes']['class'][] = 'uk-panel-box';
+        $variables['element']['#attributes']['class'][] = 'uk-margin-remove';
+      }
       break;
     }
   }
@@ -155,6 +167,13 @@ function uikit_admin_preprocess_form_element_label(&$variables) {
   if ($type == 'item' && empty($children)) {
     $variables['theme_hook_suggestions'] = array('form_element_label__item');
   }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for theme_item_list().
+ */
+function uikit_admin_preprocess_item_list(&$variables) {
+  $variables['attributes']['class'][] = 'uk-margin-top';
 }
 
 /**
@@ -349,4 +368,10 @@ function uikit_admin_preprocess_status_report(&$variables) {
 function uikit_admin_preprocess_table(&$variables) {
   $variables['attributes']['class'][] = 'uk-table-hover';
   $variables['attributes']['class'][] = 'uk-table-striped';
+
+  $id = isset($variables['attributes']['id']) ? $variables['attributes']['id'] : 0;
+
+  if ($id && $id == 'admin-dblog') {
+    $variables['theme_hook_suggestions'][] = 'table__dblog';
+  }
 }

@@ -6,6 +6,40 @@
  */
 
 /**
+ * Implements theme_admin_page().
+ */
+function uikit_admin_admin_page($variables) {
+  $blocks = $variables['blocks'];
+
+  $stripe = 0;
+  $container = array();
+
+  foreach ($blocks as $block) {
+    if ($block_output = theme('admin_block', array('block' => $block))) {
+      if (empty($block['position'])) {
+        // Perform automatic striping.
+        $block['position'] = ++$stripe % 2 ? 'uk-float-left' : 'uk-float-right';
+      }
+      if (!isset($container[$block['position']])) {
+        $container[$block['position']] = '';
+      }
+      $container[$block['position']] .= $block_output;
+    }
+  }
+
+  $output = '<div class="admin uk-grid">';
+  $output .= theme('system_compact_link');
+
+  foreach ($container as $id => $data) {
+    $output .= '<div class="uk-width-small-1-1 uk-width-medium-1-2">';
+    $output .= $data;
+    $output .= '</div>';
+  }
+  $output .= '</div>';
+  return $output;
+}
+
+/**
  * Implements theme_admin_block().
  */
 function uikit_admin_admin_block($variables) {
@@ -210,6 +244,51 @@ function uikit_admin_fieldset__non_collapsible($variables) {
 }
 
 /**
+ * Implements theme_filter_tips().
+ */
+function uikit_admin_filter_tips($variables) {
+  $tips = $variables['tips'];
+  $long = $variables['long'];
+  $output = '';
+
+  $multiple = count($tips) > 1;
+  if ($multiple) {
+    $output = '<h2>' . t('Text Formats') . '</h2>';
+  }
+
+  if (count($tips)) {
+    if ($multiple) {
+      $output .= '<div class="compose-tips">';
+    }
+
+    foreach ($tips as $name => $tiplist) {
+      if ($multiple) {
+        $output .= '<div class="filter-type filter-' . drupal_html_class($name) . '">';
+        $output .= '<h3>' . check_plain($name) . '</h3>';
+      }
+
+      if (count($tiplist) > 0) {
+        $output .= '<ul class="tips uk-list uk-list-line">';
+        foreach ($tiplist as $tip) {
+          $output .= '<li' . ($long ? ' id="filter-' . str_replace("/", "-", $tip['id']) . '">' : '>') . $tip['tip'] . '</li>';
+        }
+        $output .= '</ul>';
+      }
+
+      if ($multiple) {
+        $output .= '</div><hr class="uk-article-divider">';
+      }
+    }
+
+    if ($multiple) {
+      $output .= '</div>';
+    }
+  }
+
+  return $output;
+}
+
+/**
  * Implements theme_form_element_label().
  */
 function uikit_admin_form_element_label__item($variables) {
@@ -300,6 +379,311 @@ function uikit_admin_node_add_list($variables) {
   }
 
   return $output;
+}
+
+/**
+ * Implements theme_pager().
+ */
+function uikit_admin_pager($variables) {
+  global $pager_page_array;
+  global $pager_total;
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  $quantity = $variables['quantity'];
+
+  // Middle is used to "center" pages around the current page.
+  $pager_middle = ceil($quantity / 2);
+
+  // Current is the page we are currently paged to.
+  $pager_current = $pager_page_array[$element] + 1;
+
+  // First is the first page listed by this pager piece (re quantity).
+  $pager_first = $pager_current - $pager_middle + 1;
+
+  // Last is the last page listed by this pager piece (re quantity).
+  $pager_last = $pager_current + $quantity - $pager_middle;
+
+  // Max is the maximum page number.
+  $pager_max = $pager_total[$element];
+
+  // Prepare for generation loop.
+  $i = $pager_first;
+
+  if ($pager_last > $pager_max) {
+    // Adjust "center" if at end of query.
+    $i = $i + ($pager_max - $pager_last);
+    $pager_last = $pager_max;
+  }
+
+  if ($i <= 0) {
+    // Adjust "center" if at start of query.
+    $pager_last = $pager_last + (1 - $i);
+    $i = 1;
+  }
+
+  $li_first = theme('pager_first', array(
+    'text' => t('<i class="uk-icon-angle-double-left"></i>'),
+    'element' => $element,
+    'parameters' => $parameters,
+  ));
+
+  $li_previous = theme('pager_previous', array(
+    'text' => t('<i class="uk-icon-angle-left"></i>'),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters,
+  ));
+
+  $li_next = theme('pager_next', array(
+    'text' => t('<i class="uk-icon-angle-right"></i>'),
+    'element' => $element,
+    'interval' => 1,
+    'parameters' => $parameters,
+  ));
+
+  $li_last = theme('pager_last', array(
+    'text' => t('<i class="uk-icon-angle-double-right"></i>'),
+    'element' => $element,
+    'parameters' => $parameters,
+  ));
+
+  if ($pager_total[$element] > 1) {
+    if ($li_first) {
+      $items[] = array(
+        'class' => array('pager-first'),
+        'data' => $li_first,
+      );
+    }
+
+    if ($li_previous) {
+      $items[] = array(
+        'class' => array('pager-previous'),
+        'data' => $li_previous,
+      );
+    }
+
+    // When there is more than one page, create the pager list.
+    if ($i != $pager_max) {
+      if ($i > 1) {
+        $items[] = array(
+          'class' => array('pager-ellipsis'),
+          'data' => '…',
+        );
+      }
+
+      // Now generate the actual pager piece.
+      for (; $i <= $pager_last && $i <= $pager_max; $i++) {
+        if ($i < $pager_current) {
+          $items[] = array(
+            'class' => array('pager-item'),
+            'data' => theme('pager_previous', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($pager_current - $i),
+              'parameters' => $parameters,
+            )),
+          );
+        }
+
+        if ($i == $pager_current) {
+          $items[] = array(
+            'class' => array('pager-current', 'uk-active'),
+            'data' => '<span>' . $i . '</span>',
+          );
+        }
+
+        if ($i > $pager_current) {
+          $items[] = array(
+            'class' => array('pager-item'),
+            'data' => theme('pager_next', array(
+              'text' => $i,
+              'element' => $element,
+              'interval' => ($i - $pager_current),
+              'parameters' => $parameters,
+            )),
+          );
+        }
+      }
+
+      if ($i < $pager_max) {
+        $items[] = array(
+          'class' => array('pager-ellipsis'),
+          'data' => '<span>…</span>',
+        );
+      }
+    }
+
+    if ($li_next) {
+      $items[] = array(
+        'class' => array('pager-next'),
+        'data' => $li_next,
+      );
+    }
+
+    if ($li_last) {
+      $items[] = array(
+        'class' => array('pager-last'),
+        'data' => $li_last,
+      );
+    }
+
+    $pagination = theme('item_list', array(
+      'items' => $items,
+      'attributes' => array('class' => array('uk-pagination')),
+    ));
+
+    return '<h2 class="element-invisible">' . t('Pages') . '</h2>' . $pagination;
+  }
+}
+
+/**
+ * Implements theme_pager_link().
+ */
+function uikit_admin_pager_link($variables) {
+  $text = $variables['text'];
+  $page_new = $variables['page_new'];
+  $element = $variables['element'];
+  $parameters = $variables['parameters'];
+  $attributes = $variables['attributes'];
+  $page = isset($_GET['page']) ? $_GET['page'] : '';
+
+  if ($new_page = implode(',', pager_load_array($page_new[$element], $element, explode(',', $page)))) {
+    $parameters['page'] = $new_page;
+  }
+
+  $query = array();
+
+  if (count($parameters)) {
+    $query = drupal_get_query_parameters($parameters, array());
+  }
+
+  if ($query_pager = pager_get_query_parameters()) {
+    $query = array_merge($query, $query_pager);
+  }
+
+  // Set each pager link title.
+  if (!isset($attributes['title'])) {
+    static $titles = NULL;
+
+    if (!isset($titles)) {
+      $titles = array(
+        t('<i class="uk-icon-angle-double-left"></i>') => t('Go to first page'),
+        t('<i class="uk-icon-angle-left"></i>') => t('Go to previous page'),
+        t('<i class="uk-icon-angle-right"></i>') => t('Go to next page'),
+        t('<i class="uk-icon-angle-double-right"></i>') => t('Go to last page'),
+      );
+    }
+
+    if (isset($titles[$text])) {
+      $attributes['title'] = $titles[$text];
+    }
+    elseif (is_numeric($text)) {
+      $attributes['title'] = t('Go to page @number', array('@number' => $text));
+    }
+  }
+
+  $attributes['href'] = url($_GET['q'], array('query' => $query));
+  return '<a' . drupal_attributes($attributes) . '>' . $text . '</a>';
+}
+
+/**
+ * Implements theme_system_compact_link().
+ */
+function uikit_admin_system_compact_link() {
+  $output = '<div class="compact-link uk-width-1-1 uk-margin-small-bottom">';
+  if (system_admin_compact_mode()) {
+    $output .= l(t('Show descriptions'), 'admin/compact/off', array('attributes' => array('title' => t('Expand layout to include descriptions.')), 'query' => drupal_get_destination()));
+  }
+  else {
+    $output .= l(t('Hide descriptions'), 'admin/compact/on', array('attributes' => array('title' => t('Compress layout by hiding descriptions.')), 'query' => drupal_get_destination()));
+  }
+  $output .= '</div>';
+
+  return $output;
+}
+
+/**
+ * Implements theme_system_modules_fieldset().
+ */
+function uikit_admin_system_modules_fieldset($variables) {
+  $form = $variables['form'];
+  unset($form['#header'][4]['colspan']);
+
+  // Individual table headers.
+  $rows = array();
+  // Iterate through all the modules, which are
+  // children of this fieldset.
+  foreach (element_children($form) as $key) {
+    // Stick it into $module for easier accessing.
+    $module = $form[$key];
+    $row = array();
+    unset($module['enable']['#title']);
+    $row[] = array('class' => array('checkbox'), 'data' => drupal_render($module['enable']));
+    $label = '<label';
+    if (isset($module['enable']['#id'])) {
+      $label .= ' for="' . $module['enable']['#id'] . '"';
+    }
+    $row[] = $label . '><strong>' . drupal_render($module['name']) . '</strong></label>';
+    $row[] = drupal_render($module['version']);
+    // Add the description, along with any modules it requires.
+    $description = drupal_render($module['description']);
+    if ($module['#requires']) {
+      $description .= '<div class="admin-requirements">' . t('Requires: !module-list', array('!module-list' => implode(', ', $module['#requires']))) . '</div>';
+    }
+    if ($module['#required_by']) {
+      $description .= '<div class="admin-requirements">' . t('Required by: !module-list', array('!module-list' => implode(', ', $module['#required_by']))) . '</div>';
+    }
+    $row[] = array('data' => $description, 'class' => array('description'));
+
+    $links = '';
+    $help = isset($module['links']['help']['#href']);
+    $permissions = isset($module['links']['permissions']['#href']);
+    $configure = isset($module['links']['configure']['#href']);
+
+    if ($help || $permissions || $configure) {
+      $links .= '<div class="uk-button-dropdown" data-uk-dropdown="{mode:\'click\'}">';
+      $links .= '<div class="uk-admin-system-modules-operations">Operations <i class="uk-icon-caret-down"></i></div>';
+      $links .= '<div class="uk-dropdown uk-dropdown-bottom">';
+      $links .= '<ul class="uk-nav uk-nav-dropdown">';
+
+      // Display links (such as help or permissions) in a single column.
+      foreach (array('help', 'permissions', 'configure') as $link_type) {
+        $module['links'][$link_type]['#options']['html'] = TRUE;
+
+        switch ($link_type) {
+          case 'help':
+            $module['links'][$link_type]['#title'] = '<i class="uk-icon-question"></i> Help';
+            break;
+
+          case 'permissions':
+            $module['links'][$link_type]['#title'] = '<i class="uk-icon-lock"></i> Permissions';
+            break;
+
+          case 'configure':
+            $module['links'][$link_type]['#title'] = '<i class="uk-icon-cog"></i> Configure';
+            break;
+        }
+
+        $links .= '<li>' . drupal_render($module['links'][$link_type]) . '</li>';
+      }
+
+      $links .= '</ul>';
+      $links .= '</div>';
+      $links .= '</div>';
+    }
+
+    $row[] = array('data' => $links, 'class' => array('operations'));
+
+    $rows[] = $row;
+  }
+
+  return theme('table', array(
+    'header' => $form['#header'],
+    'rows' => $rows,
+    'attributes' => array(
+      'id' => 'system-modules',
+    ),
+  ));
 }
 
 /**
@@ -445,6 +829,197 @@ function uikit_admin_system_themes_page($variables) {
 }
 
 /**
+ * Implements theme_table().
+ */
+function uikit_admin_table__dblog($variables) {
+  $header = $variables['header'];
+  $rows = $variables['rows'];
+  $attributes = $variables['attributes'];
+  $caption = $variables['caption'];
+  $colgroups = $variables['colgroups'];
+  $sticky = $variables['sticky'];
+  $empty = $variables['empty'];
+  $attributes['class'] = array('uk-table');
+
+  // Add sticky headers, if applicable.
+  if (count($header) && $sticky) {
+    drupal_add_js('misc/tableheader.js');
+    // Add 'sticky-enabled' class to the table to identify it for JS.
+    // This is needed to target tables constructed by this function.
+    $attributes['class'][] = 'sticky-enabled';
+  }
+
+  $output = '<table' . drupal_attributes($attributes) . '>';
+
+  if (isset($caption)) {
+    $output .= '<caption>' . $caption . '</caption>';
+  }
+
+  // Format the table columns:
+  if (count($colgroups)) {
+    foreach ($colgroups as $colgroup) {
+      $attributes = array();
+
+      // Check if we're dealing with a simple or complex column.
+      if (isset($colgroup['data'])) {
+        foreach ($colgroup as $key => $value) {
+          if ($key == 'data') {
+            $cols = $value;
+          }
+          else {
+            $attributes[$key] = $value;
+          }
+        }
+      }
+      else {
+        $cols = $colgroup;
+      }
+
+      // Build colgroup.
+      if (is_array($cols) && count($cols)) {
+        $output .= ' <colgroup' . drupal_attributes($attributes) . '>';
+
+        foreach ($cols as $col) {
+          $output .= ' <col' . drupal_attributes($col) . ' />';
+        }
+
+        $output .= '</colgroup>';
+      }
+      else {
+        $output .= ' <colgroup' . drupal_attributes($attributes) . ' />';
+      }
+    }
+  }
+
+  // Add the 'empty' row message if available.
+  if (!count($rows) && $empty) {
+    $header_count = 0;
+
+    foreach ($header as $header_cell) {
+      if (is_array($header_cell)) {
+        $header_count += isset($header_cell['colspan']) ? $header_cell['colspan'] : 1;
+      }
+      else {
+        $header_count++;
+      }
+    }
+
+    $rows[] = array(
+      array(
+        'data' => $empty,
+        'colspan' => $header_count,
+        'class' => array('empty', 'message'),
+      ),
+    );
+  }
+
+  // Format the table header:
+  if (count($header)) {
+    $ts = tablesort_init($header);
+    // HTML requires that the thead tag has tr tags in it followed by tbody
+    // tags. Using ternary operator to check and see if we have any rows.
+    $output .= (count($rows) ? '<thead><tr class="uk-text-left">' : '<tr>');
+
+    foreach ($header as $cell) {
+      $cell = tablesort_header($cell, $header, $ts);
+      $output .= _theme_table_cell($cell, TRUE);
+    }
+
+    // Using ternary operator to close the tags based on whether or not there
+    // are rows.
+    $output .= (count($rows) ? '</tr></thead>' : '</tr>');
+  }
+  else {
+    $ts = array();
+  }
+
+  // Format the table rows:
+  if (count($rows)) {
+    $output .= '<tbody>';
+    $flip = array('even' => 'odd', 'odd' => 'even');
+    $class = 'even';
+
+    foreach ($rows as $row) {
+      // Check if we're dealing with a simple or complex row.
+      if (isset($row['data'])) {
+        $cells = $row['data'];
+        $no_striping = isset($row['no_striping']) ? $row['no_striping'] : FALSE;
+
+        // Set the attributes array and exclude 'data' and 'no_striping'.
+        $attributes = $row;
+        unset($attributes['data']);
+        unset($attributes['no_striping']);
+      }
+      else {
+        $cells = $row;
+        $attributes = array();
+        $no_striping = FALSE;
+      }
+
+      if (count($cells)) {
+        // Add odd/even class.
+        if (!$no_striping) {
+          $class = $flip[$class];
+          $attributes['class'][] = $class;
+        }
+
+        $attributes['class'][] = 'uk-text-left';
+
+        // Get log message severity to add classes to row.
+        $info = in_array('dblog-info', $attributes['class']);
+
+        $warning = in_array('dblog-debug', $attributes['class']) ||
+          in_array('dblog-warning', $attributes['class']) ||
+          in_array('dblog-alert', $attributes['class']);
+
+        $error = in_array('dblog-error', $attributes['class']) ||
+          in_array('dblog-critical', $attributes['class']) ||
+          in_array('dblog-emerg', $attributes['class']);
+
+        if ($info) {
+          $attributes['class'][] = 'uk-alert';
+        }
+        if ($warning) {
+          $attributes['class'][] = 'uk-alert';
+          $attributes['class'][] = 'uk-alert-warning';
+        }
+        if ($error) {
+          $attributes['class'][] = 'uk-alert';
+          $attributes['class'][] = 'uk-alert-danger';
+        }
+
+        // Build row.
+        $output .= '<tr' . drupal_attributes($attributes) . '>';
+        $i = 0;
+
+        foreach ($cells as $cell) {
+          $cell = tablesort_cell($cell, $header, $ts, $i++);
+
+          if ($i == 1) {
+            if ($info) {
+              $cell = '<i class="uk-icon-info-circle uk-text-primary"></i>';
+            }
+            if ($warning) {
+              $cell = '<i class="uk-icon-exclamation-triangle uk-text-warning"></i>';
+            }
+            if ($error) {
+              $cell = '<i class="uk-icon-exclamation-triangle uk-text-danger"></i>';
+            }
+          }
+
+          $output .= _theme_table_cell($cell);
+        }
+        $output .= '</tr>';
+      }
+    }
+    $output .= '</tbody>';
+  }
+
+  $output .= '</table>';
+  return $output;
+}
+
+/**
  * Implements theme_tablesort_indicator().
  */
 function uikit_admin_tablesort_indicator($variables) {
@@ -474,8 +1049,6 @@ function uikit_admin_update_report($variables) {
 
   $header = array();
   $rows = array();
-
-  $notification_level = variable_get('update_notification_threshold', 'all');
 
   // Create an array of status values keyed by module or theme name, since
   // we'll need this while generating the report if we have to cross reference
@@ -535,7 +1108,7 @@ function uikit_admin_update_report($variables) {
     }
     $row .= ' ' . check_plain($project['existing_version']);
     if ($project['install_type'] == 'dev' && !empty($project['datestamp'])) {
-      $row .= ' <span class="version-date uk-admin-text-weight-normal">(' . format_date($project['datestamp'], 'custom', 'F j, Y') . ')</span>';
+      $row .= ' <span class="version-date">(' . format_date($project['datestamp'], 'custom', 'F j, Y') . ')</span>';
     }
     $row .= '</div>';
 
@@ -721,19 +1294,19 @@ function uikit_admin_update_report($variables) {
 function uikit_admin_update_status_label($variables) {
   switch ($variables['status']) {
     case UPDATE_NOT_SECURE:
-      return '<span class="uk-margin-right uk-admin-text-dark">' . t('Security update required!') . '</span>';
+      return '<span class="uk-margin-right">' . t('Security update required!') . '</span>';
 
     case UPDATE_REVOKED:
-      return '<span class="uk-margin-right uk-admin-text-dark">' . t('Revoked!') . '</span>';
+      return '<span class="uk-margin-right">' . t('Revoked!') . '</span>';
 
     case UPDATE_NOT_SUPPORTED:
-      return '<span class="uk-margin-right uk-admin-text-dark">' . t('Not supported!') . '</span>';
+      return '<span class="uk-margin-right">' . t('Not supported!') . '</span>';
 
     case UPDATE_NOT_CURRENT:
-      return '<span class="uk-margin-right uk-admin-text-dark">' . t('Update available') . '</span>';
+      return '<span class="uk-margin-right">' . t('Update available') . '</span>';
 
     case UPDATE_CURRENT:
-      return '<span class="uk-margin-right uk-admin-text-dark">' . t('Up to date') . '</span>';
+      return '<span class="uk-margin-right">' . t('Up to date') . '</span>';
 
   }
 }
@@ -764,7 +1337,7 @@ function uikit_admin_update_version($variables) {
     'href' => $version['release_link'],
   );
   $attributes = array(
-    'class' => array('uk-list'),
+    'class' => array('uk-list uk-margin-right uk-margin-bottom-remove uk-text-center'),
   );
   $output .= theme('links__update_version', array('links' => $links, 'attributes' => $attributes));
   $output .= '</div>';

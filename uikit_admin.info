@@ -9,7 +9,7 @@ scripts[] = js/uikit-admin.js
 regions[help] = 'Help'
 regions[content] = 'Content'
 
-settings[base_style] = 'gradient'
-settings[page_margin] = 0
+settings[base_style] = 0
+settings[page_margin] = 'uk-margin-bottom'
 settings[primary_tasks_style] = 'uk-tab'
 settings[secondary_tasks_style] = 'uk-subnav-line'

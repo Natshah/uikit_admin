@@ -22,6 +22,9 @@
 function uikit_admin_css_alter(&$css) {
   // Stop Drupal core stylesheets from being loaded.
   unset($css[drupal_get_path('module', 'system') . '/system.admin.css']);
+
+  // Stop dblog stylesheet from being loaded.
+  unset($css[drupal_get_path('module', 'dblog') . '/dblog.css']);
 }
 
 /**
