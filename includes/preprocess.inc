@@ -24,7 +24,7 @@ function uikit_admin_preprocess_html(&$variables) {
   ));
 
   // Retrieve the Open Sans font from Google fonts.
-  drupal_add_css('//fonts.googleapis.com/css?family=Open+Sans:300,400,600', array(
+  drupal_add_css('//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700', array(
     'type' => 'external',
     'group' => CSS_THEME,
     'every_page' => TRUE,
@@ -71,6 +71,7 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Continue':
     case 'Create new set':
     case 'Download these updates':
+    case 'Install':
     case 'Save':
     case 'Save block':
     case 'Save blocks':
