@@ -1,7 +1,7 @@
 {
   "name": "uikit-admin-drupal",
   "version": "7.2.0-dev",
-  "description": "AA one-column administration theme based on UIkit for Drupal.",
+  "description": "A one-column administration theme based on UIkit for Drupal.",
   "homepage": "https://www.drupal.org/project/uikit_admin",
   "bugs": {
     "url" : "https://www.drupal.org/project/issues/uikit_admin"
