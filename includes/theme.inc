@@ -145,7 +145,12 @@ function uikit_admin_fieldset($variables) {
   $element = $variables['element'];
   $collapsed = $element['#collapsed'];
   element_set_attributes($element, array('id'));
-  _form_set_class($element, array('uk-panel', 'uk-panel-box', 'form-wrapper'));
+  _form_set_class($element, array(
+    'uk-panel',
+    'uk-panel-box',
+    'uk-admin-panel-box-toggle',
+    'form-wrapper',
+  ));
   $id = $element['#attributes']['id'];
 
   // When viewing the theme settings page for a specific theme, add the
@@ -184,7 +189,7 @@ function uikit_admin_fieldset($variables) {
       'data-uk-toggle' => "{target:'#" . $id . "-toggle'}",
     );
 
-    $output .= '<a' . drupal_attributes($toggle_attributes) . '>' . $element['#title'] . '</a>';
+    $output .= '<a' . drupal_attributes($toggle_attributes) . '><i class="uk-icon-angle-down uk-margin-small-right"></i>' . $element['#title'] . '</a>';
     $output .= '</h3>';
   }
 
@@ -664,7 +669,7 @@ function uikit_admin_system_modules_fieldset($variables) {
             break;
         }
 
-        $links .= '<li>' . drupal_render($module['links'][$link_type]) . '</li>';
+        $links .= '<li class="' . $link_type . '">' . drupal_render($module['links'][$link_type]) . '</li>';
       }
 
       $links .= '</ul>';

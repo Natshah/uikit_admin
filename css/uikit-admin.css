@@ -651,8 +651,29 @@ a:hover {
 .uk-admin-panel-box-light {
   background: #fff;
 }
+.uk-admin-panel-box-toggle {
+  background: #fff;
+  border-color: #008ee6;
+  top: 7px;
+}
+.uk-admin-panel-box-toggle.closed {
+  border-right: 0;
+  border-bottom: 0;
+  border-left-color: transparent;
+}
 .uk-admin-panel-title-toggle {
-  margin-bottom: 0;
+  position: absolute;
+  top: -14px;
+  margin: 0;
+  padding: 0 6px;
+  background: #fff;
+}
+.uk-admin-panel-title-toggle a:focus,
+.uk-admin-panel-title-toggle a:hover {
+  color: #008ee6;
+}
+.uk-admin-panel-title-toggle a i {
+  color: #444;
 }
 .uk-admin-panel-title-toggle [data-uk-toggle] {
   display: block;
