@@ -189,6 +189,9 @@ div.image-style-new,
 div.image-style-new div {
   display: inline-block;
 }
+div.image-preview {
+  float: none;
+}
 div.image-style-new button {
   margin: 0 0 0 5px !important;
 }
@@ -207,9 +210,13 @@ html.js input.form-autocomplete {
   margin-top: 5px;
 }
 .resizable-textarea .grippie {
+  background: #f5f5f5;
   border-color: #afafaf;
   border-left-width: 4px;
-  border-bottom-width: 0;
+  height: auto;
+}
+.form-item-textarea-resizeable+.uk-panel-box {
+  border-top: 0;
 }
 .sticky-header {
   z-index: 1;
@@ -421,6 +428,9 @@ table#system-modules td.operations {
 .uk-form select:focus,
 .uk-form textarea:focus {
   background: #fff;
+  border-color: #008ee6;
+}
+.uk-form textarea:focus + .grippie {
   border-color: #008ee6;
 }
 .uk-form input[type=radio],

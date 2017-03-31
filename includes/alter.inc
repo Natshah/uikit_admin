@@ -141,6 +141,11 @@ function uikit_admin_js_alter(&$javascript) {
   if (isset($javascript[$tabledrag])) {
     $javascript[$tabledrag]['data'] = $uikit_admin . '/tabledrag.js';
   }
+
+  $textarea = 'misc/textarea.js';
+  if (isset($javascript[$textarea])) {
+    $javascript[$textarea]['data'] = $uikit_admin . '/textarea.js';
+  }
 }
 
 /**
