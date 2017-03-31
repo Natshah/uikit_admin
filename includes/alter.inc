@@ -20,11 +20,22 @@
  * Implements hook_css_alter().
  */
 function uikit_admin_css_alter(&$css) {
+  $uikit_admin = drupal_get_path('theme', 'uikit_admin') . '/css';
+
   // Stop Drupal core stylesheets from being loaded.
   unset($css[drupal_get_path('module', 'system') . '/system.admin.css']);
 
   // Stop dblog stylesheet from being loaded.
   unset($css[drupal_get_path('module', 'dblog') . '/dblog.css']);
+
+  $vertical_tabs = 'misc/vertical-tabs.css';
+  $vertical_tabs_rtl = 'misc/vertical-tabs-rtl.css';
+  if (isset($css[$vertical_tabs])) {
+    $css[$vertical_tabs]['data'] = $uikit_admin . '/vertical-tabs.css';
+  }
+  if (isset($css[$vertical_tabs_rtl])) {
+    $css[$vertical_tabs_rtl]['data'] = $uikit_admin . '/vertical-tabs-rtl.css';
+  }
 }
 
 /**

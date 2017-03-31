@@ -232,10 +232,6 @@ html.js input.form-autocomplete {
 .theme-selector .screenshot {
   border: 1px solid #afafaf;
 }
-div.vertical-tabs {
-  border: 1px solid #afafaf;
-  margin-top: 0;
-}
 #autocomplete {
   border: 0;
 }
@@ -970,23 +966,4 @@ a:hover {
 }
 #system-status-checked td.uk-admin-status-padding-normal {
   padding-left: 41px;
-}
-
-/**
- * Vertical tabs.
- */
-.vertical-tabs ul.vertical-tabs-list li {
-  background: #f5f5f5;
-  border-bottom: 1px solid #afafaf;
-}
-.vertical-tabs ul.vertical-tabs-list li a:focus {
-  outline: 0;
-}
-.vertical-tabs ul.vertical-tabs-list li a:hover {
-  outline: 1px dotted #2f3f73;
-}
-.vertical-tabs ul.vertical-tabs-list li a:focus strong,
-.vertical-tabs ul.vertical-tabs-list li a:active strong,
-.vertical-tabs ul.vertical-tabs-list li a:hover strong {
-  text-decoration: none;
 }

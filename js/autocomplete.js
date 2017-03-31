@@ -196,7 +196,7 @@
    */
   Drupal.jsAC.prototype.populatePopup = function () {
     var $input = $(this.input);
-    var width = $input.outerWidth() - 2;
+    var width = $input.outerWidth();
     var position = $input.position();
     // Show popup.
     if (this.popup) {

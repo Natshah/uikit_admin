@@ -415,6 +415,8 @@ function uikit_admin_preprocess_textfield(&$variables) {
     $variables['element']['#attributes']['class'][] = 'uk-margin-small-left';
   }
 
+  $variables['element']['#attributes']['class'][] = 'uk-form-width-large';
+
   if ($element['#autocomplete_path'] && !empty($element['#autocomplete_input'])) {
     $variables['theme_hook_suggestions'][] = 'textfield__autocomplete';
   }
