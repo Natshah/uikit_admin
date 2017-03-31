@@ -495,7 +495,6 @@ a:hover {
 }
 .uk-table tr.uk-alert {
   border-bottom-color: #2f3f73;
-  border-left: none;
 }
 .uk-table tr.uk-alert-danger {
   border-bottom-color: #9d344d;
@@ -505,6 +504,19 @@ a:hover {
 }
 .uk-table tr.uk-alert-warning {
   border-bottom-color: #aa9039;
+}
+.uk-table tr.uk-alert .uk-admin-update-version-divider {
+  border-color: #2f3f73;
+  opacity: 0.4;
+}
+.uk-table tr.uk-alert-danger .uk-admin-update-version-divider {
+  border-color: #9d344d;
+}
+.uk-table tr.uk-alert-success .uk-admin-update-version-divider {
+  border-color: #479030;
+}
+.uk-table tr.uk-alert-warning .uk-admin-update-version-divider {
+  border-color: #aa9039;
 }
 .uk-table-hover tbody tr.uk-alert:hover,
 .uk-table-striped tbody tr.uk-alert:nth-of-type(odd) {
@@ -659,6 +671,11 @@ a:hover {
 }
 .uk-admin-theme-operations>li:first-child {
   padding-left: 0;
+}
+.uk-admin-update-version-divider {
+  margin: 5px 0 0;
+  border: 0;
+  border-top: 1px solid #afafaf;
 }
 .uk-admin-vertical-align-middle {
   vertical-align: middle !important;

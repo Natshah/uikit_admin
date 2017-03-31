@@ -70,6 +70,7 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Add':
     case 'Continue':
     case 'Create new set':
+    case 'Download these updates':
     case 'Save':
     case 'Save block':
     case 'Save blocks':
