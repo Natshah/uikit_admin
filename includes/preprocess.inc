@@ -77,6 +77,7 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Save blocks':
     case 'Save configuration':
     case 'Save content type':
+    case 'Save permissions':
     case 'Save role':
     case 'Save settings':
     case 'Save field settings':

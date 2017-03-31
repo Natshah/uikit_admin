@@ -100,7 +100,19 @@ table th.select-all {
 td.checkbox,
 th.checkbox {
   text-align: center;
+  vertical-align: middle;
   width: 1px;
+}
+table#permissions td.module {
+  background: #e5eafb;
+  border-color: #2f3f73;
+  color: #2f3f73;
+}
+table#permissions td.checkbox,
+table#permissions td.permission {
+  background: #fff;
+  border-color: #afafaf;
+  color: #444;
 }
 ul.action-links {
   list-style-type: none;
