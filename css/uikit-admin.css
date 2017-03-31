@@ -8,7 +8,7 @@ h6 {
   font-family: 'Open Sans', sans-serif;
 }
 em {
-  color: #444;
+  color: inherit;
 }
 /**
  * Common elements from Drupal core.
