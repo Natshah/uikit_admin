@@ -471,6 +471,18 @@ a:hover {
 .uk-panel-header .uk-panel-title {
   border-color: #afafaf;
 }
+.uk-progress-bar {
+  background: #2f3f73;
+}
+.uk-progress-danger .uk-progress-bar {
+  background-color: #9d344d;
+}
+.uk-progress-success .uk-progress-bar {
+  background-color: #479030;
+}
+.uk-progress-warning .uk-progress-bar {
+  background-color: #aa9039;
+}
 .uk-subnav-line>:nth-child(n+2):before {
   border: 1px solid #afafaf;
 }
