@@ -555,7 +555,11 @@
       if (self.oldRowElement) {
         $(self.oldRowElement).removeClass('drag-previous');
       }
-      $(droppedRow).removeClass('drag').addClass('drag-previous');
+      $(droppedRow)
+        .removeClass('drag')
+        .addClass('drag-previous')
+        .addClass('uk-alert')
+        .addClass('uk-alert-warning');
       self.oldRowElement = droppedRow;
       self.onDrop();
       self.rowObject = null;
@@ -1175,7 +1179,7 @@
   };
 
   Drupal.theme.prototype.tableDragChangedMarker = function () {
-    return '<span class="warning tabledrag-changed">*</span>';
+    return '<span class="warning tabledrag-changed"> *</span>';
   };
 
   Drupal.theme.prototype.tableDragIndentation = function () {
