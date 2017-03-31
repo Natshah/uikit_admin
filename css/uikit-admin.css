@@ -179,6 +179,9 @@ a.tabledrag-handle .handle {
 .form-item-prefix {
   vertical-align: middle;
 }
+.form-item-textarea-resizeable+.uk-panel-box {
+  border-top: 0;
+}
 .form-managed-file .uk-button {
   margin-left: 15px;
 }
@@ -213,10 +216,19 @@ html.js input.form-autocomplete {
   background: #f5f5f5;
   border-color: #afafaf;
   border-left-width: 4px;
-  height: auto;
+  height: 12px;
 }
-.form-item-textarea-resizeable+.uk-panel-box {
-  border-top: 0;
+.resizable-textarea .grippie i {
+  position: relative;
+  top: -5px;
+  font-size: 10px;
+  line-height: 10px;
+  padding: 1px 0;
+  -webkit-transform: scale(2,1);
+  -moz-transform: scale(2,1);
+  -ms-transform: scale(2,1);
+  -o-transform: scale(2,1);
+  transform: scale(2,1);
 }
 .sticky-header {
   z-index: 1;
@@ -388,6 +400,9 @@ table#system-modules td.operations {
 .uk-form fieldset {
   margin: 15px 0;
 }
+.uk-form legend:after {
+  border: 1px solid #afafaf;
+}
 .uk-form input:not([type]),
 .uk-form input[type=text],
 .uk-form input[type=password],
@@ -407,6 +422,10 @@ table#system-modules td.operations {
 .uk-form textarea {
   border: 1px solid #afafaf;
   border-left: 4px solid #afafaf;
+}
+.uk-form input[type=radio],
+.uk-form input[type=checkbox] {
+  border: 1px solid #afafaf;
 }
 .uk-form input:not([type]):focus,
 .uk-form input[type=text]:focus,
@@ -433,12 +452,8 @@ table#system-modules td.operations {
 .uk-form textarea:focus + .grippie {
   border-color: #008ee6;
 }
-.uk-form input[type=radio],
-.uk-form input[type=checkbox] {
-  border: 1px solid #afafaf;
-}
-.uk-form legend:after {
-  border: 1px solid #afafaf;
+.uk-form .uk-panel-box > fieldset {
+  margin-top: 0;
 }
 .uk-form-danger {
   background: #fbe5ea !important;
@@ -458,8 +473,8 @@ table#system-modules td.operations {
   color: #479030 !important;
   padding: 10px;
 }
-.uk-form .uk-panel-box > fieldset {
-  margin-top: 0;
+.uk-form-stacked .uk-form-label {
+  font-weight: 600;
 }
 .uk-grid-divider:empty {
   border-color: #afafaf;
@@ -668,6 +683,18 @@ a:hover {
 }
 .uk-admin-clearfix {
   clear: both;
+}
+.uk-admin-font-weight-light {
+  font-weight: 300;
+}
+.uk-admin-font-weight-regular {
+  font-weight: 400;
+}
+.uk-admin-font-weight-semi-bold {
+  font-weight: 600;
+}
+.uk-admin-font-weight-bold {
+  font-weight: 700;
 }
 .uk-admin-last-cron-less-day {
   color: #479030;

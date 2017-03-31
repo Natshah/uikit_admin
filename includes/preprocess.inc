@@ -99,6 +99,7 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Delete':
     case 'Delete content type':
     case 'Delete role':
+    case 'Remove':
       $variables['element']['#attributes']['class'][] = 'uk-button-danger';
       break;
   }

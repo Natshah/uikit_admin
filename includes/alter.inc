@@ -142,6 +142,11 @@ function uikit_admin_js_alter(&$javascript) {
     $javascript[$tabledrag]['data'] = $uikit_admin . '/tabledrag.js';
   }
 
+  $text = drupal_get_path('module', 'text') . '/text.js';
+  if (isset($javascript[$text])) {
+    $javascript[$text]['data'] = $uikit_admin . '/text.js';
+  }
+
   $textarea = 'misc/textarea.js';
   if (isset($javascript[$textarea])) {
     $javascript[$textarea]['data'] = $uikit_admin . '/textarea.js';
