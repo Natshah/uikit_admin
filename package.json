@@ -1,10 +1,10 @@
 {
   "name": "uikit-admin-drupal",
-  "version": "7.2.0-dev",
+  "version": "7.2.0",
   "description": "A one-column administration theme based on UIkit for Drupal.",
   "homepage": "https://www.drupal.org/project/uikit_admin",
   "bugs": {
-    "url" : "https://www.drupal.org/project/issues/uikit_admin"
+    "url": "https://www.drupal.org/project/issues/uikit_admin"
   },
   "license": "GPL-2.0+",
   "author": "Richard Buchanan <richardbuchanan@richardbuchanan.com> (https://www.drupal.org/u/richard-buchanan)",
