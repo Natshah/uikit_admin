@@ -28,6 +28,69 @@ function uikit_admin_css_alter(&$css) {
 }
 
 /**
+ * Implements hook_element_info_alter().
+ */
+function uikit_admin_element_info_alter(&$type) {
+  if (isset($type['machine_name'])) {
+    $type['machine_name']['#process'] = array(
+      'ajax_process_form',
+      'uikit_admin_process_machine_name',
+    );
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function uikit_admin_form_alter(&$form, &$form_state) {
+  // Drupal core is pretty good at putting form buttons into an actions element.
+  // This isn't always the case, and many contributed modules dont' do this as
+  // well. This will move form buttons into an actions element for proper
+  // themeing.
+  $no_actions = !isset($form['actions']) && isset($form['submit']);
+  if ($no_actions) {
+    $form['actions'] = array(
+      '#type' => 'actions',
+      '#attributes' => array(
+        'class' => array('uk-admin-clearfix'),
+      ),
+    );
+
+    foreach ($form as $key => $item) {
+      $submit = is_array($item) && isset($item['#type']) && $item['#type'] == 'submit';
+      $button = is_array($item) && isset($item['#type']) && $item['#type'] == 'button';
+
+      if ($submit || $button) {
+        $form['actions'][$key] = $form[$key];
+        unset($form[$key]);
+      }
+    }
+  }
+
+  foreach ($form as $key => $item) {
+    if (is_array($item) && isset($item['#type'])) {
+      $types = array(
+        'actions',
+        'hidden',
+        'token',
+      );
+
+      // Hidden and action elements do not receive the uk-form-row class when
+      // themed. This will add the class for proper themeing.
+      if (in_array($item['#type'], $types)) {
+        $form[$key]['#attributes']['class'][] = 'uk-form-row';
+      }
+    }
+    elseif (is_array($item) && isset($item['#markup'])) {
+      // Add a wrapper with the uk-form-row class to markup elements for proper
+      // themeing.
+      $form[$key]['#prefix'] = '<div class="uk-form-row">';
+      $form[$key]['#suffix'] = '</div>';
+    }
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for filter_admin_format_form().
  */
 function uikit_admin_form_filter_admin_format_form_alter(&$form, &$form_state) {
@@ -43,6 +106,11 @@ function uikit_admin_form_filter_admin_format_form_alter(&$form, &$form_state) {
 function uikit_admin_js_alter(&$javascript) {
   $uikit_admin = drupal_get_path('theme', 'uikit_admin') . '/js';
 
+  $autocomplete = 'misc/autocomplete.js';
+  if (isset($javascript[$autocomplete])) {
+    $javascript[$autocomplete]['data'] = $uikit_admin . '/autocomplete.js';
+  }
+
   $block = drupal_get_path('module', 'block') . '/block.js';
   if (isset($javascript[$block])) {
     $javascript[$block]['data'] = $uikit_admin . '/block.js';
@@ -51,6 +119,11 @@ function uikit_admin_js_alter(&$javascript) {
   $dashboard = drupal_get_path('module', 'dashboard') . '/dashboard.js';
   if (isset($javascript[$dashboard])) {
     $javascript[$dashboard]['data'] = $uikit_admin . '/dashboard.js';
+  }
+
+  $machine_name = 'misc/machine-name.js';
+  if (isset($javascript[$machine_name])) {
+    $javascript[$machine_name]['data'] = $uikit_admin . '/machine-name.js';
   }
 
   $tabledrag = 'misc/tabledrag.js';

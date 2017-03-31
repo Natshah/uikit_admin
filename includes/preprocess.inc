@@ -69,9 +69,12 @@ function uikit_admin_preprocess_button(&$variables) {
   switch ($variables['element']['#value']) {
     case 'Add':
     case 'Continue':
+    case 'Create new account':
     case 'Create new set':
+    case 'Create new style':
     case 'Download these updates':
     case 'Install':
+    case 'Revert':
     case 'Save':
     case 'Save block':
     case 'Save blocks':
@@ -82,9 +85,12 @@ function uikit_admin_preprocess_button(&$variables) {
     case 'Save settings':
     case 'Save field settings':
     case 'Upload':
+    case 'Update effect':
+    case 'Update style':
       $variables['element']['#attributes']['class'][] = 'uk-button-primary';
       break;
 
+    case 'Override defaults':
     case 'Preview':
       $variables['element']['#attributes']['class'][] = 'uk-button-warning';
       break;
@@ -137,7 +143,8 @@ function uikit_admin_preprocess_fieldset(&$variables) {
  */
 function uikit_admin_preprocess_form(&$variables) {
   $variables['element']['#attributes']['class'] = array('uk-form');
-  $form_id = $variables['element']['#form_id'];
+  $element = $variables['element'];
+  $form_id = $element['#form_id'];
 
   $horizontal_forms = array(
     'node_admin_content',
@@ -177,6 +184,24 @@ function uikit_admin_preprocess_form_element_label(&$variables) {
  */
 function uikit_admin_preprocess_item_list(&$variables) {
   $variables['attributes']['class'][] = 'uk-margin-top';
+}
+
+/**
+ * Implements template_preprocess_HOOK() for theme_link().
+ */
+function uikit_admin_preprocess_link(&$variables) {
+  $attributes = $variables['options']['attributes'];
+  $id = isset($attributes['id']) ? $variables['options']['attributes']['id'] : 0;
+  $edit_cancel = $id && $id == 'edit-cancel';
+
+  if ($edit_cancel) {
+    $classes = isset($attributes['class']) ? $attributes['class'] : array();
+
+    if (empty($classes) || !in_array('uk-button', $classes)) {
+      $variables['options']['attributes']['class'][] = 'uk-button';
+    }
+    $variables['options']['attributes']['class'][] = 'uk-button-danger';
+  }
 }
 
 /**
@@ -376,5 +401,21 @@ function uikit_admin_preprocess_table(&$variables) {
 
   if ($id && $id == 'admin-dblog') {
     $variables['theme_hook_suggestions'][] = 'table__dblog';
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for theme_textfield().
+ */
+function uikit_admin_preprocess_textfield(&$variables) {
+  $element = $variables['element'];
+  $array_parents = $element['#array_parents'];
+
+  if (in_array('error_page', $array_parents) || in_array('site_frontpage', $array_parents)) {
+    $variables['element']['#attributes']['class'][] = 'uk-margin-small-left';
+  }
+
+  if ($element['#autocomplete_path'] && !empty($element['#autocomplete_input'])) {
+    $variables['theme_hook_suggestions'][] = 'textfield__autocomplete';
   }
 }

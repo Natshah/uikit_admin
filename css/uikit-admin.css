@@ -97,6 +97,9 @@ table th.active i.uk-icon-sort-asc {
 table th.select-all {
   width: 1px;
 }
+td div.item-list ul {
+  margin: 0 !important;
+}
 td.checkbox,
 th.checkbox {
   text-align: center;
@@ -151,6 +154,11 @@ a.tabledrag-handle .handle {
 .form-actions .uk-button + .uk-button {
   margin-left: 10px;
 }
+.form-autocomplete i {
+  position: relative;
+  left: -25px;
+  vertical-align: middle;
+}
 .form-file {
   max-width: 100%;
   padding: 4px 6px;
@@ -168,8 +176,24 @@ a.tabledrag-handle .handle {
   border-color: #008ee6;
   outline: 0;
 }
+.form-item-prefix {
+  vertical-align: middle;
+}
 .form-managed-file .uk-button {
   margin-left: 15px;
+}
+.form-type-machine-name+* {
+  clear: both;
+}
+div.image-style-new,
+div.image-style-new div {
+  display: inline-block;
+}
+div.image-style-new button {
+  margin: 0 0 0 5px !important;
+}
+html.js input.form-autocomplete {
+  background: none;
 }
 .preview .node {
   background: #fbf6e5;
@@ -177,6 +201,10 @@ a.tabledrag-handle .handle {
   border-left-width: 4px;
   margin-bottom: 15px;
   padding: 10px;
+}
+.preview-image-wrapper .preview-image.original-image,
+.preview-image-wrapper .preview-image.modified-image {
+  margin-top: 5px;
 }
 .resizable-textarea .grippie {
   border-color: #afafaf;
@@ -207,6 +235,16 @@ a.tabledrag-handle .handle {
 div.vertical-tabs {
   border: 1px solid #afafaf;
   margin-top: 0;
+}
+#autocomplete {
+  border: 0;
+}
+#autocomplete ul {
+  margin: 0 -15px;
+}
+#autocomplete li {
+  background: transparent;
+  color: #444;
 }
 #edit-filters-toggle>.form-item {
   display: inline-block;
@@ -438,11 +476,15 @@ a:focus,
 a:hover {
   color: #2f3f73;
 }
-.uk-nav-dropdown>li>a {
-  padding: 10px 15px;
+.uk-nav-dropdown>li>a,
+.uk-nav-dropdown>li>div {
+  padding: 5px 15px;
+  cursor: pointer;
 }
 .uk-nav-dropdown>li>a:focus,
-.uk-nav-dropdown>li>a:hover {
+.uk-nav-dropdown>li>a:hover,
+.uk-nav-dropdown>li>div:focus,
+.uk-nav-dropdown>li>div:hover {
   background: #e7e7e7;
   color: #444;
 }
@@ -452,7 +494,6 @@ a:hover {
 .uk-pagination>li>a {
   background: #e7e7e7;
   border: 1px solid #676767;
-  border-left: 2px solid #676767;
   color: #676767;
 }
 .uk-pagination>li>a:active,
@@ -468,7 +509,6 @@ a:hover {
 .uk-pagination>.uk-active:hover>span {
   background: #e5eafb;
   border: 1px solid #2f3f73;
-  border-left: 2px solid #2f3f73;
   color: #2f3f73;
   cursor: default;
 }
@@ -498,7 +538,7 @@ a:hover {
 .uk-subnav-line>:nth-child(n+2):before {
   border: 1px solid #afafaf;
 }
-.sticky-header+.uk-table {
+.sticky-header:first-child+.uk-table {
   margin-top: 0;
 }
 .uk-table tr {
@@ -620,6 +660,9 @@ a:hover {
   height: 8px;
   width: 8px;
 }
+.uk-admin-clearfix {
+  clear: both;
+}
 .uk-admin-last-cron-less-day {
   color: #479030;
 }
@@ -652,14 +695,17 @@ a:hover {
   background: #fff;
 }
 .uk-admin-panel-box-toggle {
+  top: 7px;
   background: #fff;
   border-color: #008ee6;
-  top: 7px;
+  margin-bottom: 22px !important;
 }
 .uk-admin-panel-box-toggle.closed {
   border-right: 0;
   border-bottom: 0;
   border-left-color: transparent;
+  margin-bottom: 15px !important;
+  padding: 15px 15px 0;
 }
 .uk-admin-panel-title-toggle {
   position: absolute;
@@ -706,6 +752,10 @@ a:hover {
   border-left: 1px solid #676767;
   line-height: 24px;
   padding-left: 11px;
+}
+.uk-admin-text-mono {
+  font-family: Consolas, monospace, serif;
+  white-space: nowrap;
 }
 .uk-admin-theme-operations>*>* {
   color: #07D;
