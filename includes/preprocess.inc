@@ -47,6 +47,8 @@ function uikit_admin_preprocess_page(&$variables) {
   if (module_exists('shortcut') && shortcut_set_edit_access() && path_is_admin(current_path())) {
     $variables['title_suffix']['add_or_remove_shortcut'] = _uikit_admin_shortcut_add_or_remove_link();
   }
+
+  $variables['overlay'] = in_array('overlay', $variables['page']['#theme_wrappers']);
 }
 
 /**
@@ -221,6 +223,15 @@ function uikit_admin_preprocess_menu_local_tasks(&$variables) {
     case 'uk-subnav-pill':
       $variables['secondary_attributes_array']['class'][] = 'uk-margin-small-top';
       break;
+  }
+}
+
+/**
+ * Implements template_preprocess_overlay().
+ */
+function uikit_admin_preprocess_overlay(&$variables) {
+  if (module_exists('shortcut') && shortcut_set_edit_access() && path_is_admin(current_path())) {
+    $variables['title_suffix']['add_or_remove_shortcut'] = _uikit_admin_shortcut_add_or_remove_link();
   }
 }
 

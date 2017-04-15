@@ -77,10 +77,12 @@
 ?>
 <header id="page-header" class="uk-panel uk-panel-box uk-admin-panel-box">
   <?php print render($title_prefix); ?>
-  <?php if ($title): ?>
-    <h1 id="page-title" class="uk-article-title uk-display-inline-block"><?php print $title; ?></h1>
+  <?php if (!$overlay): ?>
+    <?php if ($title): ?>
+      <h1 id="page-title" class="uk-article-title uk-display-inline-block"><?php print $title; ?></h1>
+    <?php endif; ?>
+    <?php print render($title_suffix); ?>
   <?php endif; ?>
-  <?php print render($title_suffix); ?>
 
   <?php print render($primary_local_tasks); ?>
 </header>
