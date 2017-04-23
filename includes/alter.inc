@@ -36,6 +36,10 @@ function uikit_admin_css_alter(&$css) {
   if (isset($css[$vertical_tabs_rtl])) {
     $css[$vertical_tabs_rtl]['data'] = $uikit_admin . '/vertical-tabs-rtl.css';
   }
+
+  if (isset($css['misc/ui/jquery.ui.theme.css'])) {
+    $css['misc/ui/jquery.ui.theme.css']['data'] = $uikit_admin . '/jquery.ui.theme.css';
+  }
 }
 
 /**
@@ -112,6 +116,16 @@ function uikit_admin_form_filter_admin_format_form_alter(&$form, &$form_state) {
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter() for views_ui_edit_form().
+ */
+function uikit_admin_form_views_ui_edit_form_alter(&$form, &$form_state) {
+  $form['changed']['#attributes'] = array(
+    'class' => array('view-changed', 'uk-alert', 'uk-alert-warning', 'js-hide', 'uk-margin-remove'),
+  );
+  $form['displays']['#prefix'] = '<h1 class="unit-title uk-margin-remove uk-text-bold">' . t('Displays') . '</h1><div class="views-displays">';
+}
+
+/**
  * Implements hook_js_alter().
  */
 function uikit_admin_js_alter(&$javascript) {
@@ -150,6 +164,30 @@ function uikit_admin_js_alter(&$javascript) {
   $textarea = 'misc/textarea.js';
   if (isset($javascript[$textarea])) {
     $javascript[$textarea]['data'] = $uikit_admin . '/textarea.js';
+  }
+
+  $views_admin = drupal_get_path('module', 'views') . '/js/views-admin.js';
+  if (isset($javascript[$views_admin])) {
+    //$javascript[$views_admin]['data'] = $uikit_admin . '/views-admin.js';
+
+    // Views administration pages do not work with jQuery 2+. So we need to
+    // remove the jQuery, jQuery Migrate and UIkit javascript libraries. We also
+    // Remove the UIkit base theme overrides.js and UIkit Admin's
+    // uikit-admin.js, otherwise we end up conflicting with View's behaviors.
+    unset($javascript['//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js']);
+    unset($javascript['//cdnjs.cloudflare.com/ajax/libs/jquery-migrate/1.4.1/jquery-migrate.min.js']);
+    unset($javascript['//cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/uikit.min.js']);
+    unset($javascript['sites/localhost.uikit-7.x-2.x/themes/contrib/uikit/uikit_core/js/overrides.js']);
+    unset($javascript[$uikit_admin . '/uikit-admin.js']);
+
+    // Add UIkit Admin's uikit-admin.views.css stylesheet for basic styling
+    // overrides on Views administration pages.
+    drupal_add_css(drupal_get_path('theme', 'uikit_admin') . '/css/uikit-admin.views.css');
+  }
+
+  $views_ajax = drupal_get_path('module', 'views') . '/js/ajax.js';
+  if (isset($javascript[$views_ajax])) {
+    $javascript[$views_ajax]['data'] = $uikit_admin . '/ajax.js';
   }
 }
 

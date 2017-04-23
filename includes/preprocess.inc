@@ -66,44 +66,83 @@ function uikit_admin_preprocess_block(&$variables) {
  * Implements template_preprocess_HOOK() for theme_button().
  */
 function uikit_admin_preprocess_button(&$variables) {
-  $variables['element']['#attributes']['class'] = array('uk-button');
+  $submit = isset($variables['element']['#submit']) ? $variables['element']['#submit'] : array();
+  $views_add_display = in_array('views_ui_edit_form_submit_add_display', $submit);
+  $views_edit_view = in_array('views_ui_edit_view_form_cancel', $submit) || in_array('views_ui_edit_view_form_submit', $submit);
 
-  switch ($variables['element']['#value']) {
-    case 'Add':
-    case 'Continue':
-    case 'Create new account':
-    case 'Create new set':
-    case 'Create new style':
-    case 'Download these updates':
-    case 'Install':
-    case 'Revert':
-    case 'Save':
-    case 'Save block':
-    case 'Save blocks':
-    case 'Save configuration':
-    case 'Save content type':
-    case 'Save permissions':
-    case 'Save role':
-    case 'Save settings':
-    case 'Save field settings':
-    case 'Upload':
-    case 'Update effect':
-    case 'Update style':
-      $variables['element']['#attributes']['class'][] = 'uk-button-primary';
-      break;
+  if ($views_add_display) {
+    $variables['theme_hook_suggestions'][] = 'button__views_add_display';
+  }
+  elseif ($views_edit_view) {
+    $variables['theme_hook_suggestions'][] = 'button__views_edit_view';
+    $variables['element']['#attributes']['class'] = array('uk-button');
 
-    case 'Override defaults':
-    case 'Preview':
-      $variables['element']['#attributes']['class'][] = 'uk-button-warning';
-      break;
+    switch ($variables['element']['#value']) {
+      case 'Save':
+        $variables['element']['#attributes']['class'][] = 'uk-button-primary';
+        break;
 
-    case 'Cancel':
-    case 'Delete':
-    case 'Delete content type':
-    case 'Delete role':
-    case 'Remove':
-      $variables['element']['#attributes']['class'][] = 'uk-button-danger';
-      break;
+      case 'Cancel':
+        $variables['element']['#attributes']['class'][] = 'uk-button-danger';
+        break;
+    }
+  }
+  else {
+    $variables['element']['#attributes']['class'] = array('uk-button');
+
+    switch ($variables['element']['#value']) {
+      case 'Add':
+      case 'Continue':
+      case 'Create new account':
+      case 'Create new set':
+      case 'Create new style':
+      case 'Download these updates':
+      case 'Install':
+      case 'Revert':
+      case 'Save':
+      case 'Save block':
+      case 'Save blocks':
+      case 'Save configuration':
+      case 'Save content type':
+      case 'Save permissions':
+      case 'Save role':
+      case 'Save settings':
+      case 'Save field settings':
+      case 'Upload':
+      case 'Update effect':
+      case 'Update preview':
+      case 'Update style':
+        $variables['element']['#attributes']['class'][] = 'uk-button-primary';
+        break;
+
+      case 'Override defaults':
+      case 'Preview':
+        $variables['element']['#attributes']['class'][] = 'uk-button-warning';
+        break;
+
+      case 'Cancel':
+      case 'Delete':
+      case 'Delete content type':
+      case 'Delete role':
+      case 'Remove':
+        $variables['element']['#attributes']['class'][] = 'uk-button-danger';
+        break;
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for theme_container().
+ */
+function uikit_admin_preprocess_container(&$variables) {
+  $element = $variables['element'];
+  $edit_view_page = fnmatch('admin/structure/views/view/*/edit', current_path());
+
+  if ($edit_view_page) {
+    $save_cancel_container = isset($element['save']) && isset($element['cancel']);
+    if ($save_cancel_container) {
+      $variables['theme_hook_suggestions'][] = 'container__views_view_edit';
+    }
   }
 }
 
@@ -113,30 +152,36 @@ function uikit_admin_preprocess_button(&$variables) {
 function uikit_admin_preprocess_fieldset(&$variables) {
   $element = $variables['element'];
   $parents = $element['#parents'];
+  $edit_view_page = fnmatch('admin/structure/views/ajax/*', current_path());
 
-  $non_collapsible = array(
-    'admin_theme',
-  );
-
-  $group_fieldset = isset($element['#group_fieldset']) && $element['#group_fieldset'];
-
-  if (!$group_fieldset) {
-    $variables['theme_hook_suggestions'] = array('fieldset');
-    $variables['element']['#attributes'] = array('class' => array('uk-form-row'));
+  if ($edit_view_page) {
+    $variables['theme_hook_suggestions'] = array('fieldset__views_fieldset');
   }
+  else {
+    $non_collapsible = array(
+      'admin_theme',
+    );
 
-  foreach ($parents as $parent) {
-    if (in_array($parent, $non_collapsible)) {
-      $variables['theme_hook_suggestions'] = array('fieldset__non_collapsible');
-      $help = isset($variables['element']['help']);
-      $guidelines = isset($variables['element']['guidelines']);
+    $group_fieldset = isset($element['#group_fieldset']) && $element['#group_fieldset'];
 
-      if ($help && $guidelines) {
-        $variables['element']['#attributes']['class'][] = 'uk-panel';
-        $variables['element']['#attributes']['class'][] = 'uk-panel-box';
-        $variables['element']['#attributes']['class'][] = 'uk-margin-remove';
+    if (!$group_fieldset) {
+      $variables['theme_hook_suggestions'] = array('fieldset__collapsible');
+      $variables['element']['#attributes'] = array('class' => array('uk-form-row'));
+    }
+
+    foreach ($parents as $parent) {
+      if (in_array($parent, $non_collapsible)) {
+        $variables['theme_hook_suggestions'] = array('fieldset__non_collapsible');
+        $help = isset($variables['element']['help']);
+        $guidelines = isset($variables['element']['guidelines']);
+
+        if ($help && $guidelines) {
+          $variables['element']['#attributes']['class'][] = 'uk-panel';
+          $variables['element']['#attributes']['class'][] = 'uk-panel-box';
+          $variables['element']['#attributes']['class'][] = 'uk-margin-remove';
+        }
+        break;
       }
-      break;
     }
   }
 }
@@ -145,7 +190,7 @@ function uikit_admin_preprocess_fieldset(&$variables) {
  * Implements template_preprocess_HOOK() for theme_form().
  */
 function uikit_admin_preprocess_form(&$variables) {
-  $variables['element']['#attributes']['class'] = array('uk-form');
+  $variables['element']['#attributes']['class'] = array();
   $element = $variables['element'];
   $form_id = $element['#form_id'];
 
@@ -155,10 +200,20 @@ function uikit_admin_preprocess_form(&$variables) {
   );
 
   if (in_array($form_id, $horizontal_forms)) {
+    $variables['element']['#attributes']['class'][] = 'uk-form';
     $variables['element']['#attributes']['class'][] = 'uk-form-horizontal';
   }
   else {
+    $variables['element']['#attributes']['class'][] = 'uk-form';
     $variables['element']['#attributes']['class'][] = 'uk-form-stacked';
+  }
+
+  if ($form_id == 'views_ui_preview_form') {
+    $variables['element']['#attributes']['class'][] = 'uk-form';
+    $variables['element']['#attributes']['class'][] = 'uk-clearfix';
+  }
+  if ($form_id == 'views_ui_config_item_form') {
+    $variables['element']['#attributes']['class'] = array();
   }
 }
 
@@ -166,19 +221,29 @@ function uikit_admin_preprocess_form(&$variables) {
  * Implements template_preprocess_HOOK() for theme_form_element().
  */
 function uikit_admin_preprocess_form_element(&$variables) {
+  $edit_view_page = fnmatch('admin/structure/views/ajax/*', current_path());
   $variables['element']['#wrapper_attributes']['class'][] = 'form-item';
+
+  if ($edit_view_page) {
+    $variables['theme_hook_suggestions'] = array('form_element__views_form_element');
+  }
 }
 
 /**
  * Implements template_preprocess_HOOK() for theme_form_element_label().
  */
 function uikit_admin_preprocess_form_element_label(&$variables) {
+  $edit_view_page = fnmatch('admin/structure/views/ajax/*', current_path());
   $element = $variables['element'];
   $type = $element['#type'];
   $children = $element['#children'];
 
   if ($type == 'item' && empty($children)) {
     $variables['theme_hook_suggestions'] = array('form_element_label__item');
+  }
+
+  if ($edit_view_page) {
+    $variables['theme_hook_suggestions'] = array('form_element_label__views_form_element_label');
   }
 }
 
@@ -430,12 +495,15 @@ function uikit_admin_preprocess_table(&$variables) {
 function uikit_admin_preprocess_textfield(&$variables) {
   $element = $variables['element'];
   $array_parents = $element['#array_parents'];
+  $edit_view_page = fnmatch('admin/structure/views/ajax/*', current_path());
 
-  if (in_array('error_page', $array_parents) || in_array('site_frontpage', $array_parents)) {
-    $variables['element']['#attributes']['class'][] = 'uk-margin-small-left';
+  if (!$edit_view_page) {
+    if (in_array('error_page', $array_parents) || in_array('site_frontpage', $array_parents)) {
+      $variables['element']['#attributes']['class'][] = 'uk-margin-small-left';
+    }
+
+    $variables['element']['#attributes']['class'][] = 'uk-form-width-large';
   }
-
-  $variables['element']['#attributes']['class'][] = 'uk-form-width-large';
 
   if ($element['#autocomplete_path'] && !empty($element['#autocomplete_input'])) {
     $variables['theme_hook_suggestions'][] = 'textfield__autocomplete';
