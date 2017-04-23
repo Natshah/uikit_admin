@@ -494,7 +494,7 @@ function uikit_admin_preprocess_table(&$variables) {
  */
 function uikit_admin_preprocess_textfield(&$variables) {
   $element = $variables['element'];
-  $array_parents = $element['#array_parents'];
+  $array_parents = isset($element['#array_parents']) ? $element['#array_parents'] : array();
   $edit_view_page = fnmatch('admin/structure/views/ajax/*', current_path());
 
   if (!$edit_view_page) {
@@ -508,4 +508,12 @@ function uikit_admin_preprocess_textfield(&$variables) {
   if ($element['#autocomplete_path'] && !empty($element['#autocomplete_input'])) {
     $variables['theme_hook_suggestions'][] = 'textfield__autocomplete';
   }
+}
+
+/**
+ * Implements template_preprocess_HOOK() for views-view-table.tpl.php.
+ */
+function uikit_admin_preprocess_views_view_table(&$variables) {
+  $classes = array('uk-table');
+  $variables['attributes_array']['class'] = $classes;
 }
