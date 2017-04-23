@@ -901,6 +901,17 @@ a:hover {
 }
 
 /**
+ * Module filter module.
+ */
+#module-filter-submit .form-actions #edit-submit {
+  margin: 15px 0;
+}
+#module-filter-show-wrapper .form-item,
+.module-filter-inputs-wrapper .form-item {
+  display: inline-block;
+}
+
+/**
  * Overlay module.
  */
 #overlay-title {

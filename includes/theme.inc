@@ -354,6 +354,64 @@ function uikit_admin_menu_local_task($variables) {
 }
 
 /**
+ * Implements theme_module_filter_operations().
+ */
+function uikit_admin_module_filter_operations(&$variables) {
+  $links = &$variables['links'];
+  $dropbutton = $variables['dropbutton'];
+  $operations = array();
+
+  foreach (element_children($links) as $key) {
+    if ($dropbutton) {
+      hide($links[$key]);
+      if (!empty($links[$key]['#href'])) {
+        $operations[] = array(
+          'title' => $links[$key]['#title'],
+          'href' => $links[$key]['#href'],
+        );
+      }
+    }
+    else {
+      $data = drupal_render($links[$key]);
+      if (!empty($data)) {
+        $operations[] = array('data' => $data);
+      }
+    }
+  }
+
+  if (!empty($operations)) {
+    // Define icons for each operation.
+    $help_icon = '<i class="uk-icon-question"></i> ';
+    $configure_icon = '<i class="uk-icon-cog"></i> ';
+    $permissions_icon = '<i class="uk-icon-lock"></i> ';
+
+    foreach ($operations as $key => $operation) {
+      // Make sure the links are not passed through check_plain.
+      $operations[$key]['html'] = TRUE;
+
+      switch ($operation['title']) {
+        // Add the operation's icon to the link title.
+        case 'Help':
+          $operations[$key]['title'] = $help_icon . $operations[$key]['title'];
+          break;
+
+        case 'Configure':
+          $operations[$key]['title'] = $configure_icon . $operations[$key]['title'];
+          break;
+
+        case 'Permissions':
+          $operations[$key]['title'] = $permissions_icon . $operations[$key]['title'];
+          break;
+      }
+    }
+    if ($dropbutton) {
+      return '<div class="admin-operations">' . theme('links__ctools_dropbutton', array('title' => t('Operations'), 'links' => $operations)) . '</div>';
+    }
+    return '<div class="admin-operations">' . theme('item_list', array('items' => $operations)) . '</div>';
+  }
+}
+
+/**
  * Implements theme_node_add_list().
  */
 function uikit_admin_node_add_list($variables) {

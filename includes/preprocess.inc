@@ -208,6 +208,14 @@ function uikit_admin_preprocess_link(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_HOOK() for theme_links__ctools_dropbutton().
+ */
+function uikit_admin_preprocess_links__ctools_dropbutton(&$variables) {
+  $variables['attributes']['class'][] = 'uk-list';
+  $variables['attributes']['class'][] = 'uk-margin-remove';
+}
+
+/**
  * Implements template_preprocess_HOOK() for theme_menu_local_tasks().
  */
 function uikit_admin_preprocess_menu_local_tasks(&$variables) {
