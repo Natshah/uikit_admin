@@ -204,7 +204,6 @@ html.js input.form-autocomplete {
 .preview .node {
   background: #fbf6e5;
   border: 1px solid #aa9039;
-  border-left-width: 4px;
   margin-bottom: 15px;
   padding: 10px;
 }
@@ -327,7 +326,6 @@ table#system-modules td.operations {
 .uk-button {
   background: #e7e7e7;
   border: 1px solid #676767;
-  border-left-width: 4px;
   color: #676767;
   opacity: 1;
 }
