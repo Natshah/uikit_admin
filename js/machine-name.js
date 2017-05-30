@@ -1,8 +1,8 @@
-(function ($) {
-
 /**
- * Attach the machine-readable name form element behavior.
+ * @file
+ * Attaches the machine-readable name form element behavior.
  */
+(function ($) {
 Drupal.behaviors.machineName = {
   /**
    * Attaches the behavior.
