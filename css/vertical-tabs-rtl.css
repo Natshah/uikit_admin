@@ -1,4 +1,7 @@
-
+/**
+ * @file
+ * Override vertical tabs rtl styles.
+ */
 div.vertical-tabs {
   margin-left: 0;
   margin-right: 15em;

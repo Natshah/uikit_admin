@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Override vertical-tabs styles.
+ */
 div.vertical-tabs {
   border: 1px solid #afafaf;
   margin: 0 0 1em 15em;

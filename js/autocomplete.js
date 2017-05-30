@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Attaches behaviors for Drupal core autocomplete.
+ */
 (function ($) {
 
   /**

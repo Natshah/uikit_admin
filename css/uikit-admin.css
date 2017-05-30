@@ -1,3 +1,7 @@
+/**
+ * @file
+ * UIkit Admin base styles.
+ */
 body,
 h1,
 h2,
@@ -10,6 +14,20 @@ h6 {
 em {
   color: inherit;
 }
+dl dl {
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+dt, dd {
+  margin: 0;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  padding: 0 0 10px 20px;
+}
+
 /**
  * Common elements from Drupal core.
  */

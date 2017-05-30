@@ -1,3 +1,7 @@
+/**
+ * @file
+ * Attaches behaviors for the Block module.
+ */
 (function ($) {
 
 /**

@@ -1,4 +1,7 @@
-
+/**
+ * @file
+ * Attaches behaviors for Drupal core text summaries.
+ */
 (function ($) {
 
 /**
