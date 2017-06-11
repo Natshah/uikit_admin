@@ -145,6 +145,16 @@ function uikit_admin_preprocess_container(&$variables) {
       $variables['theme_hook_suggestions'][] = 'container__views_view_edit';
     }
   }
+
+  if (isset($element['#attributes']['class']) && is_array($element['#attributes']['class'])) {
+    $help_block = in_array('uk-form-help-block', $element['#attributes']['class']);
+
+    if ($help_block) {
+      if(($key = array_search('uk-form-row', $element['#attributes']['class'])) !== false) {
+        unset($variables['element']['#attributes']['class'][$key]);
+      }
+    }
+  }
 }
 
 /**

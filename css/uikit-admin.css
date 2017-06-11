@@ -178,7 +178,6 @@ a.tabledrag-handle .handle {
   max-width: 100%;
   padding: 4px 6px;
   border: 1px solid #afafaf;
-  border-left-width: 4px;
   background: #fff;
   -webkit-transition: all .2s linear;
   -webkit-transition-property: border,background,color,box-shadow,padding;
@@ -208,7 +207,15 @@ a.tabledrag-handle .handle {
 .form-item-prefix {
   vertical-align: middle;
 }
-.form-item-textarea-resizeable+.uk-panel-box {
+.form-item-textarea-resizeable+.ckeditor_links {
+  padding: 15px;
+  display: block;
+  background: #f5f5f5;
+  border-left: 1px solid #afafaf;
+  border-right: 1px solid #afafaf;
+}
+.form-item-textarea-resizeable+.uk-panel-box,
+.form-item-textarea-resizeable+.ckeditor_links+.uk-panel-box {
   border-top: 0;
 }
 .form-managed-file .uk-button {
