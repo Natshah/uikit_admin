@@ -438,7 +438,7 @@ function uikit_form_element__views_form_element($variables) {
   }
 
   if (!empty($element['#description'])) {
-    $output .= '<div class="description">' . $element['#description'] . "</div>\n";
+    $output .= '<div class="description uk-text-muted">' . $element['#description'] . "</div>\n";
   }
 
   $output .= "</div>\n";

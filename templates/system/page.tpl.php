@@ -106,7 +106,11 @@
       </div>
     <?php endif; ?>
 
-    <?php print render($page['help']); ?>
+    <?php if ($page['help']): ?>
+      <div class="uk-panel uk-panel-box uk-margin-bottom">
+        <?php print render($page['help']); ?>
+      </div>
+    <?php endif; ?>
 
     <?php if ($action_links): ?>
       <ul class="uk-subnav action-links"><?php print render($action_links); ?></ul>

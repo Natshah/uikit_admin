@@ -58,9 +58,6 @@ a.button {
 form + form {
   margin-top: 15px;
 }
-table {
-  border-left: 4px solid #afafaf;
-}
 table th {
   white-space: nowrap;
 }
@@ -194,6 +191,20 @@ a.tabledrag-handle .handle {
   border-color: #008ee6;
   outline: 0;
 }
+.form-item label {
+  font-weight: bold;
+  color: #222;
+}
+*:not(.container-inline) > .form-item label {
+  display: block;
+}
+.form-item label.option {
+  display: inline;
+  font-weight: normal;
+}
+.form-item .description {
+  margin: 5px 0;
+}
 .form-item-prefix {
   vertical-align: middle;
 }
@@ -205,6 +216,14 @@ a.tabledrag-handle .handle {
 }
 .form-type-machine-name+* {
   clear: both;
+}
+.form-type-checkbox,
+.form-type-radio {
+  margin-top: 10px;
+}
+.form-type-checkbox .description,
+.form-type-radio .description {
+  margin: 5px 0 5px 18px;
 }
 div.image-style-new,
 div.image-style-new div {
@@ -228,6 +247,10 @@ html.js input.form-autocomplete {
 .preview-image-wrapper .preview-image.original-image,
 .preview-image-wrapper .preview-image.modified-image {
   margin-top: 5px;
+}
+.region-help p:last-child,
+.region-help *+p {
+  margin-bottom: 0;
 }
 .resizable-textarea .grippie {
   background: #f5f5f5;
@@ -310,7 +333,6 @@ table#system-modules td.operations {
 .uk-alert {
   background: #e5eafb;
   border-color: #2f3f73;
-  border-left: 4px solid #2f3f73;
   color: #2f3f73;
   text-shadow: none;
 }
@@ -429,7 +451,6 @@ table#system-modules td.operations {
 .uk-form select,
 .uk-form textarea {
   border: 1px solid #afafaf;
-  border-left: 4px solid #afafaf;
 }
 .uk-form input[type=radio],
 .uk-form input[type=checkbox] {
@@ -466,7 +487,6 @@ table#system-modules td.operations {
 .uk-form-danger {
   background: #fbe5ea !important;
   border-color: #9d344d !important;
-  border-left: 4px solid #9d344d !important;
   color: #9d344d !important;
   padding: 10px;
 }
@@ -477,7 +497,6 @@ table#system-modules td.operations {
 .uk-form-success {
   background: #eafbe5 !important;
   border-color: #479030 !important;
-  border-left: 4px solid #479030 !important;
   color: #479030 !important;
   padding: 10px;
 }
@@ -544,7 +563,6 @@ a:hover {
 .uk-panel-box {
   background: #f5f5f5;
   border: 1px solid #afafaf;
-  border-left: 4px solid #afafaf;
 }
 .uk-admin-theme-selector-panel-box {
   background: #fafafa;
@@ -753,6 +771,7 @@ a:hover {
   top: 7px;
   background: #fff;
   border-color: #008ee6;
+  border-left: 4px solid #008ee6;
   margin-bottom: 22px !important;
 }
 .uk-admin-panel-box-toggle.closed {
@@ -832,6 +851,13 @@ a:hover {
 }
 .uk-admin-vertical-align-top {
   vertical-align: top !important;
+}
+
+/**
+ * Blocks administration page.
+ */
+#blocks tr.region-title {
+  background: #ddd;
 }
 
 /**
@@ -1036,4 +1062,14 @@ a:hover {
 }
 #system-status-checked td.uk-admin-status-padding-normal {
   padding-left: 41px;
+}
+
+/**
+ * Views.
+ */
+#views-ajax-body .scroll {
+  margin: 0 !important;
+}
+#views-ajax-body .scroll .sticky-header {
+  display: none !important;
 }

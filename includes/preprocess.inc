@@ -92,6 +92,7 @@ function uikit_admin_preprocess_button(&$variables) {
 
     switch ($variables['element']['#value']) {
       case 'Add':
+      case 'Apply':
       case 'Continue':
       case 'Create new account':
       case 'Create new set':
