@@ -255,7 +255,6 @@ html.js input.form-autocomplete {
 .resizable-textarea .grippie {
   background: #f5f5f5;
   border-color: #afafaf;
-  border-left-width: 4px;
   height: 12px;
 }
 .resizable-textarea .grippie i {
@@ -358,13 +357,11 @@ table#system-modules td.operations {
 .uk-button {
   position: relative;
   display: inline-block;
-
   font-size: 14px;
   font-weight: 400;
   line-height: 32px;
   height: 34px;
   padding: 0 12px;
-
   background: #f7f7f7;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom-color: rgba(0, 0, 0, 0.3);
@@ -373,7 +370,6 @@ table#system-modules td.operations {
   background-image: linear-gradient(to bottom, #fff, #eee);
   border-radius: 4px;
   color: #666;
-
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -381,8 +377,6 @@ table#system-modules td.operations {
   user-select: none;
   text-align: center;
   white-space: nowrap;
-
-  margin-bottom: 10px;
 }
 .uk-button:focus,
 .uk-button:hover {
@@ -390,7 +384,6 @@ table#system-modules td.operations {
   background: #ebebeb;
   border-color: #adadad;
 }
-
 .uk-button-danger,
 .uk-button-primary,
 .uk-button-success,
@@ -401,7 +394,6 @@ table#system-modules td.operations {
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
   opacity: 1;
 }
-
 .uk-button-danger {
   background-color: #9d344d;
   background-image: -webkit-linear-gradient(top, #c36178, #9d344d);
@@ -411,7 +403,6 @@ table#system-modules td.operations {
 .uk-button-danger:hover {
   background-color: #9d344d;
 }
-
 .uk-button-primary {
   background-color: #2f3f73;
   background-image: -webkit-linear-gradient(top, #505f90, #2f3f73);
@@ -421,7 +412,6 @@ table#system-modules td.operations {
 .uk-button-primary:hover {
   background-color: #2f3f73;
 }
-
 .uk-button-success {
   background-color: #479030;
   background-image: -webkit-linear-gradient(top, #70b45a, #479030);
@@ -431,7 +421,6 @@ table#system-modules td.operations {
 .uk-button-success:hover {
   background-color: #479030;
 }
-
 .uk-button-warning {
   background-color: #aa9039;
   background-image: -webkit-linear-gradient(top, #d4bc6a, #aa9039);
@@ -441,7 +430,6 @@ table#system-modules td.operations {
 .uk-button-warning:hover {
   background-color: #aa9039;
 }
-
 .uk-button-danger:focus,
 .uk-button-danger:hover,
 .uk-button-primary:focus,
@@ -456,13 +444,11 @@ table#system-modules td.operations {
   border-bottom-color: rgba(0, 0, 0, 0.4);
   opacity: 0.9;
 }
-
 .uk-button-link {
   background: transparent;
   border-color: transparent;
   color: #008ee6;
 }
-
 .uk-button-link:focus,
 .uk-button-link:hover {
   background: transparent;
@@ -793,6 +779,11 @@ a:hover {
   top: -6px;
   font-size: 7px;
 }
+.uk-admin-inline-form-button {
+  font-size: 14px !important;
+  height: 30px;
+  line-height: 28px;
+}
 .uk-admin-clearfix {
   clear: both;
 }
@@ -890,14 +881,17 @@ a:hover {
   text-align: center;
   background: #e7e7e7;
   border: 1px solid #676767;
-  border-left-width: 4px;
   color: #676767;
   cursor: pointer;
 }
 .uk-admin-system-modules-operations i {
   border-left: 1px solid #676767;
   line-height: 24px;
+  margin-left: 4px;
   padding-left: 11px;
+}
+.uk-admin-system-modules-operations-dropdown {
+  background: #fff;
 }
 .uk-admin-text-mono {
   font-family: Consolas, monospace, serif;

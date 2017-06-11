@@ -593,6 +593,7 @@ function uikit_admin_preprocess_system_themes_page(&$variables) {
 function uikit_admin_preprocess_table(&$variables) {
   $variables['attributes']['class'][] = 'uk-table-hover';
   $variables['attributes']['class'][] = 'uk-table-striped';
+  $variables['attributes']['class'][] = 'uk-table-middle';
 
   $id = isset($variables['attributes']['id']) ? $variables['attributes']['id'] : 0;
 

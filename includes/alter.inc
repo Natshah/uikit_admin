@@ -151,6 +151,11 @@ function uikit_admin_js_alter(&$javascript) {
     $javascript[$machine_name]['data'] = $uikit_admin . '/machine-name.js';
   }
 
+  $module_filter = drupal_get_path('module', 'module_filter') . '/js/module_filter.js';
+  if (isset($javascript[$module_filter])) {
+    $javascript[$module_filter]['data'] = $uikit_admin . '/module_filter.js';
+  }
+
   $tabledrag = 'misc/tabledrag.js';
   if (isset($javascript[$tabledrag])) {
     $javascript[$tabledrag]['data'] = $uikit_admin . '/tabledrag.js';

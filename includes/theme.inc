@@ -895,7 +895,7 @@ function uikit_admin_system_modules_fieldset($variables) {
     if ($help || $permissions || $configure) {
       $links .= '<div class="uk-button-dropdown" data-uk-dropdown="{mode:\'click\'}">';
       $links .= '<div class="uk-admin-system-modules-operations">Operations <i class="uk-icon-caret-down"></i></div>';
-      $links .= '<div class="uk-dropdown uk-dropdown-bottom">';
+      $links .= '<div class="uk-admin-system-modules-operations-dropdown uk-dropdown uk-dropdown-bottom">';
       $links .= '<ul class="uk-nav uk-nav-dropdown">';
 
       // Display links (such as help or permissions) in a single column.
