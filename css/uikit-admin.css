@@ -250,15 +250,6 @@ html.js input.form-autocomplete {
 .sticky-header {
   z-index: 1;
 }
-.system-themes-list-disabled .theme-selector {
-  opacity: 0.75;
-  padding-right: 75px;
-  transition: opacity 0.2s;
-}
-.system-themes-list-disabled .theme-selector:focus,
-.system-themes-list-disabled .theme-selector:hover {
-  opacity: 1;
-}
 .tabledrag-toggle-weight-wrapper {
   margin: 0 !important;
 }
@@ -266,7 +257,8 @@ html.js input.form-autocomplete {
   font-size: 0.9em;
 }
 .theme-selector .screenshot {
-  border: 1px solid #afafaf;
+  height: auto;
+  width: 100%;
 }
 #autocomplete {
   border: 0;
@@ -553,6 +545,10 @@ a:hover {
   background: #f5f5f5;
   border: 1px solid #afafaf;
   border-left: 4px solid #afafaf;
+}
+.uk-admin-theme-selector-panel-box {
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
 }
 .uk-panel-box table {
   background: #fff;
