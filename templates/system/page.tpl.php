@@ -75,13 +75,25 @@
  * @ingroup uikit_themeable
  */
 ?>
-<header id="page-header" class="uk-panel uk-panel-box uk-admin-panel-box">
-  <?php print render($title_prefix); ?>
+<header id="page-header" class="uk-panel uk-panel-box uk-margin-bottom">
+  <?php if ($breadcrumb && $display_breadcrumb): ?>
+    <div id="breadcrumbs">
+      <?php print $breadcrumb; ?>
+    </div>
+  <?php endif; ?>
+
   <?php if (!$overlay): ?>
+    <?php print render($title_prefix); ?>
     <?php if ($title): ?>
       <h1 id="page-title" class="uk-article-title uk-display-inline-block"><?php print $title; ?></h1>
     <?php endif; ?>
     <?php print render($title_suffix); ?>
+
+    <?php if ($page['help']): ?>
+      <div class="uk-margin-bottom uk-text-muted">
+        <?php print render($page['help']); ?>
+      </div>
+    <?php endif; ?>
   <?php endif; ?>
 
   <?php print render($primary_local_tasks); ?>
@@ -94,21 +106,9 @@
       <div class="tabs-secondary uk-clearfix"><?php print render($secondary_local_tasks); ?></div>
     <?php endif; ?>
 
-    <?php if ($breadcrumb && $display_breadcrumb): ?>
-      <div id="breadcrumbs">
-        <?php print $breadcrumb; ?>
-      </div>
-    <?php endif; ?>
-
     <?php if ($messages): ?>
       <div id="messages" class="uk-width-1-1">
         <?php print $messages; ?>
-      </div>
-    <?php endif; ?>
-
-    <?php if ($page['help']): ?>
-      <div class="uk-panel uk-panel-box uk-margin-bottom">
-        <?php print render($page['help']); ?>
       </div>
     <?php endif; ?>
 

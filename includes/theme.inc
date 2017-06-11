@@ -18,7 +18,7 @@ function uikit_admin_admin_page($variables) {
     if ($block_output = theme('admin_block', array('block' => $block))) {
       if (empty($block['position'])) {
         // Perform automatic striping.
-        $block['position'] = ++$stripe % 2 ? 'uk-float-left' : 'uk-float-right';
+        $block['position'] = ++$stripe % 2 ? 'left' : 'right';
       }
       if (!isset($container[$block['position']])) {
         $container[$block['position']] = '';
@@ -35,6 +35,7 @@ function uikit_admin_admin_page($variables) {
     $output .= $data;
     $output .= '</div>';
   }
+
   $output .= '</div>';
   return $output;
 }
@@ -499,8 +500,6 @@ function uikit_admin_form_element_label__views_form_element_label($variables) {
  */
 function uikit_admin_menu_local_action($variables) {
   $link = $variables['element']['#link'];
-  $link['localized_options']['attributes']['class'][] = 'uk-button';
-  $link['localized_options']['attributes']['class'][] = 'uk-button-primary';
   $output = '<li>';
 
   if (isset($link['href'])) {
@@ -836,6 +835,63 @@ function uikit_admin_pager_link($variables) {
 
   $attributes['href'] = url($_GET['q'], array('query' => $query));
   return '<a' . drupal_attributes($attributes) . '>' . $text . '</a>';
+}
+
+/**
+ * Implements theme_status_messages().
+ */
+function uikit_admin_status_messages($variables) {
+  $display = $variables['display'];
+  $output = '';
+
+  $status_heading = array(
+    'status' => t('Status message'),
+    'error' => t('Error message'),
+    'warning' => t('Warning message'),
+  );
+
+  foreach (drupal_get_messages($display) as $type => $messages) {
+    switch ($type) {
+      case 'error':
+        $class = 'uk-alert uk-alert-danger';
+        break;
+
+      case 'success':
+        $class = 'uk-alert uk-alert-success';
+        break;
+
+      case 'warning':
+        $class = 'uk-alert uk-alert-warning';
+        break;
+
+      default:
+        $class = 'uk-alert';
+    }
+
+    $output .= "<div class='$class' data-uk-alert>";
+    $output .= '<a class="uk-alert-close uk-close"></a>';
+
+    if (!empty($status_heading[$type])) {
+      $output .= '<h2 class="uk-hidden">' . $status_heading[$type] . "</h2>\n";
+    }
+
+    if (count($messages) > 1) {
+      $output .= '<ul class="uk-list">';
+
+      foreach ($messages as $message) {
+        $output .= '<li>' . $message . '</li>';
+      }
+
+      $output .= '</ul>';
+    }
+    else {
+      $output .= reset($messages);
+    }
+
+    $output .= '</div>';
+  }
+
+  return $output;
 }
 
 /**
@@ -1580,7 +1636,7 @@ function uikit_admin_update_report($variables) {
     if (!empty($versions_inner)) {
       $row .= '<div class="versions">' . $versions_inner . '</div>';
     }
-    $row .= '<div class="info uk-margin-small-top">';
+    $row .= '<div class="info">';
     if (!empty($project['extra'])) {
       $row .= '<div class="extra">';
       foreach ($project['extra'] as $key => $value) {
@@ -1598,13 +1654,13 @@ function uikit_admin_update_report($variables) {
       sort($project['disabled']);
       // Make sure we start with a clean slate for each project in the report.
       $includes_items = array();
-      $row .= t('Includes:');
+      $row .= t('<strong>Includes: </strong>');
       $includes_items[] = t('Enabled: %includes', array('%includes' => implode(', ', $project['includes'])));
       $includes_items[] = t('Disabled: %disabled', array('%disabled' => implode(', ', $project['disabled'])));
       $row .= theme('item_list', array('items' => $includes_items));
     }
     else {
-      $includes = t('Includes: %includes', array('%includes' => implode(', ', $project['includes'])));
+      $includes = t('<strong>Includes: </strong>%includes', array('%includes' => implode(', ', $project['includes'])));
       $includes = str_replace('class="placeholder"', 'class="placeholder uk-text-' . $class . '"', $includes);
       $row .= $includes;
     }
@@ -1707,9 +1763,9 @@ function uikit_admin_update_version($variables) {
   $class = implode(' ', $variables['class']);
 
   $output = '';
-  $output .= '<div class="version ' . $class . ' uk-margin-small-top">';
-  $output .= '<div class="version-title uk-display-inline-block">' . $tag . '</div>';
-  $output .= '<div class="version-details uk-display-inline-block uk-margin-large-left">';
+  $output .= '<div class="version ' . $class . '">';
+  $output .= '<div class="version-title uk-display-inline-block"><strong>' . $tag . '</strong></div>';
+  $output .= '<div class="version-details uk-display-inline-block uk-margin-left">';
   $output .= l($version['version'], $version['release_link']);
   $output .= ' <span class="version-date">(' . format_date($version['date'], 'custom', 'F j, Y') . ')</span>';
   $output .= '</div>';
@@ -1729,6 +1785,5 @@ function uikit_admin_update_version($variables) {
   $output .= theme('links__update_version', array('links' => $links, 'attributes' => $attributes));
   $output .= '</div>';
   $output .= '</div>';
-  $output .= '<hr class="uk-admin-update-version-divider">';
   return $output;
 }

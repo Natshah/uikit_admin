@@ -121,7 +121,6 @@ function uikit_admin_preprocess_button(&$variables) {
         $variables['element']['#attributes']['class'][] = 'uk-button-warning';
         break;
 
-      case 'Cancel':
       case 'Delete':
       case 'Delete content type':
       case 'Delete role':
@@ -279,7 +278,6 @@ function uikit_admin_preprocess_link(&$variables) {
     if (empty($classes) || !in_array('uk-button', $classes)) {
       $variables['options']['attributes']['class'][] = 'uk-button';
     }
-    $variables['options']['attributes']['class'][] = 'uk-button-danger';
   }
 }
 
