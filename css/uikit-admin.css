@@ -385,7 +385,8 @@ table#system-modules td.operations {
 .uk-breadcrumb>li {
   font-size: 12px;
 }
-.uk-button {
+.uk-button,
+.uk-form input[class*=uk-button] {
   position: relative;
   display: inline-block;
   font-size: 14px;
@@ -410,7 +411,9 @@ table#system-modules td.operations {
   white-space: nowrap;
 }
 .uk-button:focus,
-.uk-button:hover {
+.uk-button:hover,
+.uk-form input[class*=uk-button]:focus,
+.uk-form input[class*=uk-button]:hover {
   color: #444;
   background-color: #ebebeb;
   background-image: -webkit-linear-gradient(top, #eee, #ebebeb);
@@ -419,52 +422,65 @@ table#system-modules td.operations {
 .uk-button-danger,
 .uk-button-primary,
 .uk-button-success,
-.uk-button-warning {
+.uk-button-warning,
+.uk-form input[class*=uk-button] {
   color: #fff;
   border-color: rgba(0, 0, 0, 0.2);
   border-bottom-color: rgba(0, 0, 0, 0.4);
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
-.uk-button-danger {
+.uk-button-danger,
+.uk-form input.uk-button-danger {
   background-color: #ff3d00;
   background-image: -webkit-linear-gradient(top, #ff6939, #ff3d00);
   background-image: linear-gradient(to bottom, #ff6939, #ff3d00);
 }
 .uk-button-danger:focus,
-.uk-button-danger:hover {
+.uk-button-danger:hover,
+.uk-form input.uk-button-danger:focus,
+.uk-form input.uk-button-danger:hover {
   background-color: #ff6939;
   background-image: -webkit-linear-gradient(top, #ff845d, #ff6939);
   background-image: linear-gradient(to bottom, #ff845d, #ff6939);
 }
-.uk-button-primary {
+.uk-button-primary,
+.uk-form input.uk-button-primary {
   background-color: #008ee6;
   background-image: -webkit-linear-gradient(top, #09a4ff, #008ee6);
   background-image: linear-gradient(to bottom, #09a4ff, #008ee6);
 }
 .uk-button-primary:focus,
-.uk-button-primary:hover {
+.uk-button-primary:hover,
+.uk-form input.uk-button-primary:focus,
+.uk-form input.uk-button-primary:hover {
   background-color: #09a4ff;
   background-image: -webkit-linear-gradient(top, #25aeff, #09a4ff);
   background-image: linear-gradient(to bottom, #25aeff, #09a4ff);
 }
-.uk-button-success {
+.uk-button-success,
+.uk-form input.uk-button-success {
   background-color: #00b358;
   background-image: -webkit-linear-gradient(top, #29b86f, #00b358);
   background-image: linear-gradient(to bottom, #29b86f, #00b358);
 }
 .uk-button-success:focus,
-.uk-button-success:hover {
+.uk-button-success:hover,
+.uk-form input.uk-button-success:focus,
+.uk-form input.uk-button-success:hover {
   background-color: #29b86f;
   background-image: -webkit-linear-gradient(top, #49c887, #29b86f);
   background-image: linear-gradient(to bottom, #49c887, #29b86f);
 }
-.uk-button-warning {
+.uk-button-warning,
+.uk-form input.uk-button-warning {
   background-color: #ff8c00;
   background-image: -webkit-linear-gradient(top, #ffa639, #ff8c00);
   background-image: linear-gradient(to bottom, #ffa639, #ff8c00);
 }
 .uk-button-warning:focus,
-.uk-button-warning:hover {
+.uk-button-warning:hover,
+.uk-form input.uk-button-warning:focus,
+.uk-form input.uk-button-warning:hover {
   background-color: #ffa639;
   background-image: -webkit-linear-gradient(top, #ffb65d, #ffa639);
   background-image: linear-gradient(to bottom, #ffb65d, #ffa639);
@@ -476,18 +492,23 @@ table#system-modules td.operations {
 .uk-button-success:focus,
 .uk-button-success:hover,
 .uk-button-warning:focus,
-.uk-button-warning:hover {
+.uk-button-warning:hover,
+.uk-form input[class*=uk-button]:focus,
+.uk-form input[class*=uk-button]:hover {
   color: #fff;
   border-color: rgba(0, 0, 0, 0.2);
   border-bottom-color: rgba(0, 0, 0, 0.4);
 }
-.uk-button-link {
+.uk-button-link,
+.uk-form input.uk-button-link {
   background: transparent;
   border-color: transparent;
   color: #008ee6;
 }
 .uk-button-link:focus,
-.uk-button-link:hover {
+.uk-button-link:hover,
+.uk-form input.uk-button-link:focus,
+.uk-form input.uk-button-link:hover {
   background: transparent;
   border-color: transparent;
   color: #2f3f73;
