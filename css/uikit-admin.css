@@ -361,6 +361,17 @@ table#system-modules td.operations {
   background: #ffb65d;
   border-color: #ffa639;
 }
+.uk-alert a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px #fff dotted;
+}
+.uk-alert a:focus,
+.uk-alert a:hover {
+  color: #fff;
+  text-decoration: none;
+  border-bottom-style: solid;
+}
 .uk-alert .uk-close {
   opacity: 0.5;
 }
