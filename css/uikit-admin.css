@@ -361,13 +361,13 @@ table#system-modules td.operations {
   background: #ffb65d;
   border-color: #ffa639;
 }
-.uk-alert a {
+.uk-alert:not(tr) a {
   color: #fff;
   text-decoration: none;
   border-bottom: 1px #fff dotted;
 }
-.uk-alert a:focus,
-.uk-alert a:hover {
+.uk-alert:not(tr) a:focus,
+.uk-alert:not(tr) a:hover {
   color: #fff;
   text-decoration: none;
   border-bottom-style: solid;
