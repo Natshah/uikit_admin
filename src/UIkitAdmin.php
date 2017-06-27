@@ -12,6 +12,13 @@ class UIkitAdmin {
   public static function getPageTemplateAttributes() {
     $page_attributes = [];
 
+    // Set the header wrapper attributes.
+    $header_wrapper_attributes = new Attribute;
+    $header_wrapper_attributes->setAttribute('id', 'page--header-wrapper');
+    $header_wrapper_attributes->addClass('uk-block');
+    $header_wrapper_attributes->addClass('uk-block-muted');
+    $page_attributes['header_wrapper_attributes'] = $header_wrapper_attributes;
+
     // Set the header attributes.
     $header_attributes = new Attribute;
     $header_attributes->setAttribute('id', 'page--header');
@@ -29,17 +36,14 @@ class UIkitAdmin {
     // Set the pre-content attributes.
     $pre_content_attributes = new Attribute;
     $pre_content_attributes->setAttribute('id', 'page--pre-content');
-    $pre_content_attributes->addClass('uk-width-9-10');
-    $pre_content_attributes->addClass('uk-container-center');
-    $pre_content_attributes->addClass('uk-margin');
+    $pre_content_attributes->addClass('uk-width-1-1');
+    $pre_content_attributes->addClass('uk-margin-top');
     $page_attributes['pre_content_attributes'] = $pre_content_attributes;
 
     // Set the beadcrumb attributes.
     $breadcrumb_attributes = new Attribute;
     $breadcrumb_attributes->setAttribute('id', 'page--breadcrumb');
-    $breadcrumb_attributes->addClass('uk-width-9-10');
-    $breadcrumb_attributes->addClass('uk-container-center');
-    $breadcrumb_attributes->addClass('uk-margin');
+    $breadcrumb_attributes->addClass('uk-width-1-1');
     $page_attributes['breadcrumb_attributes'] = $breadcrumb_attributes;
 
     // Set the highlighted attributes.
@@ -62,6 +66,13 @@ class UIkitAdmin {
     $content_wrapper_attributes = new Attribute;
     $content_wrapper_attributes->setAttribute('id', 'page--content-wrapper');
     $page_attributes['content_wrapper_attributes'] = $content_wrapper_attributes;
+
+    // Set the content grid attributes.
+    $content_grid_attributes = new Attribute;
+    $content_grid_attributes->setAttribute('id', 'page--content-grid');
+    $content_grid_attributes->addClass('uk-grid');
+    $content_grid_attributes->setAttribute('data-uk-grid-margin', '');
+    $page_attributes['content_grid_attributes'] = $content_grid_attributes;
 
     // Set the content attributes.
     $content_attributes = new Attribute;

@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Theme override to display a form.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ * @see uikit_admin_preprocess_form()
+ *
+ * @ingroup uikit_admin_themeable
+ */
+#}
+{%
+  set classes = [
+    'uk-form',
+    orientation == 'stacked' ? 'uk-form-stacked' : 'uk-form-horizontal',
+  ]
+%}
+<form{{ attributes.addClass(classes) }}>
+  {{ children }}
+</form>

@@ -2,3 +2,64 @@
  * @file
  * Purely visual styling (“look-and-feel”) for a component.
  */
+
+/**
+ * UIkit components.
+ */
+.uk-block-muted,
+.uk-panel-box {
+  background: #eee;
+}
+
+/**
+ * Local tasks.
+ */
+#primary-tasks,
+#secondary-tasks {
+  border-bottom: 1px solid #aaa;
+}
+#tasks--primary {
+  bottom: -1px;
+  border: 0;
+}
+#tasks--primary>li>a {
+  background: #f5f5f5;
+  border: 1px solid #afafaf;
+  border-radius: 0;
+  text-shadow: none;
+  transition: background 0.2s, color 0.2s;
+}
+#tasks--primary>li:not(.uk-active)>a:focus,
+#tasks--primary>li:not(.uk-active)>a:hover {
+  background: #fafaf7;
+}
+#tasks--primary>li.uk-active>a {
+  background-color: #fff;
+  border-color: #aaa;
+  border-bottom-width: 0;
+}
+#tasks--secondary>:nth-child(n+2):before {
+  border-left: 2px solid #aaaaaa;
+}
+#tasks--secondary>li>a {
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+#tasks--secondary>li.uk-active>a {
+  border-color: #0074bd;
+  color: #0074bd;
+}
+#tasks--secondary>li:not(.uk-active)>a:hover {
+  border-color: #008ee6;
+  color: #008ee6;
+}
+
+/**
+ * Blocks.
+ */
+.block-local-tasks-block:not(:first-of-type) {
+  background-color: #fff;
+}
+.block-system-breadcrumb-block {
+  background-color: #fff;
+}

@@ -14,7 +14,7 @@
 {% if breadcrumb and display_breadcrumbs %}
   <nav role="navigation" aria-labelledby="system-breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ol class="uk-breadcrumb uk-margin-top-remove">
+    <ol class="uk-breadcrumb uk-margin-remove">
     {% for item in breadcrumb %}
       {% if item.url %}
         <li><a href="{{ item.url }}">{{ item.text }}</a></li>

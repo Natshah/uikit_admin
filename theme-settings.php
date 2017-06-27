@@ -40,6 +40,9 @@ function uikit_admin_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\
     }
   }
 
+  unset($form['favicon']['favicon_preview']);
+  unset($form['logo']['logo_preview']);
+
   // Open the logo and favicon details elements by default.
   $form['logo']['#open'] = TRUE;
   $form['favicon']['#open'] = TRUE;

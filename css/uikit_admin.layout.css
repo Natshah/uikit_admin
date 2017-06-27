@@ -2,3 +2,53 @@
  * @file
  * Macro arrangement of a web page, including any grid systems.
  */
+
+/**
+ * Page header.
+ */
+#page--header-wrapper {
+  padding: 15px 0 0;
+}
+
+/**
+ * Local tasks.
+ */
+#tasks--primary {
+  position: relative;
+  z-index: 1;
+  bottom: -1px;
+}
+#tasks--primary>li>a {
+  padding: 7px 2em 7px 2em;
+}
+#tasks--primary>li:not(.uk-active)>a:focus,
+#tasks--primary>li:not(.uk-active)>a:hover {
+  margin-bottom: 0;
+}
+#tasks--primary li+li>a {
+  margin-left: -1px;
+}
+#tasks--secondary>li {
+  margin: 0 0 -1px 15px;
+}
+#tasks--secondary>li>a {
+  padding: 7px 13px 5px;
+}
+
+/**
+ * Menus.
+ */
+#tasks--primary {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+/**
+ * Blocks.
+ */
+.block-local-tasks-block:not(:first-of-type) {
+  padding: 15px 0 0;
+}
+.block-system-breadcrumb-block {
+  padding-top: 15px;
+}
