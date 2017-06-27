@@ -1,0 +1,16 @@
+name: 'UIkit Admin'
+type: theme
+description: 'A one-column administration theme based on UIkit for Drupal.'
+core: 8.x
+base theme: uikit
+
+regions:
+  header: Header
+  pre_content: 'Pre-content'
+  breadcrumb: 'Breadcrumb'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: Content
+
+libraries:
+  - uikit_admin/global-style

@@ -1,0 +1,14 @@
+global-style:
+  version: VERSION
+  css:
+    base:
+      css/uikit_admin.base.css: {}
+      //fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i: { type: external }
+    layout:
+      css/uikit_admin.layout.css: {}
+    component:
+      css/uikit_admin.component.css: {}
+    theme:
+      css/uikit_admin.theme.css: {}
+  js:
+    js/uikit_admin.theme.js: {}

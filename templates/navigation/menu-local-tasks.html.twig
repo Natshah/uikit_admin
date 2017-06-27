@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override to display primary and secondary local tasks.
+ *
+ * Available variables:
+ * - primary: HTML list items representing primary tasks.
+ * - secondary: HTML list items representing primary tasks.
+ *
+ * Each item in these variables (primary and secondary) can be individually
+ * themed in menu-local-task.html.twig.
+ *
+ * @see uikit_admin_preprocess_menu_local_tasks()
+ *
+ * @ingroup uikit_admin_themeable
+ */
+#}
+{% if primary %}
+  <div id="primary-tasks">
+    <h2 class="visually-hidden">{{ 'Primary tasks'|t }}</h2>
+    <ul{{ primary_attributes }}>{{ primary }}</ul>
+  </div>
+{% endif %}
+{% if secondary %}
+  <div id="secondary-tasks" class="uk-clearfix uk-margin-top">
+    <h2 class="visually-hidden">{{ 'Secondary tasks'|t }}</h2>
+    <ul{{ secondary_attributes }}>{{ secondary }}</ul>
+  </div>
+  <hr class="uk-article-divider">
+{% endif %}
