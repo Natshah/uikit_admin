@@ -150,11 +150,13 @@ function uikit_admin_preprocess_input(&$variables) {
  */
 function uikit_admin_preprocess_links__dropbutton(&$variables) {
   // Add the uk-button-primary class based on the type of dropbutton is set.
-  if ($variables['dropbutton']['link']) {
-    $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-primary';
-  }
-  elseif ($variables['dropbutton']['text_attributes']) {
-    $variables['dropbutton']['text_attributes']['class'][] = 'uk-button-primary';
+  if (isset($variables['dropbutton'])) {
+    if ($variables['dropbutton']['link']) {
+      $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-primary';
+    }
+    elseif ($variables['dropbutton']['text_attributes']) {
+      $variables['dropbutton']['text_attributes']['class'][] = 'uk-button-primary';
+    }
   }
 }
 

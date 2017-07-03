@@ -3,6 +3,19 @@
  * Attaches behaviors for the UIkit Admin theme.
  */
 
-(function ($) {
+(function ($, Drupal) {
   'use strict';
-})(jQuery);
+
+  Drupal.behaviors.uikitAdminDropbuttons = {
+    attach: function (context, settings) {
+      var button_group = $(context).find('.uk-button-group').once('uk-dropdown');
+      if (button_group.length) {
+        $(button_group).each(function () {
+          var dropdown = $(this).find('.uk-dropdown');
+          dropdown.css('min-width', $(this).outerWidth(false) - 6);
+        })
+      }
+    }
+  }
+
+})(jQuery, Drupal);
