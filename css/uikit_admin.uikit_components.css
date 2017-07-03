@@ -1,0 +1,157 @@
+/**
+ * @file
+ * UIkit Admin overrides of UIkit components.
+ */
+
+/**
+ * Accordion.
+ */
+.uk-accordion {
+}
+.uk-accordion-title {
+  background: #eee;
+  border: 1px solid #aaa;
+  border-radius: 4px 4px 0 0;
+  margin: 0;
+}
+.uk-accordion-content {
+  padding: 15px;
+  border: 1px solid #aaa;
+  border-top-width: 0;
+}
+
+/**
+ * Block.
+ */
+.uk-block-muted {
+  background: #eee;
+}
+
+/**
+ * Dropdown.
+ */
+.uk-dropdown {
+  background: #f7f7f7;
+  border: 1px solid rgba(0,0,0,.2);
+  border-bottom-color: rgba(0,0,0,.3);
+  background-origin: border-box;
+  background-image: -webkit-linear-gradient(top,#fff,#eee);
+  background-image: linear-gradient(to bottom,#fff,#eee);
+}
+
+/**
+ * Form.
+ */
+.uk-form input:not([type]),
+.uk-form input[type=text],
+.uk-form input[type=password],
+.uk-form input[type=email],
+.uk-form input[type=url],
+.uk-form input[type=search],
+.uk-form input[type=tel],
+.uk-form input[type=number],
+.uk-form input[type=datetime],
+.uk-form input[type=datetime-local],
+.uk-form input[type=date],
+.uk-form input[type=month],
+.uk-form input[type=time],
+.uk-form input[type=week],
+.uk-form input[type=color],
+.uk-form select,
+.uk-form textarea {
+  border-color: #aaa;
+}
+
+/**
+ * Panel.
+ */
+.uk-panel-box {
+  background: #eee;
+  border-color: #aaa;
+}
+.uk-panel-box-primary {
+  background-color: #ebf7fd;
+  color: #2d7091;
+  border-color: rgba(45,112,145,.3);
+}
+.uk-panel-box-secondary {
+  background-color: #fff;
+}
+
+/**
+ * Subnav.
+ */
+.uk-subnav-line>:nth-child(n+2):before {
+  border-left: 2px solid #aaa;
+}
+.uk-subnav-line>*>* {
+  border-bottom: 2px solid transparent;
+  padding: 7px 13px 5px;
+  transition: border-color 0.2s, color 0.2s;
+}
+.uk-subnav-line>.uk-active>* {
+  border-color: #0074bd;
+  color: #0074bd;
+}
+.uk-subnav-line>:not(.uk-active)>*:focus,
+.uk-subnav-line>:not(.uk-active)>*:hover {
+  border-color: #008ee6;
+  color: #008ee6;
+}
+
+/**
+ * Tab.
+ */
+.uk-tab {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.uk-tab>li>a {
+  background: #f5f5f5;
+  border: 1px solid #aaa;
+  padding: 8px 2em 8px 2em;
+  transition: background 0.2s, color 0.2s;
+}
+.uk-tab>li>a,
+.uk-tab>li.uk-active>a,
+.uk-tab>li.uk-open>a,
+.uk-tab>li>a:focus,
+.uk-tab>li>a:hover {
+  border-color: #aaa;
+  margin-bottom: 0;
+}
+.uk-tab>li.uk-active>a {
+  background: #fff;
+  border-bottom-color: transparent;
+}
+.uk-tab>li:not(.uk-active)>a:focus,
+.uk-tab>li:not(.uk-active)>a:hover {
+  background: #fafaf7;
+  border-bottom-color: transparent;
+}
+.uk-tab>li:nth-child(n+2)>a {
+  border-radius: 0;
+  margin-left: -2px;
+}
+.uk-tab>li:first-child>a {
+  border-radius: 4px 0 0 0;
+}
+.uk-tab>li:last-child>a {
+  border-radius: 0 4px 0 0;
+}
+
+/**
+ * Table.
+ */
+.uk-table-striped thead th {
+  background: #eee;
+  border: solid #aaa;
+  border-width: 1px 0;
+}
+.uk-table td,
+.uk-table th {
+  border-bottom-color: #ccc;
+}
+*.table-behaviours+.uk-table {
+  margin-top: 5px;
+}
