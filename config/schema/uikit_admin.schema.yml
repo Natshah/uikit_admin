@@ -2,4 +2,4 @@
 
 uikit_blog.settings:
   type: theme_settings
-  label: 'UIkit Blog settings'
+  label: 'UIkit Admin settings'
