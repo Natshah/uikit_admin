@@ -84,4 +84,37 @@ class UIkitAdmin {
 
     return $page_attributes;
   }
+
+  public static function getViewsUIButtons() {
+    return [
+      'Add and configure @types',
+      'Duplicate @display_title',
+      'Delete @display_title',
+      'Duplicate as @type',
+      'Disable @display_title',
+    ];
+  }
+
+  public static function getViewsUIDisplayButtons() {
+    return [
+      'Add @display',
+    ];
+  }
+
+  public static function getViewsUILinks() {
+    return [
+      'class' => [
+        'views-ui-settings-bucket-operations',
+      ],
+      'id' => [
+        'views-display-extra-actions',
+      ],
+    ];
+  }
+
+  public static function getViewsUITabBuckets() {
+    return[
+      'views_ui_display_tab_bucket',
+    ];
+  }
 }

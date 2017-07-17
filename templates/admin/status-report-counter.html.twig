@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override for the status report counter.
+ *
+ * Available variables:
+ * - amount: The number shown on counter.
+ * - text: The text shown on counter.
+ * - severity: The severity of the counter.
+ *
+ * @ingroup themable
+ */
+#}
+{% if severity == 'error' %}
+  {% set icon_classes = 'uk-icon-times-circle uk-text-danger' %}
+{% elseif severity == 'warning' %}
+  {% set icon_classes = 'uk-icon-exclamation-triangle uk-text-warning' %}
+{% else %}
+  {% set icon_classes = 'uk-icon-check uk-text-success' %}
+{% endif %}
+<i class="{{ icon_classes }} uk-icon-large status-report-counter-icon"></i>
+<h3 class="uk-panel-title">{{ amount }} {{ text }}</h3>
+<div class="status-report-details uk-clearfix">
+  <a href="#{{ severity }}"><span class="visually-hidden">{{ text }} </span>Details</a>
+</div>

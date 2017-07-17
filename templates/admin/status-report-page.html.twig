@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override for the status report page.
+ *
+ * Available variables:
+ * - counters: The list of counter elements.
+ * - general_info: A render array to create general info element.
+ * - requirements: A render array to create requirements table.
+ *
+ * @see template_preprocess_status_report()
+ */
+#}
+{% if counters|length == 3 %}
+  {% set element_width_class = 'uk-width-1-3' %}
+{% elseif counters|length == 2 %}
+  {% set element_width_class = 'uk-width-1-2' %}
+{% else %}
+  {% set element_width_class = 'uk-width-1-1' %}
+{% endif %}
+<div id="status-report-counters" class="uk-grid" data-uk-grid-match>
+  {% for counter in counters %}
+    <div class="status-report-counter {{ element_width_class }}">
+      <div class="uk-panel uk-panel-box">
+        {{ counter }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{{ general_info }}
+{{ requirements }}

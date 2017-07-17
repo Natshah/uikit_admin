@@ -13,11 +13,6 @@
 /**
  * Local tasks.
  */
-#tasks--primary {
-  position: relative;
-  z-index: 1;
-  bottom: -1px;
-}
 #tasks--primary>li>a {
   padding: 7px 2em 7px 2em;
 }

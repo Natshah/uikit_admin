@@ -11,8 +11,11 @@
 .uk-accordion-title {
   background: #eee;
   border: 1px solid #aaa;
-  border-radius: 4px 4px 0 0;
+  border-radius: 4px;
   margin: 0;
+}
+.uk-accordion-title.uk-active {
+  border-radius: 4px 4px 0 0;
 }
 .uk-accordion-content {
   padding: 15px;
@@ -60,6 +63,28 @@
 .uk-form select,
 .uk-form textarea {
   border-color: #aaa;
+}
+.uk-form input.uk-button-primary {
+  color: #fff;
+  border-radius: 4px;
+}
+.uk-form .uk-form-label {
+  font-weight: bold;
+}
+.uk-form .uk-form-row+.uk-button,
+.uk-form [type="hidden"]+.uk-form-row {
+  margin-top: 15px;
+}
+.uk-form-horizontal .uk-form-stacked .uk-form-label {
+  width: auto;
+  margin-top: 0;
+  float: none;
+}
+.uk-form-horizontal .uk-form-stacked .uk-form-controls {
+  margin-left: 0;
+}
+.uk-form-help-block {
+  color: #999!important;
 }
 
 /**

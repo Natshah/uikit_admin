@@ -14,18 +14,30 @@
 /**
  * Local tasks.
  */
-#primary-tasks,
 #secondary-tasks {
   border-bottom: 1px solid #aaa;
 }
 #tasks--primary {
-  bottom: -1px;
   border: 0;
+}
+#tasks--primary:before {
+  content: '';
+  display: block;
+  background-color: #aaa;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  right: 0;
+  top: 34px;
+}
+#tasks--primary>li.uk-active {
+  z-index: 15;
 }
 #tasks--primary>li>a {
   background: #f5f5f5;
   border: 1px solid #afafaf;
-  border-radius: 0;
   text-shadow: none;
   transition: background 0.2s, color 0.2s;
 }
@@ -62,4 +74,69 @@
 }
 .block-system-breadcrumb-block {
   background-color: #fff;
+}
+
+/**
+ * Status report page.
+ */
+#status-report-counters .status-report-counter .status-report-counter-icon {
+  float: left;
+  margin-right: 10px;
+  width: 35px;
+}
+#status-report-counters .status-report-counter .uk-panel-title {
+  float: left;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 35px;
+  margin: 0;
+  text-transform: uppercase;
+}
+#status-report-counters .status-report-counter .status-report-details {
+  clear: both;
+  margin-left: 45px;
+}
+
+.uk-admin-font-weight-light {
+  font-weight: 300;
+}
+.uk-admin-font-weight-regular {
+  font-weight: 400;
+}
+.uk-admin-font-weight-semi-bold {
+  font-weight: 600;
+}
+.uk-admin-font-weight-bold {
+  font-weight: 700;
+}
+.uk-admin-last-cron-less-day {
+  color: #018341;
+}
+.uk-admin-last-cron-week {
+  color: #b56502;
+}
+.uk-admin-last-cron-over-week {
+  color: #b52d02;
+}
+.uk-icon-drupal {
+  color: #0077C0;
+}
+.uk-icon-database {
+  color: #f59620;
+}
+
+/**
+ * Font Mfizz icons
+ */
+.icon-apache {
+  color: #d42129;
+}
+.icon-nginx,
+.icon-nginx-alt,
+.icon-nginx-alt2 {
+  color: #009900;
+}
+.icon-php,
+.icon-php-alt {
+  color: #777bb4;
 }

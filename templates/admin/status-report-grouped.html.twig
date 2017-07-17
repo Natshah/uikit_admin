@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override of grouped status report requirements.
+ *
+ * - grouped_requirements: Contains grouped requirements.
+ *   Each group contains:
+ *   - title: The title of the group.
+ *   - type: The severity of the group.
+ *   - items: The requirement instances.
+ *     Each requirement item contains:
+ *     - title: The title of the requirement.
+ *     - value: (optional) The requirement's status.
+ *     - description: (optional) The requirement's description.
+ *     - severity_title: The title of the severity.
+ *     - severity_status: Indicates the severity status.
+ */
+#}
+<div id="status-report-grouped" class="uk-grid">
+  {% for group in grouped_requirements %}
+    {% set requirement_icon_classes = '' %}
+    {% set requirement_text_class = '' %}
+    {% if group.type == 'error' %}
+      {% set requirement_icon_classes = 'uk-icon-times-circle uk-text-danger' %}
+      {% set requirement_text_class = ' uk-text-danger' %}
+    {% elseif group.type == 'warning' %}
+      {% set requirement_icon_classes = 'uk-icon-exclamation-triangle uk-text-warning' %}
+      {% set requirement_text_class = ' uk-text-warning' %}
+    {% endif %}
+    <div id="{{ group.type }}" class="uk-width-1-1 uk-margin">
+      <h2 class="uk-margin-bottom">{{ group.title }}</h2>
+      <table id="system-status-{{ group.type }}" class="uk-table">
+        <tbody>
+          {% for requirement in group.items %}
+            <tr>
+              <td class="system-status-title uk-text-uppercase uk-width-small-1-2 uk-width-medium-1-4">
+                {% if requirement.severity_title  %}
+                  <span class="visually-hidden">{{ requirement.severity_title }}</span>
+                {% endif %}
+                {% if requirement_icon_classes %}
+                  <i class="{{ requirement_icon_classes }} uk-icon-small uk-margin-right"></i>
+                {% endif %}
+                <span class="uk-text-bold{{ requirement_text_class }}">{{ requirement.title }}</span>
+              </td>
+              <td class="system-status-description uk-width-small-1-2 uk-width-medium-3-4">
+                <div class="system-status-value{{ requirement_text_class }}">{{ requirement.value }}</div>
+                {% if requirement.description %}
+                  <div class="uk-text-muted">{{ requirement.description }}</div>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endfor %}
+</div>

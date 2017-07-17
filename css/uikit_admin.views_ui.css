@@ -1,0 +1,159 @@
+/**
+ * @file
+ * Override of Views UI styles.
+ */
+.views-admin .unit-title {
+  font-weight: bold;
+}
+.views-display-column:focus,
+.views-display-column summary:focus {
+  outline: 0;
+}
+.views-display-column summary {
+  cursor: pointer;
+  font-size: 0.975rem;
+  font-weight: bold;
+  padding: 0.5em;
+  text-transform: uppercase;
+}
+.views-display-column summary:focus,
+.views-display-column summary:hover {
+  text-decoration: underline;
+}
+.views-display-setting .label {
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+.views-ui-display-tab-bucket__title {
+  font-size: 0.975rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.views-displays .tabs,
+.views-displays .tabs.secondary {
+  list-style: none;
+}
+.view-preview-form .form-item-view-args,
+.view-preview-form .form-actions {
+  margin-top: 5px;
+}
+.view-preview-form .form-item-view-args .uk-form-label {
+  width: auto;
+}
+.view-preview-form .form-item-view-args .uk-form-controls {
+  float: left;
+  margin: 0;
+}
+.views-displays .tabs.secondary li a,
+#view-edit-form .dropbutton-wrapper li a,
+#view-edit-form .dropbutton-wrapper li button,
+#view-edit-form .dropbutton-wrapper li input,
+#view-edit-form .dropbutton-wrapper .uk-button-group>.uk-button:first-child,
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2) .uk-button {
+  -webkit-appearance: none;
+  margin: 0;
+  overflow: visible;
+  font: inherit;
+  color: #444;
+  text-transform: none;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 12px;
+  background: #f7f7f7;
+  vertical-align: middle;
+  line-height: 28px;
+  min-height: 30px;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  background-origin: border-box;
+  background-image: -webkit-linear-gradient(top, #fff, #eee);
+  background-image: linear-gradient(to bottom, #fff, #eee);
+  border-radius: 4px;
+  text-shadow: 0 1px 0 #fff;
+}
+.views-displays .tabs.secondary li a:focus,
+.views-displays .tabs.secondary li a:hover,
+#view-edit-form .dropbutton-wrapper li a:focus,
+#view-edit-form .dropbutton-wrapper li a:hover,
+#view-edit-form .dropbutton-wrapper li button:focus,
+#view-edit-form .dropbutton-wrapper li button:hover,
+#view-edit-form .dropbutton-wrapper li input:focus,
+#view-edit-form .dropbutton-wrapper li input:hover,
+#view-edit-form .dropbutton-wrapper .uk-button-group>.uk-button:first-child:focus,
+#view-edit-form .dropbutton-wrapper .uk-button-group>.uk-button:first-child:hover,
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2) .uk-button:focus,
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2) .uk-button:hover {
+  color: #444;
+  outline: 0;
+  text-decoration: none;
+  background: #fafafa none;
+}
+#view-edit-form .dropbutton-wrapper li a,
+#view-edit-form .dropbutton-wrapper li button,
+#view-edit-form .dropbutton-wrapper li input,
+#view-edit-form .dropbutton-wrapper .uk-button-group>.uk-button:first-child,
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2) .uk-button {
+  font-size: 12px;
+  font-weight: bold;
+  line-height: normal;
+  min-height: 0;
+  padding: 4px 20px;
+  text-align: left;
+}
+#view-edit-form .dropbutton-wrapper li.dropbutton-action a,
+#view-edit-form .dropbutton-wrapper .uk-button-group>.uk-button:first-child {
+  border-radius: 20em 0 0 20em;
+}
+#view-edit-form .dropbutton-wrapper li.dropbutton-toggle button,
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2) .uk-button {
+  border-radius: 0 20em 20em 0;
+  margin-left: -1px;
+  display: block;
+  height: 100%;
+  padding: 0;
+  width: 100%;
+}
+#view-edit-form .dropbutton-wrapper.open li.dropbutton-toggle button,
+#view-edit-form .dropbutton-wrapper.open .uk-button-group>div:nth-child(n+2) .uk-button {
+  border-radius: 0 1.1em 1.1em 0;
+}
+#view-edit-form .dropbutton-wrapper li.dropbutton-toggle button .dropbutton-arrow {
+  right: 45%;
+}
+#view-edit-form .dropbutton-wrapper.dropbutton-single li.dropbutton-action a {
+  border-radius: 20em;
+}
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2) .uk-button {
+  display: inline-block;
+  padding: 4px 10px;
+}
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2) .uk-button i {
+  position: relative;
+  left: -2px;
+}
+#view-edit-form .dropbutton-wrapper .uk-button-group>div:nth-child(n+2).uk-open .uk-button i:before {
+  content: "\f0d8";
+}
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple li.dropbutton-action a,
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple li.dropbutton-action input {
+  width: 100%;
+}
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple li.secondary-action a,
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple li.secondary-action input {
+  border-top: 1px transparent;
+}
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple.open li.dropbutton-action a,
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple.open li.dropbutton-action input {
+  border-radius: 1.1em 0 0 0;
+}
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple.open li.secondary-action a,
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple.open li.secondary-action input {
+  border-radius: 0;
+}
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple.open li.secondary-action:last-child a,
+#view-edit-form .dropbutton-wrapper.dropbutton-multiple.open li.secondary-action:last-child input {
+  border-radius: 0 0 0 1.1em;
+}

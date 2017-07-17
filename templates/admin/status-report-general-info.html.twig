@@ -1,0 +1,119 @@
+{#
+/**
+ * @file
+ * Theme override for the status report general info.
+ *
+ * Available variables:
+ * - drupal: The status of Drupal installation:
+ *   - value: The current status of Drupal installation.
+ *   - description: The description for current status of Drupal installation.
+ * - cron: The status of cron:
+ *   - value: The current status of cron.
+ *   - description: The description for current status of cron.
+ *   - cron.run_cron: An array to render a button for running cron.
+ * - database_system: The status of database system:
+ *   - value: The current status of database sytem.
+ *   - description: The description for current status of cron.
+ * - database_system_version: The info about current database version:
+ *   - value: The current version of database.
+ *   - description: The description for current version of database.
+ * - php: The current version of PHP:
+ *   - value: The status of currently installed PHP version.
+ *   - description: The description for current installed PHP version.
+ * - php_memory_limit: The info about current PHP memory limit:
+ *   - value: The status of currently set PHP memory limit.
+ *   - description: The description for currently set PHP memory limit.
+ * - webserver: The info about currently installed web server:
+ *   - value: The status of currently installed web server.
+ *   - description: The description for the status of currently installed web
+ *     server.
+ */
+#}
+<div id="status-report-general-information" class="uk-grid">
+  <div class="uk-width-1-1">
+    <div class="uk-panel uk-panel-box uk-panel-header">
+      <h2 class="uk-panel-title uk-text-bold uk-text-uppercase">{{ 'General System Information'|t }}</h2>
+
+      <div class="uk-grid uk-margin-bottom">
+        <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-margin-bottom">
+          <i class="uk-icon-drupal uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
+            <h3 class="uk-text-bold uk-margin-small-bottom">{{ 'Drupal Version'|t }}</h3>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">Version</h4>
+            {{ drupal.value }}
+            {% if drupal.description %}
+              {{ drupal.description }}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="uk-width-small-1-1 uk-width-medium-1-3">
+          <i class="uk-icon-clock-o uk-admin-last-cron-less-day uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
+            <h3 class="uk-text-bold uk-margin-small-bottom">{{ 'Last Cron Run'|t }}</h3>
+            {% if cron.run_cron_link %}
+              <div class="uk-float-right">
+                {{ cron.run_cron_link }}
+              </div>
+            {% endif %}
+            <div>{{ cron.value }}</div>
+            {% if cron.description %}
+              <div>{{ cron.description }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <hr class="uk-grid-divider">
+
+      <div class="uk-grid">
+        <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-margin-bottom">
+          <i class="{{ webserver.icon }} uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
+            <h3 class="uk-text-bold uk-margin-small-bottom">{{ 'Web Server'|t }}</h3>
+            <div>{{ webserver.value }}</div>
+            {% if webserver.description %}
+              <div>{{ webserver.description }}</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="uk-width-small-1-1 uk-width-medium-1-3 uk-margin-bottom">
+          <i class="icon-php-alt uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
+            <h3 class="uk-text-bold uk-margin-small-bottom">{{ 'PHP'|t }}</h3>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">{{ 'Version'|t }}</h4>
+            <div>{{ php.value }}</div>
+            {% if php.description %}
+              <div>{{ php.description }}</div>
+            {% endif %}
+
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">{{ 'Memory limit'|t }}</h4>
+            <div>{{ php_memory_limit.value }}</div>
+            {% if php_memory_limit.description %}
+              <div>{{ php_memory_limit.description }}</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="uk-width-small-1-1 uk-width-medium-1-3">
+          <i class="uk-icon-database uk-icon-large uk-width-1-5 uk-width-medium-1-10 uk-float-left uk-admin-vertical-align-top"></i>
+          <div class="uk-width-4-5 uk-width-medium-9-10 uk-float-left">
+            <h3 class="uk-text-bold uk-margin-small-bottom">{{ 'Database'|t }}</h3>
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">{{ 'Version'|t }}</h4>
+            <div>{{ database_system_version.value }}</div>
+            {% if database_system_version.description %}
+              <div>{{ database_system_version.description }}</div>
+            {% endif %}
+
+            <h4 class="uk-margin-small-top uk-margin-bottom-remove uk-text-bold">{{ 'System'|t }}</h4>
+            <div>{{ database_system.value }}</div>
+            {% if database_system.description %}
+              <div>{{ database_system.description }}</div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

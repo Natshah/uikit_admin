@@ -2,3 +2,65 @@
  * @file
  * Discrete, reusable UI elements.
  */
+.form--inline .form-item {
+  float: left;
+  margin: 5px 0 15px;
+}
+.form--inline .form-actions {
+  clear: left;
+  margin: 15px 0 5px;
+}
+.uk-form-horizontal .form--inline .uk-form-label {
+  width: auto;
+  margin-top: 0;
+  float: none;
+}
+.uk-form-horizontal .form--inline .uk-form-controls {
+  margin-left: 0;
+  margin-right: 15px;
+}
+.uk-form-horizontal .form--inline .uk-form-label+.uk-form-controls {
+  margin-top: 5px;
+}
+.form-item-checkbox label span,
+.form-item-radio label span {
+  margin-left: 2px;
+}
+.form-item-checkbox .uk-form-help-block,
+.form-item-radio .uk-form-help-block {
+  margin-left: 20px;
+}
+.uk-admin-list-group>li {
+  padding: 15px 0;
+}
+.uk-admin-list-group>li>i {
+  position: relative;
+  top: 4px;
+}
+.uk-admin-list-group>li:nth-child(n+2) {
+  border-color: #afafaf;
+  padding: 15px 0;
+}
+.uk-admin-vertical-align-top {
+  vertical-align: top !important;
+}
+.views-filter-text {
+  height: 30px;
+  max-width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #ddd;
+  background: #fff;
+  color: #444;
+  -webkit-transition: all .2s linear;
+  -webkit-transition-property: border,background,color,box-shadow,padding;
+  transition: all .2s linear;
+  transition-property: border,background,color,box-shadow,padding;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.views-filter-text:focus {
+  border-color: #99baca;
+  outline: 0;
+  background: #f5fbfe;
+  color: #444;
+}

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a set of dropbutton links.
+ * Theme override for a set of links.
  *
  * Available variables:
  * - attributes: Attributes for the UL containing the list of links.
@@ -29,12 +29,8 @@
  *   http://www.w3.org/TR/WCAG-TECHS/H42.html for more information.
  *
  * @see template_preprocess_links()
- * @see uikit_admin_preprocess_links__dropbutton()
- *
- * @ingroup uikit_admin_themeable
  */
 #}
-{{ attach_library('uikit/dropbutton') }}
 {% if links -%}
   {%- if heading -%}
     {%- if heading.level -%}
@@ -43,52 +39,17 @@
       <h2{{ heading.attributes }}>{{ heading.text }}</h2>
     {%- endif -%}
   {%- endif -%}
-
-  {% if multiple %}
-    <div class="uk-button-group">
-      {%- if dropbutton.link -%}
-        {{ dropbutton.link }}
-      {%- elseif dropbutton.text_attributes -%}
-        <span{{ dropbutton.text_attributes }}>{{ item.text }}</span>
-      {%- else -%}
-        {{ dropbutton.text }}
-      {%- endif -%}
-
-      <div data-uk-dropdown="{mode:'click', pos:'bottom-right'}">
-        <a{{ dropdown_button_attributes }}><i class="uk-icon-caret-down"></i></a>
-
-        <div class="uk-dropdown">
-          {%
-            set classes = [
-              'uk-nav',
-              'uk-nav-dropdown'
-            ]
-          %}
-          <ul{{ attributes.addClass(classes) }}>
-            {%- for item in links -%}
-              <li{{ item.attributes }}>
-                {%- if item.link -%}
-                  {{ item.link }}
-                {%- elseif item.text_attributes -%}
-                  <span{{ item.text_attributes }}>{{ item.text }}</span>
-                {%- else -%}
-                  {{ item.text }}
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      </div>
-    </div>
-  {% else %}
+  <ul{{ attributes.addClass() }}>
     {%- for item in links -%}
-      {%- if item.link -%}
-        {{ item.link }}
-      {%- elseif item.text_attributes -%}
-        <span{{ item.text_attributes }}>{{ item.text }}</span>
-      {%- else -%}
-        {{ item.text }}
-      {%- endif -%}
+      <li{{ item.attributes }}>
+        {%- if item.link -%}
+          {{ item.link }}
+        {%- elseif item.text_attributes -%}
+          <span{{ item.text_attributes }}>{{ item.text }}</span>
+        {%- else -%}
+          {{ item.text }}
+        {%- endif -%}
+      </li>
     {%- endfor -%}
-  {% endif %}
+  </ul>
 {%- endif %}

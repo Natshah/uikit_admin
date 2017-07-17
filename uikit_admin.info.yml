@@ -26,3 +26,7 @@ regions_hidden:
 
 libraries:
   - uikit_admin/global-style
+
+libraries-extend:
+  views_ui/views_ui.admin:
+    - uikit_admin/uikit-admin-views-ui
