@@ -3,7 +3,7 @@ global-style:
   css:
     base:
       css/uikit_admin.base.css: {}
-      //fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i: { type: external }
+      //fonts.googleapis.com/css?family=Open+Sans:300,400,600,700: { type: external }
       //cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.css: { type: external }
     layout:
       css/uikit_admin.layout.css: {}
