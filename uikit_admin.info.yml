@@ -8,9 +8,7 @@ regions:
   navbar: 'Navigation Bar'
   offcanvas: 'Offcanvas Navigation'
   header: Header
-  pre_content: 'Pre-content'
   breadcrumb: 'Breadcrumb'
-  highlighted: 'Highlighted'
   help: 'Help'
   content: Content
   sidebar_first: 'Left Sidebar'

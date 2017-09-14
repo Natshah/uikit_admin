@@ -2,6 +2,400 @@
  * @file
  * Discrete, reusable UI elements.
  */
+
+/**
+ * UIkit elements.
+ */
+.uk-alert {
+  background: #25aeff;
+  border: 1px solid #09a4ff;
+  color: #fff;
+  text-shadow: none;
+}
+.uk-alert-danger {
+  background: #ff845d;
+  border-color: #ff6939;
+}
+.uk-alert-success {
+  background: #49c887;
+  border-color: #29b86f;
+}
+.uk-alert-warning {
+  background: #ffb65d;
+  border-color: #ffa639;
+}
+.uk-alert:not(tr) a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px #fff dotted;
+}
+.uk-alert:not(tr) a:focus,
+.uk-alert:not(tr) a:hover {
+  color: #fff;
+  text-decoration: none;
+  border-bottom-style: solid;
+}
+.uk-alert .uk-close {
+  opacity: 0.5;
+}
+.uk-alert .uk-close:focus,
+.uk-alert .uk-close:hover {
+  opacity: 0.8;
+}
+.uk-breadcrumb {
+  margin: 0;
+}
+.uk-breadcrumb>li {
+  font-size: 12px;
+}
+.uk-button,
+.uk-form input[class*=uk-button] {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 32px;
+  height: 34px;
+  padding: 0 12px;
+  background: #eee;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.3);
+  background-origin: border-box;
+  background-image: -webkit-linear-gradient(top, #fff, #eee);
+  background-image: linear-gradient(to bottom, #fff, #eee);
+  border-radius: 4px;
+  color: #666;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-align: center;
+  white-space: nowrap;
+}
+.uk-button:focus,
+.uk-button:hover,
+.uk-form input[class*=uk-button]:focus,
+.uk-form input[class*=uk-button]:hover {
+  color: #444;
+  background-color: #ebebeb;
+  background-image: -webkit-linear-gradient(top, #eee, #ebebeb);
+  background-image: linear-gradient(to bottom, #eee, #ebebeb);
+}
+.uk-button-danger,
+.uk-button-primary,
+.uk-button-success,
+.uk-button-warning,
+.uk-form input[class*=uk-button] {
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+.uk-button-danger,
+.uk-form input.uk-button-danger {
+  background-color: #ff3d00;
+  background-image: -webkit-linear-gradient(top, #ff6939, #ff3d00);
+  background-image: linear-gradient(to bottom, #ff6939, #ff3d00);
+}
+.uk-button-danger:focus,
+.uk-button-danger:hover,
+.uk-form input.uk-button-danger:focus,
+.uk-form input.uk-button-danger:hover {
+  background-color: #ff6939;
+  background-image: -webkit-linear-gradient(top, #ff845d, #ff6939);
+  background-image: linear-gradient(to bottom, #ff845d, #ff6939);
+}
+.uk-button-primary,
+.uk-form input.uk-button-primary {
+  background-color: #008ee6;
+  background-image: -webkit-linear-gradient(top, #09a4ff, #008ee6);
+  background-image: linear-gradient(to bottom, #09a4ff, #008ee6);
+}
+.uk-button-primary:focus,
+.uk-button-primary:hover,
+.uk-form input.uk-button-primary:focus,
+.uk-form input.uk-button-primary:hover {
+  background-color: #09a4ff;
+  background-image: -webkit-linear-gradient(top, #25aeff, #09a4ff);
+  background-image: linear-gradient(to bottom, #25aeff, #09a4ff);
+}
+.uk-button-success,
+.uk-form input.uk-button-success {
+  background-color: #00b358;
+  background-image: -webkit-linear-gradient(top, #29b86f, #00b358);
+  background-image: linear-gradient(to bottom, #29b86f, #00b358);
+}
+.uk-button-success:focus,
+.uk-button-success:hover,
+.uk-form input.uk-button-success:focus,
+.uk-form input.uk-button-success:hover {
+  background-color: #29b86f;
+  background-image: -webkit-linear-gradient(top, #49c887, #29b86f);
+  background-image: linear-gradient(to bottom, #49c887, #29b86f);
+}
+.uk-button-warning,
+.uk-form input.uk-button-warning {
+  background-color: #ff8c00;
+  background-image: -webkit-linear-gradient(top, #ffa639, #ff8c00);
+  background-image: linear-gradient(to bottom, #ffa639, #ff8c00);
+}
+.uk-button-warning:focus,
+.uk-button-warning:hover,
+.uk-form input.uk-button-warning:focus,
+.uk-form input.uk-button-warning:hover {
+  background-color: #ffa639;
+  background-image: -webkit-linear-gradient(top, #ffb65d, #ffa639);
+  background-image: linear-gradient(to bottom, #ffb65d, #ffa639);
+}
+.uk-button-danger:focus,
+.uk-button-danger:hover,
+.uk-button-primary:focus,
+.uk-button-primary:hover,
+.uk-button-success:focus,
+.uk-button-success:hover,
+.uk-button-warning:focus,
+.uk-button-warning:hover,
+.uk-form input[class*=uk-button]:focus,
+.uk-form input[class*=uk-button]:hover {
+  color: #fff;
+  border-color: rgba(0, 0, 0, 0.2);
+  border-bottom-color: rgba(0, 0, 0, 0.4);
+}
+.uk-button-link,
+.uk-form input.uk-button-link {
+  background: transparent;
+  border-color: transparent;
+  color: #008ee6;
+}
+.uk-button-link:focus,
+.uk-button-link:hover,
+.uk-form input.uk-button-link:focus,
+.uk-form input.uk-button-link:hover {
+  background: transparent;
+  border-color: transparent;
+  color: #2f3f73;
+}
+.uk-container {
+  max-width: 1920px;
+}
+@media (min-width: 1220px) {
+  .uk-container {
+    max-width: 1920px;
+  }
+}
+.uk-description-list-line>dt {
+  padding: 15px 0 0;
+}
+.uk-description-list-line>dd {
+  color: #7f7f7f;
+  padding: 0 0 15px;
+}
+.uk-description-list-line>dt:nth-child(n+2) {
+  border: 1px solid #afafaf;
+  margin: 0;
+  padding: 15px 0 0;
+}
+.uk-dropdown {
+  padding: 0 15px;
+}
+.uk-dropdown .uk-nav {
+  border: 1px solid #afafaf;
+}
+.uk-form>div>*:not(:last-child) {
+  margin-bottom: 15px;
+}
+.uk-form fieldset {
+  margin: 15px 0;
+}
+.uk-form legend:after {
+  border: 1px solid #afafaf;
+}
+.uk-form input:not([type]),
+.uk-form input[type=text],
+.uk-form input[type=password],
+.uk-form input[type=email],
+.uk-form input[type=url],
+.uk-form input[type=search],
+.uk-form input[type=tel],
+.uk-form input[type=number],
+.uk-form input[type=datetime],
+.uk-form input[type=datetime-local],
+.uk-form input[type=date],
+.uk-form input[type=month],
+.uk-form input[type=time],
+.uk-form input[type=week],
+.uk-form input[type=color],
+.uk-form select,
+.uk-form textarea {
+  border: 1px solid #afafaf;
+}
+.uk-form input[type=radio],
+.uk-form input[type=checkbox] {
+  border: 1px solid #afafaf;
+}
+.uk-form input:not([type]):focus,
+.uk-form input[type=text]:focus,
+.uk-form input[type=password]:focus,
+.uk-form input[type=email]:focus,
+.uk-form input[type=url]:focus,
+.uk-form input[type=search]:focus,
+.uk-form input[type=tel]:focus,
+.uk-form input[type=number]:focus,
+.uk-form input[type=datetime]:focus,
+.uk-form input[type=datetime-local]:focus,
+.uk-form input[type=date]:focus,
+.uk-form input[type=month]:focus,
+.uk-form input[type=time]:focus,
+.uk-form input[type=week]:focus,
+.uk-form input[type=color]:focus,
+.uk-form input[type=radio]:focus,
+.uk-form input[type=checkbox]:focus,
+.uk-form select:focus,
+.uk-form textarea:focus {
+  background: #fff;
+  border-color: #008ee6;
+}
+.uk-form textarea:focus + .grippie {
+  border-color: #008ee6;
+}
+.uk-form .uk-panel-box > fieldset {
+  margin-top: 0;
+}
+.uk-form-danger {
+  background: #ffece6 !important;
+  border-color: #b52d02 !important;
+  color: #b52d02 !important;
+  font-weight: bold !important;
+}
+.uk-form-success {
+  background: #e3fcef !important;
+  border-color: #09a556 !important;
+  color: #09a556 !important;
+  font-weight: bold !important;
+}
+.uk-form-stacked .uk-form-label {
+  font-weight: 600;
+}
+.uk-grid-divider:empty {
+  border-color: #afafaf;
+}
+.uk-icon-drupal {
+  color: #0077C0;
+}
+.uk-icon-database {
+  color: #f59620;
+}
+
+/**
+ * UIkit Admin components.
+ */
+.uk-admin-list>li {
+  padding: 15px 0;
+}
+.uk-admin-list>li:nth-child(n+2) {
+  border-color: #afafaf;
+  padding: 15px 0;
+}
+.uk-admin-list-compact>li {
+  margin: 0;
+  padding: 0;
+}
+.uk-admin-list-compact>li:nth-child(n+2) {
+  border: 0;
+  padding: 0;
+}
+.uk-admin-panel-box {
+  background: #e0e0d8;
+  color: #444;
+}
+.uk-admin-panel-box-light {
+  background: #fff;
+}
+.uk-admin-panel-box-toggle {
+  top: 7px;
+  background: #fff;
+  border-color: #008ee6;
+  border-left: 4px solid #008ee6;
+  margin-bottom: 22px !important;
+}
+.uk-admin-panel-box-toggle.closed {
+  border-right: 0;
+  border-bottom: 0;
+  border-left-color: transparent;
+  margin-bottom: 15px !important;
+  padding: 15px 15px 0;
+}
+.uk-admin-panel-title-toggle {
+  position: absolute;
+  top: -14px;
+  margin: 0;
+  padding: 0 6px;
+  background: #fff;
+}
+.uk-admin-panel-title-toggle a:focus,
+.uk-admin-panel-title-toggle a:hover {
+  color: #008ee6;
+}
+.uk-admin-panel-title-toggle a i {
+  color: #444;
+}
+.uk-admin-panel-title-toggle [data-uk-toggle] {
+  display: block;
+}
+.uk-admin-panel-title-toggle + .uk-admin-panel-content-toggle {
+  margin-top: 15px;
+}
+.uk-admin-system-modules-operations {
+  -webkit-appearance: none;
+  margin: 0;
+  overflow: visible;
+  font: inherit;
+  text-transform: none;
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 12px;
+  vertical-align: middle;
+  line-height: 30px;
+  min-height: 30px;
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: center;
+  background: #e7e7e7;
+  border: 1px solid #676767;
+  color: #676767;
+  cursor: pointer;
+}
+.uk-admin-system-modules-operations i {
+  border-left: 1px solid #676767;
+  line-height: 24px;
+  margin-left: 4px;
+  padding-left: 11px;
+}
+.uk-admin-system-modules-operations-dropdown {
+  background: #fff;
+}
+.uk-admin-text-mono {
+  font-family: Consolas, monospace, serif;
+  white-space: nowrap;
+}
+.uk-admin-theme-operations>*>* {
+  color: #07D;
+}
+.uk-admin-theme-operations>*>a:focus,
+.uk-admin-theme-operations>*>a:hover {
+  text-decoration: underline;
+}
+.uk-admin-theme-operations>li:first-child {
+  padding-left: 0;
+}
+.uk-admin-vertical-align-middle {
+  vertical-align: middle !important;
+}
+.uk-admin-vertical-align-top {
+  vertical-align: top !important;
+}
+
 .form--inline .form-item {
   float: left;
   margin: 5px 0 15px;
@@ -10,18 +404,6 @@
   clear: left;
   margin: 15px 0 5px;
 }
-.uk-form-horizontal .form--inline .uk-form-label {
-  width: auto;
-  margin-top: 0;
-  float: none;
-}
-.uk-form-horizontal .form--inline .uk-form-controls {
-  margin-left: 0;
-  margin-right: 15px;
-}
-.uk-form-horizontal .form--inline .uk-form-label+.uk-form-controls {
-  margin-top: 5px;
-}
 .form-item-checkbox label span,
 .form-item-radio label span {
   margin-left: 2px;
@@ -29,20 +411,6 @@
 .form-item-checkbox .uk-form-help-block,
 .form-item-radio .uk-form-help-block {
   margin-left: 20px;
-}
-.uk-admin-list-group>li {
-  padding: 15px 0;
-}
-.uk-admin-list-group>li>i {
-  position: relative;
-  top: 4px;
-}
-.uk-admin-list-group>li:nth-child(n+2) {
-  border-color: #afafaf;
-  padding: 15px 0;
-}
-.uk-admin-vertical-align-top {
-  vertical-align: top !important;
 }
 .views-filter-text {
   height: 30px;

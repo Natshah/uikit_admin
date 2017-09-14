@@ -2,3 +2,28 @@
  * @file
  * CSS reset/normalize plus HTML element styling.
  */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif;
+}
+em {
+  color: inherit;
+}
+dl dl {
+  margin-bottom: 0;
+  padding-top: 10px;
+}
+dt, dd {
+  margin: 0;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  padding: 0 0 10px 20px;
+}

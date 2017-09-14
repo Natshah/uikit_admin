@@ -42,47 +42,25 @@
  * @ingroup uikit_admin_themeable
  */
 #}
-{% if page.header or page.pre_content or page.breadcrumb %}
-  <header{{ header_wrapper_attributes }}>
-    {% if page.header %}
-      <div{{ header_attributes }}>
-        {{ page.header }}
-      </div>
-    {% endif %}
-
-    {% if page.pre_content %}
-      <div{{ pre_content_attributes }}>
-        {{ page.pre_content }}
-      </div>
-    {% endif %}
-
-    {% if page.breadcrumb %}
-      <div{{ breadcrumb_attributes }}>
-        {{ page.breadcrumb }}
-      </div>
-    {% endif %}
-  </header>
-{% endif %}
-
-{% if page.highlighted %}
-  <div{{ highlighted_attributes }}>
-    {{ page.highlighted }}
-  </div>
-{% endif %}
-
-{% if page.help %}
-    <div{{ help_attributes }}>
-      {{ page.help }}
+<header id="page--header" class="uk-panel uk-panel-box uk-margin-bottom">
+  {% if page.breadcrumb %}
+    <div id="breadcrumbs">
+      {{ page.breadcrumb }}
     </div>
-{% endif %}
+  {% endif %}
 
-{% if page.content %}
-  <div{{ content_wrapper_attributes }}>
-    <div{{ content_grid_attributes }}>
-      <main{{ content_attributes }}>
-        <a id="main-content" tabindex="-1"></a>
-        {{ page.content }}
-      </main>
-    </div>
+  {% if page.header %}
+    {{ page.header }}
+  {% endif %}
+
+  {% if page.help %}
+    {{ page.help }}
+  {% endif %}
+</header>
+
+<main{{ page_container_attributes }}>
+  <div{{ content_attributes }}>
+    <a id="main-content" tabindex="-1"></a>
+    {{ page.content }}
   </div>
-{% endif %}
+</main>

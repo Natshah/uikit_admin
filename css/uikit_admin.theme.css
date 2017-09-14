@@ -8,7 +8,18 @@
  */
 .uk-block-muted,
 .uk-panel-box {
-  background: #eee;
+  background: #f5f5f5;
+  border: 1px solid #afafaf;
+}
+
+/**
+ * Page header.
+ */
+#page--header {
+  border: 0;
+  border-bottom: 1px solid #afafaf;
+  border-radius: 0;
+  padding: 15px 35px 0 35px;
 }
 
 /**
@@ -64,16 +75,6 @@
 #tasks--secondary>li:not(.uk-active)>a:hover {
   border-color: #008ee6;
   color: #008ee6;
-}
-
-/**
- * Blocks.
- */
-.block-local-tasks-block:not(:first-of-type) {
-  background-color: #fff;
-}
-.block-system-breadcrumb-block {
-  background-color: #fff;
 }
 
 /**

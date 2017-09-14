@@ -44,6 +44,8 @@
 .block-local-tasks-block:not(:first-of-type) {
   padding: 15px 0 0;
 }
-.block-system-breadcrumb-block {
-  padding-top: 15px;
+
+#page--title {
+  font-size: 30px;
+  margin-top: 0;
 }

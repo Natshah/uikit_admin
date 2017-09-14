@@ -7,6 +7,7 @@
  * @see process.inc
  */
 
+use Drupal\Core\GeneratedLink;
 use Drupal\Core\Template\Attribute;
 use Drupal\uikit_admin\UIkitAdmin;
 
@@ -16,14 +17,7 @@ use Drupal\uikit_admin\UIkitAdmin;
 function uikit_admin_preprocess_page(&$variables) {
   // Set page.html.twig template attributes.
   $page_attributes = UIkitAdmin::getPageTemplateAttributes();
-  $variables['header_wrapper_attributes'] = $page_attributes['header_wrapper_attributes'];
-  $variables['header_attributes'] = $page_attributes['header_attributes'];
-  $variables['pre_content_attributes'] = $page_attributes['pre_content_attributes'];
-  $variables['breadcrumb_attributes'] = $page_attributes['breadcrumb_attributes'];
-  $variables['highlighted_attributes'] = $page_attributes['highlighted_attributes'];
-  $variables['help_attributes'] = $page_attributes['help_attributes'];
-  $variables['content_wrapper_attributes'] = $page_attributes['content_wrapper_attributes'];
-  $variables['content_grid_attributes'] = $page_attributes['content_grid_attributes'];
+  $variables['page_container_attributes'] = $page_attributes['page_container_attributes'];
   $variables['content_attributes'] = $page_attributes['content_attributes'];
 }
 
@@ -35,8 +29,14 @@ function uikit_admin_preprocess_admin_block_content(&$variables) {
   $attributes->addClass('uk-list');
   $attributes->addClass('uk-list-line');
   $attributes->addClass('uk-margin-remove');
-  $attributes->addClass('uk-admin-list-group');
+  $attributes->addClass('uk-admin-list');
   $variables['attributes'] = $attributes;
+
+  foreach ($variables['content'] as $key => $item) {
+    $link = $variables['content'][$key]['link']->getGeneratedLink();
+    $link = str_replace('<a ', '<a class="uk-text-bold" ', $link);
+    $variables['content'][$key]['link']->setGeneratedLink($link);
+  }
 }
 
 /**
@@ -212,6 +212,13 @@ function uikit_admin_preprocess_region(&$variabes) {
       $variabes['attributes'] = $region_attributes;
       break;
   }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page-title.html.twig.
+ */
+function uikit_admin_preprocess_page_title(&$variables) {
+  $variables['title_attributes']['id'] = 'page--title';
 }
 
 /**
