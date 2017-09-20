@@ -54,10 +54,10 @@
         {{ dropbutton.text }}
       {%- endif -%}
 
-      <div data-uk-dropdown="{mode:'click', pos:'bottom-right'}">
+      <div data-uk-dropdown="{mode:'click'}">
         <a{{ dropdown_button_attributes }}><i class="uk-icon-caret-down"></i></a>
 
-        <div class="uk-dropdown">
+        <div class="uk-dropdown uk-dropdown-small uk-dropdown-bottom">
           {%
             set classes = [
               'uk-nav',

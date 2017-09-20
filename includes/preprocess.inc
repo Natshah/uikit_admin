@@ -7,7 +7,6 @@
  * @see process.inc
  */
 
-use Drupal\Core\GeneratedLink;
 use Drupal\Core\Template\Attribute;
 use Drupal\uikit_admin\UIkitAdmin;
 
@@ -109,6 +108,23 @@ function uikit_admin_preprocess_form(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_form_element().
+ */
+function uikit_admin_preprocess_form_element(&$variables) {
+  $classes = isset($variables['attributes']['class']) ? $variables['attributes']['class'] : [];
+  $variables['inline_container'] = FALSE;
+
+  $variables['wrapper_attributes'] = new Attribute;
+
+  if ($classes && in_array('container-inline', $classes)) {
+    $variables['inline_container'] = TRUE;
+  }
+  else {
+    $variables['wrapper_attributes']->addClass('uk-form-controls');
+  }
+}
+
+/**
  * Implements template_preprocess_input().
  */
 function uikit_admin_preprocess_input(&$variables) {
@@ -138,6 +154,7 @@ function uikit_admin_preprocess_input(&$variables) {
         // Add uk-button-* modifier class based on the value of the button.
         case 'Add and configure @types':
         case 'Save':
+        case 'Save and publish':
         case 'Save blocks':
         case 'Save configuration':
         case 'Update':
@@ -164,10 +181,10 @@ function uikit_admin_preprocess_links__dropbutton(&$variables) {
     $variables['dropdown_button_attributes']->addClass('uk-button-primary');
 
     if (isset($variables['dropbutton'])) {
-      if ($variables['dropbutton']['link']) {
+      if (isset($variables['dropbutton']['link'])) {
         $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-primary';
       }
-      elseif ($variables['dropbutton']['text_attributes']) {
+      elseif (isset($variables['dropbutton']['text_attributes'])) {
         $variables['dropbutton']['text_attributes']['class'][] = 'uk-button-primary';
       }
     }

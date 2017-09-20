@@ -16,12 +16,13 @@
  * @see theme()
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\uikit_admin\UIkitAdmin;
 
 /**
- * Implements hook_form_FORM_ID_alter() for comment_admin_overview.
+ * Implements hook_form_BASE_FORM_ID_alter() for \Drupal\comment\Form\CommentAdminOverview.
  */
-function uikit_admin_form_comment_admin_overview_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function uikit_admin_form_comment_admin_overview_alter(&$form, FormStateInterface $form_state, $form_id) {
   // Drupal core does not place the submit button in an actions container so we
   // first copy the submit element array to a variable, remove the original
   // submit element array from the form, then create an actions container and
@@ -29,14 +30,62 @@ function uikit_admin_form_comment_admin_overview_alter(&$form, \Drupal\Core\Form
   // provide proper styling.
   $submit = $form['options']['submit'];
   unset($form['options']['submit']);
+
   $form['options']['actions'] = [
     '#type' => 'actions',
   ];
+
   $form['options']['actions']['submit'] = $submit;
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for details templates.
+ * Implements hook_form_BASE_FORM_ID_alter() for \Drupal\node\NodeForm.
+ */
+function uikit_admin_form_node_form_alter(&$form, FormStateInterface $form_state) {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $form_state->getFormObject()->getEntity();
+
+  $form['#theme'] = ['node_edit_form'];
+
+  $form['advanced']['#type'] = 'container';
+  $is_new = !$node->isNew() ? format_date($node->getChangedTime(), 'short') : t('Not saved yet');
+  $form['meta'] = [
+    '#attributes' => [
+      'class' => [
+        'entity-meta__header',
+        'uk-panel',
+        'uk-panel-box',
+      ]
+    ],
+    '#type' => 'container',
+    '#group' => 'advanced',
+    '#weight' => -100,
+    'published' => [
+      '#type' => 'html_tag',
+      '#tag' => 'h3',
+      '#value' => $node->isPublished() ? t('Published') : t('Not published'),
+      '#access' => !$node->isNew(),
+      '#attributes' => [
+        'class' => ['entity-meta__title'],
+      ],
+    ],
+    'changed' => [
+      '#type' => 'item',
+      '#wrapper_attributes' => ['class' => ['entity-meta__last-saved', 'container-inline']],
+      '#markup' => '<h4 class="label inline">' . t('Last saved') . '</h4> ' . $is_new,
+    ],
+    'author' => [
+      '#type' => 'item',
+      '#wrapper_attributes' => ['class' => ['author', 'container-inline']],
+      '#markup' => '<h4 class="label inline">' . t('Author') . '</h4> ' . $node->getOwner()->getUsername(),
+    ],
+  ];
+  $form['revision_information']['#type'] = 'container';
+  $form['revision_information']['#group'] = 'meta';
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for details.html.twig.
  */
 function uikit_admin_theme_suggestions_details_alter(array &$suggestions, array $variables) {
   $views_ui_tab_buckets = UIkitAdmin::getViewsUITabBuckets();
@@ -52,7 +101,7 @@ function uikit_admin_theme_suggestions_details_alter(array &$suggestions, array 
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for input templates.
+ * Implements hook_theme_suggestions_HOOK_alter() for input.html.twig.
  */
 function uikit_admin_theme_suggestions_input_alter(array &$suggestions, array $variables) {
   $views_ui_buttons = UIkitAdmin::getViewsUIButtons();
@@ -78,7 +127,7 @@ function uikit_admin_theme_suggestions_input_alter(array &$suggestions, array $v
 }
 
 /**
- * Implements hook_theme_suggestions_HOOK_alter() for links templates.
+ * Implements hook_theme_suggestions_HOOK_alter() for links.html.twig.
  */
 function uikit_admin_theme_suggestions_links_alter(array &$suggestions, array $variables) {
   $views_ui_links = UIkitAdmin::getViewsUILinks();

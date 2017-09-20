@@ -28,3 +28,6 @@ libraries:
 libraries-extend:
   views_ui/views_ui.admin:
     - uikit_admin/uikit-admin-views-ui
+
+libraries-override:
+  text/drupal.text: uikit_admin/text

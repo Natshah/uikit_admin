@@ -1,6 +1,6 @@
 /**
  * @file
- * Overrides Drupal core's text behaviors.
+ * Text behaviors.
  */
 
 (function ($, Drupal) {
@@ -32,8 +32,8 @@
         }
 
         // Set up the edit/hide summary link.
-        var $link = $('<span class="field-edit-link"> (<a class="link link-edit-summary">' + Drupal.t('Hide summary') + '</a>)</span>');
-        var $button = $link.find('a');
+        var $link = $('<span class="field-edit-link"> (<button type="button" class="link link-edit-summary uk-button uk-button-link uk-padding-remove">' + Drupal.t('Hide summary') + '</button>)</span>');
+        var $button = $link.find('button');
         var toggleClick = true;
         $link.on('click', function (e) {
           if (toggleClick) {

@@ -4,15 +4,6 @@
  */
 
 /**
- * UIkit components.
- */
-.uk-block-muted,
-.uk-panel-box {
-  background: #f5f5f5;
-  border: 1px solid #afafaf;
-}
-
-/**
  * Page header.
  */
 #page--header {
@@ -98,6 +89,22 @@
   margin-left: 45px;
 }
 
+/**
+ * Custom icon utility classes.
+ */
+.uk-admin-last-cron-less-day {
+  color: #018341;
+}
+.uk-admin-last-cron-week {
+  color: #b56502;
+}
+.uk-admin-last-cron-over-week {
+  color: #b52d02;
+}
+
+/**
+ * Custom font utility classes.
+ */
 .uk-admin-font-weight-light {
   font-weight: 300;
 }
@@ -109,21 +116,6 @@
 }
 .uk-admin-font-weight-bold {
   font-weight: 700;
-}
-.uk-admin-last-cron-less-day {
-  color: #018341;
-}
-.uk-admin-last-cron-week {
-  color: #b56502;
-}
-.uk-admin-last-cron-over-week {
-  color: #b52d02;
-}
-.uk-icon-drupal {
-  color: #0077C0;
-}
-.uk-icon-database {
-  color: #f59620;
 }
 
 /**

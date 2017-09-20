@@ -22,3 +22,8 @@ uikit-admin-views-ui:
       css/uikit_admin.views_ui.css: {}
   js:
     js/uikit_admin.views_ui.js: {}
+
+text:
+  version: VERSION
+  js:
+    js/text.js: {}
