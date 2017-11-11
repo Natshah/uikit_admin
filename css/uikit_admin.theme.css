@@ -20,6 +20,8 @@
   border-bottom: 1px solid #aaa;
 }
 #tasks--primary {
+  position: relative;
+  bottom: -1px;
   border: 0;
 }
 #tasks--primary>li.uk-active {
