@@ -1,4 +1,4 @@
-base_style: 'gradient'
+base_style: gradient
 standard_sidebar_positions: holy-grail
 tablet_sidebar_positions: sidebar-left-stacked
 mobile_sidebar_positions: sidebars-stacked

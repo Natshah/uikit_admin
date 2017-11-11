@@ -5,8 +5,8 @@ dependencies:
     - uikit_admin
 id: uikit_admin_primary_tabs
 theme: uikit_admin
-region: pre_content
-weight: -4
+region: help
+weight: -2
 provider: null
 plugin: local_tasks_block
 settings:

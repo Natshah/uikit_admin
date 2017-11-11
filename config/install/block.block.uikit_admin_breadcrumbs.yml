@@ -7,8 +7,8 @@ dependencies:
     - uikit_admin
 id: uikit_admin_breadcrumbs
 theme: uikit_admin
-region: breadcrumb
-weight: -6
+region: header
+weight: -4
 provider: null
 plugin: system_breadcrumb_block
 settings:

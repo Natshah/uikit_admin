@@ -18,6 +18,7 @@ regions:
 regions_hidden:
   - navbar
   - offcanvas
+  - breadcrumb
   - sidebar_first
   - sidebar_second
   - footer

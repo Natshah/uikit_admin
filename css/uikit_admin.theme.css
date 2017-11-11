@@ -22,18 +22,6 @@
 #tasks--primary {
   border: 0;
 }
-#tasks--primary:before {
-  content: '';
-  display: block;
-  background-color: #aaa;
-  height: 1px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  z-index: 10;
-  right: 0;
-  top: 34px;
-}
 #tasks--primary>li.uk-active {
   z-index: 15;
 }
