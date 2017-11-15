@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display the local tasks block.
+ * Theme override to display the local actions block.
  *
  * Available variables:
  * - plugin_id: The ID of the block implementation.
@@ -24,28 +24,21 @@
  *
  * @see template_preprocess_block()
  * @see uikit_preprocess_block()
- * @see uikit_admin_preprocess_block()
  *
- * @ingroup uikit_admin_themeable
+ * @ingroup uikit_themeable
  */
 #}
-{%
-  set classes = [
-    'block',
-    'block-' ~ configuration.provider|clean_class,
-    'block-' ~ plugin_id|clean_class,
-    'uk-margin',
-  ]
-%}
 {% if content %}
-  <div{{ attributes.addClass(classes) }}>
+  <div{{ attributes }}>
     {{ title_prefix }}
     {% if label %}
       <h2{{ title_attributes }}>{{ label }}</h2>
     {% endif %}
     {{ title_suffix }}
     {% block content %}
-      {{ content }}
+      <ul class="action-links uk-width-1-1">
+        {{ content }}
+      </ul>
     {% endblock %}
   </div>
 {% endif %}

@@ -5,8 +5,8 @@ dependencies:
     - uikit_admin
 id: uikit_admin_page_title
 theme: uikit_admin
-region: header
-weight: -3
+region: navbar_left
+weight: -4
 provider: null
 plugin: page_title_block
 settings:

@@ -2,28 +2,25 @@
  * @file
  * CSS reset/normalize plus HTML element styling.
  */
-body,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Open Sans', sans-serif;
+
+html {
+  background: #ececec;
 }
-em {
-  color: inherit;
+a {
+  color: #1976d2;
 }
-dl dl {
-  margin-bottom: 0;
-  padding-top: 10px;
+details {
+  border: 1px solid #ccc;
 }
-dt, dd {
+summary {
+  background: #eee;
   margin: 0;
+  font-size: 15px;
+  font-weight: 400;
+  padding: 8px 24px 8px 16px;
+  position: relative;
+  cursor: pointer;
 }
-dt {
-  font-weight: bold;
-}
-dd {
-  padding: 0 0 10px 20px;
+summary:focus {
+  outline: 0;
 }

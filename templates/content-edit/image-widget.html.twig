@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for an image field widget.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the containing element.
+ * - data: Render elements of the image widget.
+ *
+ * @see template_preprocess_image_widget()
+ */
+#}
+<div{{ attributes }}>
+  {% if data.preview %}
+    <div class="image-preview uk-float-left">
+      {{ data.preview }}
+    </div>
+  {% endif %}
+  <div class="image-widget-data uk-float-left uk-margin-left">
+    {# Render widget data without the image preview that was output already. #}
+    {{ data|without('preview')|without('remove_button') }}
+
+    {% if (data.remove_button) %}
+      <div class="image-widget-remove-button uk-display-inline-block uk-margin-small-left">
+        {{ data.remove_button }}
+      </div>
+    {% endif %}
+  </div>
+</div>

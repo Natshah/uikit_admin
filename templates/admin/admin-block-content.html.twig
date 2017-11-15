@@ -16,21 +16,17 @@
 #}
 {%
   set classes = [
+    'list-group',
     compact ? 'compact',
   ]
 %}
 {% if content %}
-  <ul{{ attributes.addClass(classes) }}>
+  <dl{{ attributes.addClass(classes) }}>
     {% for item in content %}
-      <li>
-        <i class="uk-icon-chevron-circle-right uk-text-muted uk-display-inline-block uk-admin-vertical-align-top"></i>
-        <div class="uk-margin-left uk-display-inline-block">
-          {{ item.link }}
-          {% if item.description %}
-            <div class="uk-text-muted">{{ item.description }}</div>
-          {% endif %}
-        </div>
-      </li>
+      <dt class="list-group__link">{{ item.link }}</dt>
+      {% if item.description %}
+        <dd class="list-group__description">{{ item.description }}</dd>
+      {% endif %}
     {% endfor %}
-  </ul>
+  </dl>
 {% endif %}

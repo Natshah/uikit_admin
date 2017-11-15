@@ -3,17 +3,17 @@ status: true
 dependencies:
   theme:
     - uikit_admin
-id: uikit_admin_secondary_tabs
+id: uikit_admin_primary_local_tasks
 theme: uikit_admin
-region: content
+region: navbar_right
 weight: -3
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
-  label: 'Secondary tabs'
+  label: 'Primary tabs'
   provider: core
   label_display: '0'
-  primary: false
-  secondary: true
+  primary: true
+  secondary: false
 visibility: {  }

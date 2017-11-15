@@ -52,19 +52,17 @@
     'js-form-item',
     'form-item',
     'js-form-type-' ~ type|clean_class,
-    name ? 'form-item-' ~ name|clean_class,
-    name ? 'js-form-item-' ~ name|clean_class,
-    title_display not in ['after', 'before'] ? 'form-no-label',
-    disabled == 'disabled' ? 'form-disabled',
-    errors ? 'form-item--error',
-    'uk-form-row',
+    'form-type-' ~ type|clean_class,
+    'js-form-item-' ~ name|clean_class,
+    'form-item-' ~ name|clean_class,
+    'uk-margin',
   ]
 %}
 {%
   set description_classes = [
-    'description',
     description_display == 'invisible' ? 'visually-hidden',
-    'uk-form-help-block',
+    'uk-text-meta',
+    'uk-margin-small-top',
   ]
 %}
 <div{{ attributes.addClass(classes) }}>
@@ -78,30 +76,24 @@
     </p>
   {% endif %}
 
-  {% if not inline_container %}
-    <div{{ wrapper_attributes }}>
-  {% endif %}
+  <div class="uk-form-controls">
+    {% if prefix is not empty %}
+      <span class="field-prefix uk-float-left">{{ prefix }}</span>
+    {% endif %}
 
-  {% if prefix is not empty %}
-    <span class="field-prefix uk-float-left">{{ prefix }}</span>
-  {% endif %}
+    {{ children }}
 
-  {{ children }}
-
-  {% if suffix is not empty %}
-    <span class="field-suffix">{{ suffix }}</span>
-  {% endif %}
-
-  {% if not inline_container %}
-    </div>
-  {% endif %}
+    {% if suffix is not empty %}
+      <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
+  </div>
 
   {% if label_display == 'after' %}
     {{ label }}
   {% endif %}
 
   {% if errors %}
-    <div class="form-item--error-message uk-alert uk-alert-danger">
+    <div class="uk-alert uk-alert-danger">
       {{ errors }}
     </div>
   {% endif %}

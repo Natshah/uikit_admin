@@ -3,27 +3,17 @@ global-style:
   css:
     base:
       css/uikit_admin.base.css: {}
-      //fonts.googleapis.com/css?family=Open+Sans:300,400,600,700: { type: external }
-      //cdnjs.cloudflare.com/ajax/libs/font-mfizz/2.4.1/font-mfizz.css: { type: external }
     layout:
       css/uikit_admin.layout.css: {}
     component:
-      css/uikit_admin.uikit_components.css: {}
       css/uikit_admin.component.css: {}
     theme:
       css/uikit_admin.theme.css: {}
   js:
     js/uikit_admin.theme.js: {}
 
-uikit-admin-views-ui:
+admin:
   version: VERSION
   css:
     theme:
-      css/uikit_admin.views_ui.css: {}
-  js:
-    js/uikit_admin.views_ui.js: {}
-
-text:
-  version: VERSION
-  js:
-    js/text.js: {}
+      css/uikit_admin.admin.css: {}

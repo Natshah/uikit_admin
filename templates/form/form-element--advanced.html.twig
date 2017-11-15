@@ -42,7 +42,7 @@
  * - title_display: Title display setting.
  *
  * @see template_preprocess_form_element()
- * @see uikit_preprocess_form_element__advanced()
+ * @see uikit_preprocess_form_element()
  *
  * @ingroup uikit_themeable
  */
@@ -50,18 +50,20 @@
 {%
   set classes = [
     'form-item',
-    'form-item-' ~ type|clean_class,
     name ? 'form-item-' ~ name|clean_class,
-    'uk-form-row',
+    'uk-margin',
+    'uk-grid-small',
+    'uk-child-width-1-1',
   ]
 %}
 {%
   set description_classes = [
     description_display == 'invisible' ? 'visually-hidden',
-    'uk-form-help-block',
+    'uk-text-meta',
+    'uk-margin-small-top',
   ]
 %}
-<div{{ attributes.addClass(classes) }}>
+<div{{ attributes.addClass(classes) }} uk-grid>
   <label>
     {% if prefix is not empty %}
       <span class="field-prefix">{{ prefix }}</span>
@@ -69,7 +71,7 @@
 
     {{ children }}
 
-    {% if label_display != 'invisible' and label_text %}
+    {% if label_display != 'invisible' %}
       <span> {{ label_text }}</span>
     {% endif %}
 

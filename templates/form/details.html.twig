@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Theme override to display a details element.
+ * Theme override for a details element.
  *
  * Available variables
  * - attributes: A list of HTML attributes for the details element.
@@ -12,32 +12,32 @@
  * - value: (optional) The value of the element, may not be set.
  *
  * @see template_preprocess_details()
- * @see uikit_preprocess_details().
- * @see uikit_admin_preprocess_details()
- *
- * @ingroup uikit_admin_themeable
  */
 #}
-{{ attach_library('uikit/uikit.accordion.gradient') }}
-<div{{ accordion_attributes }}>
+<details{{ attributes.addClass('uk-margin') }}>
   {%- if title -%}
-    <h3{{ accordion_title_attributes }}>{{ title }}</h3>
+    {%
+      set summary_classes = [
+        required ? 'js-form-required',
+        required ? 'form-required',
+      ]
+    %}
+    <summary{{ summary_attributes.addClass(summary_classes) }}>{{ title }}</summary>
   {%- endif -%}
-
-  <div{{ accordion_content_attributes }}>
+  <div class="details-wrapper">
     {% if errors %}
-      <div{{ error_classes }}>
-        {{ errors }}
+      <div class="form-item--error-message">
+        <strong>{{ errors }}</strong>
       </div>
     {% endif %}
-
-    {% if description %}
-      <div{{ description_attributes }}>
-        {{ description }}
-      </div>
-    {% endif %}
-
-    {{ children }}
-    {{ value }}
+    {%- if description -%}
+      <div class="details-description">{{ description }}</div>
+    {%- endif -%}
+    {%- if children -%}
+      {{ children }}
+    {%- endif -%}
+    {%- if value -%}
+      {{ value }}
+    {%- endif -%}
   </div>
-</div>
+</details>

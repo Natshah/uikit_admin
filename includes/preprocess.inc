@@ -2,125 +2,76 @@
 
 /**
  * @file
- * Set up variables to be placed within the template (.tpl.php) files.
+ * Set up variables to be placed within the template (.html.twig) files.
  *
  * @see process.inc
  */
 
 use Drupal\Core\Template\Attribute;
-use Drupal\uikit_admin\UIkitAdmin;
 
 /**
  * Implements template_preprocess_page().
  */
 function uikit_admin_preprocess_page(&$variables) {
-  // Set page.html.twig template attributes.
-  $page_attributes = UIkitAdmin::getPageTemplateAttributes();
-  $variables['page_container_attributes'] = $page_attributes['page_container_attributes'];
-  $variables['content_attributes'] = $page_attributes['content_attributes'];
+  $variables['header_attributes']->addClass('uk-margin-small-bottom');
+
+  $variables['navbar_attributes'] = new Attribute();
+  $variables['navbar_attributes']->setAttribute('id', 'page--navbar');
+  $variables['navbar_attributes']->addClass('uk-navbar');
+
+  $variables['page_attributes'] = new Attribute();
+  $variables['page_attributes']->setAttribute('id', 'page');
+  $variables['page_attributes']->addClass('uk-container');
+  $variables['page_attributes']->addClass('uk-container-expand');
+
+  $variables['content_attributes'] = new Attribute();
+  $variables['content_attributes']->setAttribute('id', 'page--content');
+  $variables['content_attributes']->addClass('uk-width-1-1');
+  $variables['content_attributes']->addClass('uk-margin-remove-top');
 }
 
 /**
- * Implements template_preprocess_admin_block_content().
+ * Implements template_preprocess_region().
  */
-function uikit_admin_preprocess_admin_block_content(&$variables) {
-  $attributes = new Attribute;
-  $attributes->addClass('uk-list');
-  $attributes->addClass('uk-list-line');
-  $attributes->addClass('uk-margin-remove');
-  $attributes->addClass('uk-admin-list');
-  $variables['attributes'] = $attributes;
+function uikit_admin_preprocess_region(&$variables) {
+  switch ($variables['region']) {
+    case 'breadcrumb':
+    case 'content':
+    case 'help':
+      $variables['attributes']['class'][] = 'uk-card';
+      $variables['attributes']['class'][] = 'uk-card-default';
+      $variables['attributes']['class'][] = 'uk-card-small';
+      $variables['attributes']['class'][] = 'uk-card-body';
+      $variables['attributes']['class'][] = 'uk-margin-small-bottom';
+      break;
 
-  foreach ($variables['content'] as $key => $item) {
-    $link = $variables['content'][$key]['link']->getGeneratedLink();
-    $link = str_replace('<a ', '<a class="uk-text-bold" ', $link);
-    $variables['content'][$key]['link']->setGeneratedLink($link);
-  }
-}
+    case 'status_messages':
+      $messages = drupal_get_messages(NULL, FALSE);
 
-/**
- * Implements template_preprocess_details().
- */
-function uikit_admin_preprocess_details(&$variables) {
-  // Set the accordion attributes.
-  $attributes = $variables['attributes'];
-  $accordion_attributes = new Attribute;
-
-  foreach ($attributes as $attribute => $value) {
-    if ($attribute != 'class' && $attribute != 'open') {
-      $accordion_attributes->setAttribute($attribute, $value);
-    }
-  }
-  $accordion_attributes->addClass('uk-form-row');
-  $accordion_attributes->addClass('uk-accordion');
-
-  // Set the data-uk-accordion attribute based on the #open value.
-  $open = isset($variables['element']['#open']) ? $variables['element']['#open'] : FALSE;
-  if ($open) {
-    $accordion_attributes->setAttribute('data-uk-accordion', '{showfirst: true}');
-  }
-  else {
-    $accordion_attributes->setAttribute('data-uk-accordion', '{showfirst: false}');
-  }
-
-  $variables['accordion_attributes'] = $accordion_attributes;
-
-  // Set the accordion title attributes.
-  $accordion_title_attributes = new Attribute;
-  $accordion_title_attributes->addClass('uk-accordion-title');
-  $variables['accordion_title_attributes'] = $accordion_title_attributes;
-
-  // Set the accordion content attributes.
-  $accordion_content_attributes = new Attribute;
-  $accordion_content_attributes->addClass('uk-accordion-content');
-  $variables['accordion_content_attributes'] = $accordion_content_attributes;
-
-  // Set the error classes.
-  $error_classes = new Attribute;
-  $error_classes->addClass('uk-alert');
-  $error_classes->addClass('uk-alert-danger');
-  $variables['error_classes'] = $error_classes;
-
-  // Set the description attributes.
-  $description_attributes = new Attribute;
-  $description_attributes->addClass('uk-form-help-block');
-  $description_attributes->addClass('uk-margin-small-bottom');
-  $variables['description_attributes'] = $description_attributes;
-}
-
-/**
- * Implements hook_form_alter().
- */
-function uikit_admin_preprocess_form(&$variables) {
-  $form_id = $variables['element']['#form_id'];
-  $orientation = 'stacked';
-
-  // Set the orientation of the form based on the form id.
-  switch ($form_id) {
-    case 'views_exposed_form':
-    case 'view_preview_form':
-      $orientation = 'horizontal';
+      if (empty($messages)) {
+        $variables['content'] = [];
+      }
       break;
   }
-
-  // Set the orientation variable.
-  $variables['orientation'] = $orientation;
 }
 
 /**
- * Implements template_preprocess_form_element().
+ * Implements template_preprocess_container().
  */
-function uikit_admin_preprocess_form_element(&$variables) {
-  $classes = isset($variables['attributes']['class']) ? $variables['attributes']['class'] : [];
-  $variables['inline_container'] = FALSE;
+function uikit_admin_preprocess_container(&$variables) {
+  $variables['form_row'] = TRUE;
+  $variables['form_margin'] = TRUE;
 
-  $variables['wrapper_attributes'] = new Attribute;
-
-  if ($classes && in_array('container-inline', $classes)) {
-    $variables['inline_container'] = TRUE;
+  if (isset($variables['element']['#view_id'])) {
+    $variables['form_row'] = FALSE;
+    $variables['form_margin'] = FALSE;
   }
-  else {
-    $variables['wrapper_attributes']->addClass('uk-form-controls');
+
+  $attributes = is_array($variables['attributes']) ? $variables['attributes'] : [];
+  $classes = isset($attributes['class']) && is_array($attributes['class']) ? $attributes['class'] : [];
+
+  if (in_array('toolbar-menu-administration', $classes)) {
+    $variables['form_margin'] = FALSE;
   }
 }
 
@@ -128,70 +79,49 @@ function uikit_admin_preprocess_form_element(&$variables) {
  * Implements template_preprocess_input().
  */
 function uikit_admin_preprocess_input(&$variables) {
-  $type = $variables['element']['#type'];
+  if ($variables['element']['#type'] == 'submit') {
+    $variables['attributes']['class'][] = 'uk-button';
 
-  if ($type == 'submit') {
-    // Set the value variable so we can change submit buttons from an <input>
-    // to a <button> element.
-    if (is_object($variables['element']['#value'])) {
-      $value = $variables['element']['#value']->getUntranslatedString();
-    }
-    else {
-      $value = $variables['element']['#value'];
-    }
-    $variables['value'] = t('@value', ['@value' => $value]);
-    $views_ui_dispay_buttons = UIkitAdmin::getViewsUIDisplayButtons();
+    switch ($variables['element']['#value']) {
+      case 'Apply':
+      case 'Filter':
+      case 'Generate':
+      case 'Install':
+      case 'Save':
+      case 'Save blocks':
+      case 'Save configuration':
+        $variables['attributes']['class'][] = 'uk-button-primary';
+        break;
 
-    // Bypass doing anything with Views UI display buttons, which are assigned
-    // a different template.
-    // @see uikit_admin_theme_suggestions_input_alter()
-    // @see input--views-ui.html.twig
-    if (!in_array($value, $views_ui_dispay_buttons)) {
-      // Add the uk-button class to all buttons.
-      $variables['attributes']['class'][] = 'uk-button';
+      case 'Delete':
+      case 'Remove':
+        $variables['attributes']['class'][] = 'uk-button-danger';
+        break;
 
-      switch ($value) {
-        // Add uk-button-* modifier class based on the value of the button.
-        case 'Add and configure @types':
-        case 'Save':
-        case 'Save and publish':
-        case 'Save blocks':
-        case 'Save configuration':
-        case 'Update':
-          $variables['attributes']['class'][] = 'uk-button-primary';
-          break;
-      }
+      default:
+        $variables['attributes']['class'][] = 'uk-button-default';
     }
   }
 }
 
 /**
- * Implements template_preprocess_links() for dropbutton links.
+ * Implements template_preprocess_links() for links--dropbutton.html.twig.
  */
 function uikit_admin_preprocess_links__dropbutton(&$variables) {
-  $links_id = isset($variables['attributes']['id']) ? $variables['attributes']['id'] : '';
-  $theme_hook = isset($variables['theme_hook_original']) ? $variables['theme_hook_original'] : [];
-  $operations_links = $theme_hook && $theme_hook == 'links__dropbutton__operations';
-  $variables['dropdown_button_attributes'] = new Attribute;
-  $variables['dropdown_button_attributes']->addClass('uk-button');
+  $links = $variables['links'];
+  $multiple = count($links) > 1 ? TRUE : FALSE;
 
-  // Add the uk-button-primary class based on the type of dropbutton is set,
-  // ignoring if the dropdown links are for Views UI and operations links.
-  if ($links_id != 'views-display-extra-actions' && !$operations_links) {
-    $variables['dropdown_button_attributes']->addClass('uk-button-primary');
-
-    if (isset($variables['dropbutton'])) {
-      if (isset($variables['dropbutton']['link'])) {
-        $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-primary';
-      }
-      elseif (isset($variables['dropbutton']['text_attributes'])) {
-        $variables['dropbutton']['text_attributes']['class'][] = 'uk-button-primary';
-      }
+  if ($multiple) {
+    if (isset($variables['dropbutton']['link']) && $variables['dropbutton']['link']) {
+      $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button';
+      $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-primary';
+      $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-small';
     }
-  }
-  elseif ($operations_links) {
-    // Reset the attributes for operations links.
-    $variables['attributes'] = new Attribute;
+    else {
+      $variables['dropbutton']['attributes']->addClass('uk-button');
+      $variables['dropbutton']['attributes']->addClass('uk-button-primary');
+      $variables['dropbutton']['attributes']->addClass('uk-button-small');
+    }
   }
 }
 
@@ -199,81 +129,31 @@ function uikit_admin_preprocess_links__dropbutton(&$variables) {
  * Implements template_preprocess_menu_local_tasks().
  */
 function uikit_admin_preprocess_menu_local_tasks(&$variables) {
-  // Set primary tasks attributes.
-  $primary_attributes = new Attribute;
-  $primary_attributes->setAttribute('id', 'tasks--primary');
-  $primary_attributes->addClass('uk-tab');
-  $variables['primary_attributes'] = $primary_attributes;
+  /** @var \Drupal\Core\Menu\LocalTaskManagerInterface $manager */
+  $variables['primary_attributes'] = new Attribute();
+  $variables['primary_attributes']->addClass('uk-navbar-nav');
 
-  // Set secondary tasks attributes.
-  $secondary_attributes = new Attribute;
-  $secondary_attributes->setAttribute('id', 'tasks--secondary');
-  $secondary_attributes->addClass('uk-subnav');
-  $secondary_attributes->addClass('uk-subnav-line');
-  $secondary_attributes->addClass('uk-margin-bottom-remove');
-  $variables['secondary_attributes'] = $secondary_attributes;
-}
+  $variables['secondary_attributes'] = new Attribute();
+  $variables['secondary_attributes']->addClass('uk-nav');
+  $variables['secondary_attributes']->addClass('uk-nav-default');
 
-/**
- * Implements template_preprocess_region().
- */
-function uikit_admin_preprocess_region(&$variabes) {
-  $region = $variabes['region'];
-  $attributes = $variabes['attributes'];
-
-  switch ($region) {
-    case 'pre_content':
-    case 'breadcrumb':
-      $region_attributes = new Attribute;
-      $region_attributes->setAttribute('id', $attributes['id']);
-      $variabes['attributes'] = $region_attributes;
+  switch (\Drupal::routeMatch()->getRouteName()) {
+    case 'entity.node.edit_form':
+    case 'system.admin':
+    case 'system.admin_content':
+    case 'view.files.page_1':
+      $variables['secondary_tasks'] = FALSE;
       break;
+
+    default:
+      $variables['secondary_tasks'] = TRUE;
   }
 }
 
 /**
- * Implements hook_preprocess_HOOK() for page-title.html.twig.
+ * Implements template_preprocess_page_title().
  */
 function uikit_admin_preprocess_page_title(&$variables) {
-  $variables['title_attributes']['id'] = 'page--title';
-}
-
-/**
- * Implements hook_preprocess_HOOK() for status-report-general-info.html.twig.
- */
-function uikit_admin_preprocess_status_report_general_info(&$variables) {
-  $apache = substr($variables['webserver']['value'], 0, 6) === 'Apache';
-  $nginx = substr($variables['webserver']['value'], 0, 5) === 'nginx';
-
-  if ($apache) {
-    $variables['webserver']['icon'] = 'icon-apache';
-  }
-  elseif ($nginx) {
-    $variables['webserver']['icon'] = 'icon-nginx';
-  }
-  else {
-    $variables['webserver']['icon'] = 'uk-icon-server uk-text-muted';
-  }
-
-  if (isset($variables['cron']['description']) && $variables['cron']['description']) {
-    $cron_links = $variables['cron']['description'];
-
-    foreach ($cron_links[0] as $index => $cron_link) {
-      if (isset($cron_link['#prefix']) && $cron_link['#prefix'] == '<span class="cron-description__run-cron">') {
-        $variables['cron']['run_cron_link'] = $cron_link;
-      }
-      else {
-        $variables['cron']['description'] = $cron_link;
-      }
-    }
-  }
-}
-
-/**
- * Implements template_preprocess_views_ui_views_listing_table().
- */
-function uikit_admin_preprocess_views_ui_views_listing_table(&$variables) {
-  $variables['attributes']['class'][] = 'uk-table';
-  $variables['attributes']['class'][] = 'uk-table-striped';
-  $variables['attributes']['class'][] = 'uk-table-hover';
+  $variables['title_attributes']['id'] = 'page-title';
+  $variables['title_attributes']['class'][] = 'uk-navbar-item';
 }

@@ -1,0 +1,18 @@
+/**
+ * @file
+ * Purely visual styling (“look-and-feel”) for a administration pages.
+ */
+
+.theme-selector .operations li {
+  border: 0;
+  padding: 0 0 0 20px;
+}
+.system-themes-list-uninstalled {
+  border: 0;
+  padding-top: 0;
+}
+@media screen and (min-width: 45em) {
+  body:not(.toolbar-vertical) .system-themes-list-uninstalled .theme-info {
+    min-height: 135px;
+  }
+}

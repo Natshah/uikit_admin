@@ -25,18 +25,19 @@
 #}
 {%
   set status_classes = {
+    'status': 'uk-alert-success',
     'error': 'uk-alert-danger',
     'warning': 'uk-alert-warning',
   }
 %}
-{% if message_list|length %}
+{% if message_list %}
   {% for type, messages in message_list %}
-    <div role="contentinfo" aria-label="{{ status_headings[type] }}"{{ attributes|without('role', 'aria-label') }}>
+    <div{{ attributes|without('role', 'aria-label').addClass('status-messages') }} role="contentinfo" aria-label="{{ status_headings[type] }}">
       {% if status_headings[type] %}
         <h2 class="visually-hidden">{{ status_headings[type] }}</h2>
       {% endif %}
-      <div class="uk-alert {{ status_classes[type] }}" role="alert" data-uk-alert>
-        <a class="uk-alert-close uk-close"></a>
+      <div class="uk-alert {{ status_classes[type] }} uk-margin-small" role="alert" uk-alert>
+        <a class="uk-alert-close uk-close uk-icon" uk-close></a>
         {% if messages|length > 1 %}
           {% for message in messages %}
             <p>{{ message }}</p>

@@ -1,0 +1,26 @@
+{#
+/**
+ * @file
+ * Theme override to display a textarea form element.
+ *
+ * Available variables
+ * - wrapper_attributes: A list of HTML attributes for the wrapper element.
+ * - attributes: A list of HTML attributes for the textarea element.
+ * - resizable: An indicator for whether the textarea is resizable.
+ * - required: An indicator for whether the textarea is required.
+ * - value: The textarea content.
+ *
+ * @see template_preprocess_textarea()
+ *
+ * @ingroup uikit_themeable
+ */
+#}
+<div{{ wrapper_attributes }}>
+  {%
+    set classes = [
+      'uk-textarea',
+      'uk-width-1-1',
+    ]
+  %}
+  <textarea{{ attributes.addClass(classes) }}>{{ value }}</textarea>
+</div>

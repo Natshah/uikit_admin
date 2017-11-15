@@ -8,13 +8,13 @@
  *
  * @see uikit_preprocess_breadcrumb()
  *
- * @ingroup uikit_admin_themeable
+ * @ingroup uikit_themeable
  */
 #}
 {% if breadcrumb and display_breadcrumbs %}
   <nav role="navigation" aria-labelledby="system-breadcrumb">
     <h2 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h2>
-    <ol class="uk-breadcrumb uk-margin-remove">
+    <ol class="uk-breadcrumb uk-margin-remove-top uk-width-1-1">
     {% for item in breadcrumb %}
       {% if item.url %}
         <li><a href="{{ item.url }}">{{ item.text }}</a></li>

@@ -10,20 +10,29 @@
  * Each item in these variables (primary and secondary) can be individually
  * themed in menu-local-task.html.twig.
  *
- * @see uikit_admin_preprocess_menu_local_tasks()
+ * @see uikit_preprocess_menu_local_tasks()
  *
- * @ingroup uikit_admin_themeable
+ * @ingroup uikit_themeable
  */
 #}
 {% if primary %}
   <div id="primary-tasks">
     <h2 class="visually-hidden">{{ 'Primary tasks'|t }}</h2>
-    <ul{{ primary_attributes }}>{{ primary }}</ul>
+    <ul{{ primary_attributes }}>
+      {{ primary }}
+
+      {% if secondary_tasks %}
+        <li><a href="#secondary-tasks" class="uk-navbar-toggle" uk-navbar-toggle-icon uk-toggle></a></li>
+      {% endif %}
+    </ul>
   </div>
 {% endif %}
 {% if secondary %}
-  <div id="secondary-tasks" class="uk-clearfix">
-    <h2 class="visually-hidden">{{ 'Secondary tasks'|t }}</h2>
-    <ul{{ secondary_attributes }}>{{ secondary }}</ul>
+  <div id="secondary-tasks" class="uk-offcanvas" uk-offcanvas="flip: true">
+    <div class="uk-offcanvas-bar">
+      <button class="uk-offcanvas-close" type="button" uk-close></button>
+      <h2 class="visually-hidden">{{ 'Secondary tasks'|t }}</h2>
+      <ul{{ secondary_attributes }}>{{ secondary }}</ul>
+    </div>
   </div>
 {% endif %}

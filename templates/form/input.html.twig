@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override to display an input form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ * @see uikit_preprocess_input()
+ *
+ * @ingroup uikit_themeable
+ */
+#}
+{%
+  set classes = [
+    attributes.type == 'email' or attributes.type == 'password' or attributes.type == 'search' or attributes.type == 'text' ? 'uk-input',
+    attributes.type == 'checkbox' ? 'uk-checkbox',
+    attributes.type == 'radio' ? 'uk-radio',
+    attributes.type == 'hidden' ? 'uk-margin',
+    errors ? 'uk-form-danger',
+  ]
+%}
+<input{{ attributes.addClass(classes) }} />{{ children }}

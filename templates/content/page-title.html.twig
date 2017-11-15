@@ -11,19 +11,13 @@
  * - title_suffix: Additional output populated by modules, intended to be
  *   displayed after the main title tag that appears in the template.
  *
+ * @see uikit_admin_preprocess_page_title()
+ *
  * @ingroup uikit_themeable
  */
 #}
-{%
-  set classes = [
-    'uk-article-title',
-    'uk-display-inline-block',
-  ]
-%}
+{{ title_prefix }}
 {% if title|render %}
-  {{ title_prefix }}
-  {% if title %}
-    <h1{{ title_attributes.addClass(classes) }}>{{ title }}</h1>
-  {% endif %}
-  {{ title_suffix }}
+  <h1{{ title_attributes }}>{{ title }}</h1>
 {% endif %}
+{{ title_suffix }}

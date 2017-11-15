@@ -6,36 +6,9 @@
 (function ($, Drupal) {
   'use strict';
 
-  $(window).on({
-    'scroll.TableHeader': tableHeaderOnScrollHandler
-  });
-
-  Drupal.behaviors.uikitAdminDropbuttons = {
-    attach: function (context, settings) {
-      var button_group = $(context).find('.uk-button-group').once('uk-dropdown');
-      if (button_group.length) {
-        $(button_group).each(function () {
-          var dropdown = $(this).find('.uk-dropdown');
-          dropdown.css('min-width', $(this).outerWidth(false) - 6);
-        })
-      }
-    }
-  };
-
-  Drupal.behaviors.uikitAdminStickyHeaders = {
-    attach: function (context, settings) {
-      $(window).on({
-        'scroll.TableHeader': tableHeaderOnScrollHandler()
-      });
-    }
-  };
-
-  function tableHeaderOnScrollHandler() {
-    var stickyHeader = $('.sticky-header');
-
-    if (!stickyHeader.hasClass('uk-table')) {
-      stickyHeader.addClass('uk-table');
-      stickyHeader.addClass('uk-table-striped');
-    }
+  if ($('.uk-alert').length) {
+    UIkit.util.on('.uk-alert', 'hidden', function () {
+      $('#region--status_messages').remove();
+    });
   }
 })(jQuery, Drupal);

@@ -4,122 +4,63 @@
  */
 
 /**
- * Page header.
+ * Navbar
  */
-#page--header {
-  border: 0;
-  border-bottom: 1px solid #afafaf;
-  border-radius: 0;
-  padding: 15px 35px 0 35px;
+#page--navbar {
+  background: #1976d2;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
 }
-
-/**
- * Local tasks.
- */
-#secondary-tasks {
-  border-bottom: 1px solid #aaa;
+#page--navbar .uk-navbar-item,
+#page--navbar .uk-navbar-nav>li>a {
+  color: #fff;
 }
-#tasks--primary {
+#page--navbar .uk-navbar-nav>li>a {
   position: relative;
-  bottom: -1px;
-  border: 0;
 }
-#tasks--primary>li.uk-active {
-  z-index: 15;
+#page--navbar .uk-navbar-nav>li>a:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 15px;
+  right: calc(102% - 15px);
+  bottom: 10px;
+  height: 1px;
+  background-color: currentColor;
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+  -webkit-transition-property: right;
+  transition-property: right;
 }
-#tasks--primary>li>a {
-  background: #f5f5f5;
-  border: 1px solid #afafaf;
-  text-shadow: none;
-  transition: background 0.2s, color 0.2s;
-}
-#tasks--primary>li:not(.uk-active)>a:focus,
-#tasks--primary>li:not(.uk-active)>a:hover {
-  background: #fafaf7;
-}
-#tasks--primary>li.uk-active>a {
-  background-color: #fff;
-  border-color: #aaa;
-  border-bottom-width: 0;
-}
-#tasks--secondary>:nth-child(n+2):before {
-  border-left: 2px solid #aaaaaa;
-}
-#tasks--secondary>li>a {
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s, color 0.2s;
-}
-#tasks--secondary>li.uk-active>a {
-  border-color: #0074bd;
-  color: #0074bd;
-}
-#tasks--secondary>li:not(.uk-active)>a:hover {
-  border-color: #008ee6;
-  color: #008ee6;
+#page--navbar .uk-navbar-nav>li.uk-active>a:before,
+#page--navbar .uk-navbar-nav>li>a:hover::before {
+  right: 15px;
 }
 
 /**
- * Status report page.
+ * Page title
  */
-#status-report-counters .status-report-counter .status-report-counter-icon {
-  float: left;
-  margin-right: 10px;
-  width: 35px;
-}
-#status-report-counters .status-report-counter .uk-panel-title {
-  float: left;
-  font-size: 22px;
-  font-weight: bold;
-  line-height: 35px;
+#page-title {
+  font-size: 1.8rem;
   margin: 0;
-  text-transform: uppercase;
 }
-#status-report-counters .status-report-counter .status-report-details {
-  clear: both;
-  margin-left: 45px;
-}
-
-/**
- * Custom icon utility classes.
- */
-.uk-admin-last-cron-less-day {
-  color: #018341;
-}
-.uk-admin-last-cron-week {
-  color: #b56502;
-}
-.uk-admin-last-cron-over-week {
-  color: #b52d02;
+#page-title em {
+  margin: 0 6px;
+  color: #c5c5c5;
 }
 
 /**
- * Custom font utility classes.
+ * Local tasks
  */
-.uk-admin-font-weight-light {
-  font-weight: 300;
+#secondary-tasks .uk-offcanvas-bar {
+  background: #fff;
 }
-.uk-admin-font-weight-regular {
-  font-weight: 400;
+#secondary-tasks .uk-nav-default>li>a,
+#secondary-tasks .uk-offcanvas-close {
+  color: #999;
 }
-.uk-admin-font-weight-semi-bold {
-  font-weight: 600;
-}
-.uk-admin-font-weight-bold {
-  font-weight: 700;
-}
-
-/**
- * Font Mfizz icons
- */
-.icon-apache {
-  color: #d42129;
-}
-.icon-nginx,
-.icon-nginx-alt,
-.icon-nginx-alt2 {
-  color: #009900;
-}
-.icon-php,
-.icon-php-alt {
-  color: #777bb4;
+#secondary-tasks .uk-nav-default>li.uk-active>a,
+#secondary-tasks .uk-offcanvas-close:focus,
+#secondary-tasks .uk-offcanvas-close:hover {
+  color: #222;
 }
