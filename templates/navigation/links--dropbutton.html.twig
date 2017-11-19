@@ -42,51 +42,17 @@
       <h2{{ heading.attributes }}>{{ heading.text }}</h2>
     {%- endif -%}
   {%- endif -%}
-
-  {% if multiple %}
-    <div class="uk-button-group">
-      {%- if dropbutton.link -%}
-        {{ dropbutton.link }}
-      {%- elseif dropbutton.text_attributes -%}
-        <span{{ dropbutton.text_attributes }}>{{ item.text }}</span>
-      {%- else -%}
-        {{ dropbutton.text }}
-      {%- endif -%}
-
-      <div class="uk-inline">
-        <button class="uk-button uk-button-secondary" type="button"><span uk-icon="icon: triangle-down"></span></button>
-        <div uk-dropdown="mode: click; boundary: ! .uk-button-group; boundary-align: true;">
-          {%
-            set classes = [
-              'uk-nav',
-              'uk-dropdown-nav'
-            ]
-          %}
-          <ul{{ attributes. addClass(classes) }}>
-            {%- for item in links -%}
-              <li{{ item.attributes }}>
-                {%- if item.link -%}
-                  {{ item.link }}
-                {%- elseif item.text_attributes -%}
-                  <span{{ item.text_attributes }}>{{ item.text }}</span>
-                {%- else -%}
-                  {{ item.text }}
-                {%- endif -%}
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      </div>
-    </div>
-  {% else %}
+  <ul{{ attributes }}>
     {%- for item in links -%}
-      {%- if item.link -%}
-        {{ item.link }}
-      {%- elseif item.text_attributes -%}
-        <span{{ item.text_attributes }}>{{ item.text }}</span>
-      {%- else -%}
-        {{ item.text }}
-      {%- endif -%}
+      <li{{ item.attributes }}>
+        {%- if item.link -%}
+          {{ item.link }}
+        {%- elseif item.text_attributes -%}
+          <span{{ item.text_attributes }}>{{ item.text }}</span>
+        {%- else -%}
+          {{ item.text }}
+        {%- endif -%}
+      </li>
     {%- endfor -%}
-  {% endif %}
+  </ul>
 {%- endif %}

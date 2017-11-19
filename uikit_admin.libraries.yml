@@ -7,13 +7,9 @@ global-style:
       css/uikit_admin.layout.css: {}
     component:
       css/uikit_admin.component.css: {}
+      css/uikit_admin.dropbutton.css: {}
+      css/uikit_admin.views-ui.css: {}
     theme:
       css/uikit_admin.theme.css: {}
   js:
     js/uikit_admin.theme.js: {}
-
-admin:
-  version: VERSION
-  css:
-    theme:
-      css/uikit_admin.admin.css: {}

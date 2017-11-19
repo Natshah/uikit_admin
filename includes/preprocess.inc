@@ -121,20 +121,23 @@ function uikit_admin_preprocess_input(&$variables) {
  */
 function uikit_admin_preprocess_links__dropbutton(&$variables) {
   $links = $variables['links'];
-  $multiple = count($links) > 1 ? TRUE : FALSE;
 
-  if ($multiple) {
-    if (isset($variables['dropbutton']['link']) && $variables['dropbutton']['link']) {
-      $variables['dropbutton']['link']['#options']['attributes']['class'] = ['uk-button'];
-      $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-primary';
-      $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-small';
+  if (isset($variables['dropbutton'])) {
+    $options = $variables['dropbutton']['link']['#options'];
+    $classes = isset($options['attributes']['class']) ? $options['attributes']['class'] : [];
+
+    if ($classes && ($key = array_search('uk-button', $classes)) !== false) {
+      unset($variables['dropbutton']['link']['#options']['attributes']['class'][$key]);
     }
-    else {
-      $variables['dropbutton']['attributes']->addClass('uk-button');
-      $variables['dropbutton']['attributes']->addClass('uk-button-primary');
-      $variables['dropbutton']['attributes']->addClass('uk-button-small');
+
+    if ($classes && ($key = array_search('uk-button-default', $classes)) !== false) {
+      unset($variables['dropbutton']['link']['#options']['attributes']['class'][$key]);
     }
+
+    array_unshift($links, $variables['dropbutton']);
   }
+
+  $variables['links'] = $links;
 }
 
 /**
