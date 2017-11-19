@@ -31,14 +31,3 @@ function uikit_admin_form_system_themes_admin_form_alter(&$form, FormStateInterf
 
   $form['admin_theme']['#open'] = FALSE;
 }
-
-/**
- * Implements hook_theme_suggestions_HOOK_alter() for links templates.
- */
-function uikit_admin_theme_suggestions_links_alter(array &$suggestions, array $variables) {
-  $classes = isset($variables['attributes']['class']) ? $variables['attributes']['class'] : [];
-
-  if (in_array('operations', $classes)) {
-    $suggestions[] = 'links__operations';
-  }
-}
