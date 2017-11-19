@@ -16,10 +16,11 @@
 {%
   set classes = [
     attributes.type == 'email' or attributes.type == 'password' or attributes.type == 'search' or attributes.type == 'text' ? 'uk-input',
+    attributes.type == 'email' or attributes.type == 'password' or attributes.type == 'search' or attributes.type == 'text' ? 'uk-form-small',
     attributes.type == 'checkbox' ? 'uk-checkbox',
     attributes.type == 'radio' ? 'uk-radio',
     attributes.type == 'hidden' ? 'uk-margin',
     errors ? 'uk-form-danger',
   ]
 %}
-<input{{ attributes.addClass(classes) }} />{{ children }}
+<input{{ attributes.addClass(classes)|without('size') }} />{{ children }}

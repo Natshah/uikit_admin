@@ -48,7 +48,7 @@
  */
 #}
 
-<div id="page-wrapper" class="uk-margin-large-bottom">
+<div id="page-wrapper" class="uk-margin-large-bottom uk-offcanvas-content">
   <header{{ header_attributes }}>
     <nav{{ navbar_attributes }} uk-navbar>
       {% if page.navbar_left %}
@@ -66,6 +66,10 @@
       {% if page.navbar_right %}
         <div class="uk-navbar-right">
           {{ page.navbar_right }}
+
+          {% if page.offcanvas %}
+            <a href="#offcanvas" class="uk-navbar-toggle uk-hidden@m" uk-toggle uk-navbar-toggle-icon></a>
+          {% endif %}
         </div>
       {% endif %}
     </nav>
@@ -87,4 +91,10 @@
       </main>
     </div>
   </div>
+
+  {% if page.offcanvas %}
+    <div id="offcanvas" uk-offcanvas>
+      {{ page.offcanvas }}
+    </div>
+  {% endif %}
 </div>

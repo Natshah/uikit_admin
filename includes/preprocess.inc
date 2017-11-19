@@ -56,6 +56,17 @@ function uikit_admin_preprocess_region(&$variables) {
 }
 
 /**
+ * Implements template_preprocess_block().
+ */
+function uikit_admin_preprocess_block(&$variables) {
+  $block = \Drupal::entityTypeManager()->getStorage('block')->load($variables['elements']['#id']);
+
+  if ($block->getRegion() == 'offcanvas') {
+    $variables['content']['#theme'] = $variables['content']['#theme'] . '__offcanvas';
+  }
+}
+
+/**
  * Implements template_preprocess_container().
  */
 function uikit_admin_preprocess_container(&$variables) {
@@ -80,27 +91,28 @@ function uikit_admin_preprocess_container(&$variables) {
  */
 function uikit_admin_preprocess_input(&$variables) {
   if ($variables['element']['#type'] == 'submit') {
+    $value = $variables['element']['#value'];
     $variables['attributes']['class'][] = 'uk-button';
 
-    switch ($variables['element']['#value']) {
-      case 'Apply':
-      case 'Filter':
-      case 'Generate':
-      case 'Install':
-      case 'Save':
-      case 'Save blocks':
-      case 'Save configuration':
+    switch (TRUE) {
+      case preg_match('/Apply.*/', $value):
+      case preg_match('/Filter.*/', $value):
+      case preg_match('/Generate.*/', $value):
+      case preg_match('/Install.*/', $value):
+      case preg_match('/Save.*/', $value):
         $variables['attributes']['class'][] = 'uk-button-primary';
         break;
 
-      case 'Delete':
-      case 'Remove':
+      case preg_match('/Delete.*/', $value):
+      case preg_match('/Remove.*/', $value):
         $variables['attributes']['class'][] = 'uk-button-danger';
         break;
 
       default:
         $variables['attributes']['class'][] = 'uk-button-default';
     }
+
+    $variables['attributes']['class'][] = 'uk-button-small';
   }
 }
 
@@ -113,7 +125,7 @@ function uikit_admin_preprocess_links__dropbutton(&$variables) {
 
   if ($multiple) {
     if (isset($variables['dropbutton']['link']) && $variables['dropbutton']['link']) {
-      $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button';
+      $variables['dropbutton']['link']['#options']['attributes']['class'] = ['uk-button'];
       $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-primary';
       $variables['dropbutton']['link']['#options']['attributes']['class'][] = 'uk-button-small';
     }
@@ -130,6 +142,9 @@ function uikit_admin_preprocess_links__dropbutton(&$variables) {
  */
 function uikit_admin_preprocess_menu_local_tasks(&$variables) {
   /** @var \Drupal\Core\Menu\LocalTaskManagerInterface $manager */
+  $manager = \Drupal::service('plugin.manager.menu.local_task');
+  $tasks = $manager->getLocalTasksForRoute(\Drupal::routeMatch()->getRouteName());
+
   $variables['primary_attributes'] = new Attribute();
   $variables['primary_attributes']->addClass('uk-navbar-nav');
 
@@ -137,16 +152,11 @@ function uikit_admin_preprocess_menu_local_tasks(&$variables) {
   $variables['secondary_attributes']->addClass('uk-nav');
   $variables['secondary_attributes']->addClass('uk-nav-default');
 
-  switch (\Drupal::routeMatch()->getRouteName()) {
-    case 'entity.node.edit_form':
-    case 'system.admin':
-    case 'system.admin_content':
-    case 'view.files.page_1':
-      $variables['secondary_tasks'] = FALSE;
-      break;
-
-    default:
-      $variables['secondary_tasks'] = TRUE;
+  if (count($tasks) > 1) {
+    $variables['secondary_tasks'] = TRUE;
+  }
+  else {
+    $variables['secondary_tasks'] = FALSE;
   }
 }
 

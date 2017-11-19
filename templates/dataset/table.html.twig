@@ -48,65 +48,67 @@
     'uk-table-small',
   ]
 %}
-<table{{ attributes.addClass(classes) }}>
-  {% if caption %}
-    <caption>{{ caption }}</caption>
-  {% endif %}
-
-  {% for colgroup in colgroups %}
-    {% if colgroup.cols %}
-      <colgroup{{ colgroup.attributes }}>
-        {% for col in colgroup.cols %}
-          <col{{ col.attributes }} />
-        {% endfor %}
-      </colgroup>
-    {% else %}
-      <colgroup{{ colgroup.attributes }} ></colgroup>
+<div class="uk-overflow-auto">
+  <table{{ attributes.addClass(classes) }}>
+    {% if caption %}
+      <caption>{{ caption }}</caption>
     {% endif %}
-  {% endfor %}
 
-  {% if header %}
-    <thead>
-      <tr class="uk-table-middle">
-        {% for cell in header %}
-          <{{ cell.tag }}{{ cell.attributes }}>
-            {{- cell.content -}}
-          </{{ cell.tag }}>
+    {% for colgroup in colgroups %}
+      {% if colgroup.cols %}
+        <colgroup{{ colgroup.attributes }}>
+          {% for col in colgroup.cols %}
+            <col{{ col.attributes }} />
+          {% endfor %}
+        </colgroup>
+      {% else %}
+        <colgroup{{ colgroup.attributes }} ></colgroup>
+      {% endif %}
+    {% endfor %}
+
+    {% if header %}
+      <thead>
+        <tr class="uk-table-middle">
+          {% for cell in header %}
+            <{{ cell.tag }}{{ cell.attributes }}>
+              {{- cell.content -}}
+            </{{ cell.tag }}>
+          {% endfor %}
+        </tr>
+      </thead>
+    {% endif %}
+
+    {% if rows %}
+      <tbody>
+        {% for row in rows %}
+          <tr{{ row.attributes.addClass('uk-table-middle') }}>
+            {% for cell in row.cells %}
+              <{{ cell.tag }}{{ cell.attributes }}>
+                {{- cell.content -}}
+              </{{ cell.tag }}>
+            {% endfor %}
+          </tr>
         {% endfor %}
-      </tr>
-    </thead>
-  {% endif %}
-
-  {% if rows %}
-    <tbody>
-      {% for row in rows %}
-        <tr{{ row.attributes.addClass('uk-table-middle') }}>
-          {% for cell in row.cells %}
-            <{{ cell.tag }}{{ cell.attributes }}>
-              {{- cell.content -}}
-            </{{ cell.tag }}>
-          {% endfor %}
+      </tbody>
+    {% elseif empty %}
+      <tbody>
+        <tr class="uk-table-middle">
+          <td colspan="{{ header_columns }}">{{ empty }}</td>
         </tr>
-      {% endfor %}
-    </tbody>
-  {% elseif empty %}
-    <tbody>
-      <tr class="uk-table-middle">
-        <td colspan="{{ header_columns }}">{{ empty }}</td>
-      </tr>
-    </tbody>
-  {% endif %}
-  {% if footer %}
-    <tfoot>
-      {% for row in footer %}
-        <tr{{ row.attributes.addClass('uk-table-middle') }}>
-          {% for cell in row.cells %}
-            <{{ cell.tag }}{{ cell.attributes }}>
-              {{- cell.content -}}
-            </{{ cell.tag }}>
-          {% endfor %}
-        </tr>
-      {% endfor %}
-    </tfoot>
-  {% endif %}
-</table>
+      </tbody>
+    {% endif %}
+    {% if footer %}
+      <tfoot>
+        {% for row in footer %}
+          <tr{{ row.attributes.addClass('uk-table-middle') }}>
+            {% for cell in row.cells %}
+              <{{ cell.tag }}{{ cell.attributes }}>
+                {{- cell.content -}}
+              </{{ cell.tag }}>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tfoot>
+    {% endif %}
+  </table>
+</div>

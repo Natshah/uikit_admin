@@ -18,7 +18,7 @@
 #page--navbar .uk-navbar-nav>li>a {
   position: relative;
 }
-#page--navbar .uk-navbar-nav>li>a:before {
+#page--navbar .uk-navbar-nav>li>a:not([uk-toggle]):before {
   content: '';
   display: block;
   position: absolute;
@@ -33,7 +33,7 @@
   transition-property: right;
 }
 #page--navbar .uk-navbar-nav>li.uk-active>a:before,
-#page--navbar .uk-navbar-nav>li>a:hover::before {
+#page--navbar .uk-navbar-nav>li>a:not([uk-toggle]):hover::before {
   right: 15px;
 }
 
@@ -52,13 +52,19 @@
 /**
  * Local tasks
  */
+#offcanvas .uk-offcanvas-bar,
 #secondary-tasks .uk-offcanvas-bar {
   background: #fff;
 }
+#offcanvas .uk-nav-default>li>a,
+#offcanvas .uk-offcanvas-close,
 #secondary-tasks .uk-nav-default>li>a,
 #secondary-tasks .uk-offcanvas-close {
   color: #999;
 }
+#offcanvas .uk-nav-default>li.uk-active>a,
+#offcanvas .uk-offcanvas-close:focus,
+#offcanvas .uk-offcanvas-close:hover,
 #secondary-tasks .uk-nav-default>li.uk-active>a,
 #secondary-tasks .uk-offcanvas-close:focus,
 #secondary-tasks .uk-offcanvas-close:hover {

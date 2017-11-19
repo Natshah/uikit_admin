@@ -6,7 +6,6 @@ base theme: uikit
 
 regions:
   navbar: 'Navigation Bar'
-  offcanvas: 'Offcanvas Navigation'
   navbar_left: 'Navbar Left'
   navbar_center: 'Navbar Center'
   navbar_right: 'Navbar Right'
@@ -16,10 +15,11 @@ regions:
   sidebar_first: 'Left Sidebar'
   sidebar_second: 'Right Sidebar'
   footer: 'Footer'
+  offcanvas: 'Offcanvas Navigation'
 
 regions_hidden:
   - navbar
-  - offcanvas
+  - sidebar_first
   - sidebar_second
   - footer
 

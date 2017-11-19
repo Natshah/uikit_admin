@@ -9,6 +9,9 @@ html {
 a {
   color: #1976d2;
 }
+em {
+  color: inherit;
+}
 details {
   border: 1px solid #ccc;
 }

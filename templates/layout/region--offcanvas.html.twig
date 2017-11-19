@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Theme override to display the offcanvas region.
+ *
+ * Available variables:
+ * - content: The content for this region, typically blocks.
+ * - attributes: HTML attributes for the region div.
+ * - region: The name of the region variable as defined in the theme's
+ *   .info.yml file.
+ *
+ * @see template_preprocess_region()
+ * @see uikit_preprocess_region()
+ *
+ * @ingroup uikit_themeable
+ */
+#}
+{%
+  set classes = [
+    'region',
+    'region-' ~ region|clean_class,
+    'uk-offcanvas-bar',
+  ]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes) }}>
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+    {{ content }}
+  </div>
+{% endif %}
