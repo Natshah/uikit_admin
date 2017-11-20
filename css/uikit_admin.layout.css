@@ -142,9 +142,3 @@ th.select-all input {
 .uk-table td .form-item {
   margin: 0 !important;
 }
-
-.uk-input:not([class*='uk-form-width']):not([class*='uk-width']),
-.uk-select:not([class*='uk-form-width']):not([class*='uk-width']),
-.uk-textarea:not([class*='uk-form-width']):not([class*='uk-width']) {
-  width: auto;
-}
