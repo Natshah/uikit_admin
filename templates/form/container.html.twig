@@ -27,6 +27,8 @@
     has_parent ? 'form-wrapper',
     form_row ? 'uk-form-row',
     form_margin ? 'uk-margin',
+    attributes.hasClass('messages') ? 'uk-alert',
+    attributes.hasClass('messages--warning') ? 'uk-alert-warning',
   ]
 %}
 <div{{ attributes.addClass(classes) }}>{{ children }}</div>

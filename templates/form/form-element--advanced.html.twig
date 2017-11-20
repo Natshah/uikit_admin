@@ -49,8 +49,12 @@
 #}
 {%
   set classes = [
+    'js-form-item',
     'form-item',
-    name ? 'form-item-' ~ name|clean_class,
+    'js-form-type-' ~ type|clean_class,
+    'form-type-' ~ type|clean_class,
+    'js-form-item-' ~ name|clean_class,
+    'form-item-' ~ name|clean_class,
     'uk-margin',
     'uk-grid-small',
     'uk-child-width-1-1',

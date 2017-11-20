@@ -6,9 +6,35 @@
 (function ($, Drupal) {
   'use strict';
 
-  if ($('.uk-alert').length) {
-    UIkit.util.on('.uk-alert', 'hidden', function () {
-      $('#region--status_messages').remove();
+  var statusMessagesRegion = $('#region--status_messages');
+  var successMessages = statusMessagesRegion.find('.uk-alert-success');
+  var warningMessages = statusMessagesRegion.find('.uk-alert-warning');
+  var dangerMessages = statusMessagesRegion.find('.uk-alert-danger');
+
+  if (successMessages.length) {
+    UIkit.util.on('.uk-alert-success', 'hidden', function (e) {
+      $(e.target).parent('.status-messages').remove();
+      removeMessagesRegion();
     });
+  }
+
+  if (warningMessages.length) {
+    UIkit.util.on('.uk-alert-warning', 'hidden', function (e) {
+      $(e.target).parent('.status-messages').remove();
+      removeMessagesRegion();
+    });
+  }
+
+  if (dangerMessages.length) {
+    UIkit.util.on('.uk-alert-danger', 'hidden', function (e) {
+      $(e.target).parent('.status-messages').remove();
+      removeMessagesRegion();
+    });
+  }
+
+  function removeMessagesRegion() {
+    if (statusMessagesRegion.find('.status-messages').length === 0) {
+      statusMessagesRegion.remove();
+    }
   }
 })(jQuery, Drupal);
