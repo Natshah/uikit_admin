@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Theme override for an administrative block.
+ *
+ * Available variables:
+ * - block: An array of information about the block, including:
+ *   - show: A flag indicating if the block should be displayed.
+ *   - title: The block title.
+ *   - content: (optional) The content of the block.
+ *   - description: (optional) A description of the block.
+ *     (Description should only be output if content is not available).
+ */
+#}
+<div class="uk-card uk-card-default uk-margin admin-block-panel">
+  {% if block.title %}
+    <div class="uk-card-header panel-header">
+      <h3 class="uk-card-title uk-text-uppercase uk-text-bold uk-h5">{{ block.title }}</h3>
+    </div>
+
+  {% endif %}
+  {% if block.content %}
+    <div class="uk-card-body panel-content">{{ block.content }}</div>
+  {% elseif block.description %}
+    <div class="uk-card-body panel-description">{{ block.description }}</div>
+  {% endif %}
+</div>

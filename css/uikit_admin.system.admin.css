@@ -1,0 +1,37 @@
+/**
+ * @file
+ * Extends styles for administration pages.
+ */
+
+/**
+ * System modules (extend) page.
+ */
+.system-modules table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+.system-modules tr.even,
+.system-modules tr.odd {
+  background: #eee;
+}
+.system-modules td details summary {
+  background: transparent;
+  cursor: pointer;
+}
+.system-modules td details .details-wrapper {
+  padding: 0 0 0 16px;
+}
+.system-modules .requirements {
+  max-width: none;
+}
+.module-link-help,
+.module-link-permissions,
+.module-link-configure {
+  background: none;
+  margin: 0;
+  padding: 0;
+}
+.system-themes-list-uninstalled {
+  border: 0;
+  padding-top: 0;
+}

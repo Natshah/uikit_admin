@@ -7,8 +7,8 @@ dependencies:
     - uikit_admin
 id: uikit_admin_messages
 theme: uikit_admin
-region: highlighted
-weight: 0
+region: status_messages
+weight: -3
 provider: null
 plugin: system_messages_block
 settings:

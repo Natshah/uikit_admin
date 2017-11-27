@@ -4,6 +4,71 @@
  */
 
 /**
+ * System layouts
+ */
+.admin-block-panel.uk-card {
+  background-color: #f8f8f8;
+}
+.admin-block-panel.uk-card:last-child {
+  margin-bottom: 0 !important;
+}
+.admin-block-panel .panel-header {
+  border-bottom: none;
+  padding: 13px 0 0;
+  margin-left: 20px;
+}
+.admin-block-panel .panel-header h3 {
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+.admin-block-panel .panel-content {
+  padding: 0 20px 0;
+  margin-top: 10px;
+}
+ul.admin-list {
+  margin: 0;
+  padding: 0;
+}
+.admin-list li {
+  position: relative;
+  border-top: 1px solid #ccc;
+  margin: 0;
+  list-style: none none;
+  padding: 0;
+}
+.admin-list li a {
+  display: block;
+  padding: 15px 0;
+  min-height: 0;
+}
+.admin-list li a:hover,
+.admin-list li a:focus,
+.admin-list li a:active {
+  text-decoration: none;
+}
+.admin-list li a .label {
+  font-size: 16px;
+  font-weight: 600;
+}
+.admin-list li a:hover .label,
+.admin-list li a:focus .label,
+.admin-list li a:active .label {
+  text-decoration: underline;
+}
+.admin-list li a div.uk-width-auto .uk-icon {
+  color: #444;
+}
+.admin-list li a div.uk-width-expand {
+  padding-left: 15px;
+}
+.admin-list li a div.description {
+  margin: 0.2em 0 0 0;
+  color: #444;
+  font-size: 0.95em;
+}
+
+/**
  * Page navbar
  */
 #page--navbar {
@@ -141,4 +206,13 @@ th.select-all input {
  */
 .uk-table td .form-item {
   margin: 0 !important;
+}
+
+@media screen and (min-width: 38em) {
+  .layout-column {
+    padding-right: 10px;
+  }
+  .layout-column + .layout-column {
+    padding-right: 0;
+  }
 }

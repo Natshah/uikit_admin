@@ -13,3 +13,17 @@ global-style:
       css/uikit_admin.theme.css: {}
   js:
     js/uikit_admin.theme.js: {}
+  dependencies:
+    - toolbar/toolbar
+
+system.admin:
+  version: VERSION
+  css:
+    theme:
+      css/uikit_admin.system.admin.css: { weight: -10 }
+
+user:
+  version: VERSION
+  css:
+    theme:
+      css/uikit_admin.user.css: {}

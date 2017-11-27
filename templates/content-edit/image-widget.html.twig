@@ -12,16 +12,16 @@
 #}
 <div{{ attributes }}>
   {% if data.preview %}
-    <div class="image-preview uk-float-left">
+    <div class="image-preview uk-float-left uk-margin-right">
       {{ data.preview }}
     </div>
   {% endif %}
-  <div class="image-widget-data uk-float-left uk-margin-left">
+  <div class="image-widget-data uk-float-left">
     {# Render widget data without the image preview that was output already. #}
     {{ data|without('preview')|without('remove_button') }}
 
     {% if (data.remove_button) %}
-      <div class="image-widget-remove-button uk-display-inline-block uk-margin-small-left">
+      <div class="image-widget-remove-button uk-display-inline-block uk-margin-left uk-margin-top">
         {{ data.remove_button }}
       </div>
     {% endif %}

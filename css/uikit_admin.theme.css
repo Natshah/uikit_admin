@@ -78,3 +78,17 @@
   -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
   box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
 }
+
+/**
+ * Views
+ */
+.view-filters {
+  background: #f8f8f8;
+  border-top: 1px solid #ddd;
+}
+
+.ui-widget-overlay {
+  background: #000;
+  opacity: .6;
+  filter: Alpha(Opacity=60);
+}

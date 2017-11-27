@@ -3,17 +3,17 @@ status: true
 dependencies:
   theme:
     - uikit_admin
-id: uikit_admin_secondary_local_tasks
+id: uikit_admin_tabs__offcanvas
 theme: uikit_admin
-region: content
-weight: -3
+region: offcanvas
+weight: 0
 provider: null
 plugin: local_tasks_block
 settings:
   id: local_tasks_block
-  label: 'Secondary tabs'
+  label: Tabs
   provider: core
   label_display: '0'
-  primary: false
+  primary: true
   secondary: true
 visibility: {  }

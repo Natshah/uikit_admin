@@ -7,13 +7,25 @@
  * @see process.inc
  */
 
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
+use Drupal\uikit\UIkit;
 
 /**
  * Implements template_preprocess_page().
  */
 function uikit_admin_preprocess_page(&$variables) {
+  $theme_key = \Drupal::theme()->getActiveTheme()->getName();
+  $sticky_nav = UIkit::getThemeSetting('sticky_navbar', $theme_key);
+
   $variables['header_attributes']->addClass('uk-margin-small-bottom');
+
+  if ($sticky_nav) {
+    $variables['#attached']['drupalSettings']['uikitAdmin']['stickyNavbar'] = TRUE;
+  }
+  else {
+    $variables['#attached']['drupalSettings']['uikitAdmin']['stickyNavbar'] = FALSE;
+  }
 
   $variables['navbar_attributes'] = new Attribute();
   $variables['navbar_attributes']->setAttribute('id', 'page--navbar');
@@ -90,28 +102,7 @@ function uikit_admin_preprocess_container(&$variables) {
  * Implements template_preprocess_input().
  */
 function uikit_admin_preprocess_input(&$variables) {
-  if ($variables['element']['#type'] == 'submit') {
-    $value = $variables['element']['#value'];
-    $variables['attributes']['class'][] = 'uk-button';
-
-    switch (TRUE) {
-      case preg_match('/Apply.*/', $value):
-      case preg_match('/Filter.*/', $value):
-      case preg_match('/Generate.*/', $value):
-      case preg_match('/Install.*/', $value):
-      case preg_match('/Save.*/', $value):
-        $variables['attributes']['class'][] = 'uk-button-primary';
-        break;
-
-      case preg_match('/Delete.*/', $value):
-      case preg_match('/Remove.*/', $value):
-        $variables['attributes']['class'][] = 'uk-button-danger';
-        break;
-
-      default:
-        $variables['attributes']['class'][] = 'uk-button-default';
-    }
-
+  if ($variables['element']['#type'] == 'submit' || $variables['element']['#type'] == 'button') {
     $variables['attributes']['class'][] = 'uk-button-small';
   }
 }
@@ -169,4 +160,35 @@ function uikit_admin_preprocess_menu_local_tasks(&$variables) {
 function uikit_admin_preprocess_page_title(&$variables) {
   $variables['title_attributes']['id'] = 'page-title';
   $variables['title_attributes']['class'][] = 'uk-navbar-item';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for system_modules_details.html.twig.
+ */
+function uikit_admin_preprocess_system_modules_details(&$variables) {
+  foreach ($variables['modules'] as $module_key => $module) {
+    if (isset($variables['modules'][$module_key]['links'])) {
+      foreach ($variables['modules'][$module_key]['links'] as $link_key => $link) {
+        $icon = FALSE;
+
+        switch ($link_key) {
+          case 'help':
+            $icon = Markup::create('<span class="uk-margin-small-right uk-icon" uk-icon="icon: question"></span> Help');
+            break;
+
+          case 'permissions':
+            $icon = Markup::create('<span class="uk-margin-small-right uk-icon" uk-icon="icon: lock"></span> Permissions');
+            break;
+
+          case 'configure':
+            $icon = Markup::create('<span class="uk-margin-small-right uk-icon" uk-icon="icon: cog"></span> Configure');
+            break;
+        }
+
+        if ($icon) {
+          $variables['modules'][$module_key]['links'][$link_key]['#title'] = t('@icon', ['@icon' => $icon]);
+        }
+      }
+    }
+  }
 }

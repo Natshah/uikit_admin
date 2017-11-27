@@ -19,6 +19,15 @@
 use Drupal\Core\Form\FormStateInterface;
 
 /**
+ * Implements hook_form_FORM_ID_alter() for Drupal\node\NodeForm.
+ */
+function uikit_admin_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (isset($form['actions']) && isset($form['actions']['delete'])) {
+    $form['actions']['delete']['#attributes']['class'][] = 'uk-button-small';
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for Drupal\system\Form\ThemeAdminForm.
  */
 function uikit_admin_form_system_themes_admin_form_alter(&$form, FormStateInterface $form_state, $form_id) {
@@ -30,4 +39,26 @@ function uikit_admin_form_system_themes_admin_form_alter(&$form, FormStateInterf
   $form['actions'] = $actions;
 
   $form['admin_theme']['#open'] = FALSE;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for item-list templates.
+ */
+function uikit_admin_theme_suggestions_item_list_alter(array &$suggestions, array $variables) {
+  $list_style = isset($variables['context']) && isset($variables['context']['list_style']) ? $variables['context']['list_style'] : FALSE;
+
+  if ($list_style) {
+    $suggestions[] = 'item_list__' . str_replace('-', '_', $list_style);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for links templates.
+ */
+function uikit_admin_theme_suggestions_links_alter(array &$suggestions, array $variables) {
+  $classes = isset($variables['attributes']['class']) ? $variables['attributes']['class'] : [];
+
+  if (in_array('operations', $classes)) {
+    $suggestions[] = 'links__operations';
+  }
 }

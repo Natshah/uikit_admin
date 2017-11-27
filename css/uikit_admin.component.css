@@ -3,6 +3,79 @@
  * Discrete, reusable UI elements.
  */
 
+/**
+ * Drupal core components.
+ */
+.action-links a {
+  color: #fff;
+}
+.form-composite {
+  border-color: #ccc;
+}
+.item-list--comma-list {
+  display: inline;
+}
+.item-list__comma-list, .item-list__comma-list li {
+  display: inline;
+}
+.item-list__comma-list {
+  margin: 0;
+  padding: 0;
+}
+.item-list ul {
+  list-style: disc none;
+  margin: 0.25em 0 0.25em 1.5em;
+  padding: 0;
+}
+td .item-list ul {
+  margin: 0;
+}
+.item-list li {
+  padding: 0;
+}
+.item-list ul li,
+.menu-item {
+  list-style: disc none;
+}
+.item-list ul.uk-list>li::after,
+.item-list ul.uk-list>li::before {
+  display: none;
+}
+.item-list--comma-list .item-list__comma-list,
+.item-list__comma-list li,
+[dir="rtl"] .item-list--comma-list .item-list__comma-list,
+[dir="rtl"] .item-list__comma-list li {
+  margin: 0;
+}
+table#blocks tr.region-title {
+  background: #f8f8f8;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+table#blocks tr.region-title .region-title__action .uk-button {
+  background: #fff;
+}
+table#blocks tr.region-message {
+  background: #ffd;
+}
+.tabledrag-changed-warning abbr[title] {
+  text-decoration: none;
+}
+
+/**
+ * Devel/Kint components.
+ */
+.kint footer {
+  font-size: 12px !important;
+  margin-top: 9px;
+}
+.kint footer li {
+  color: #444 !important;
+}
+
+/**
+ * UIkit components.
+ */
 .uk-alert,
 .uk-card-default,
 .uk-card-primary,
@@ -18,6 +91,9 @@
 .uk-button-primary {
   background-color: #1976d2;
 }
+.uk-button-small {
+  text-transform: none;
+}
 .uk-button:not(:disabled)>.uk-icon:not(a) {
   cursor: pointer;
 }
@@ -32,11 +108,32 @@
 .uk-dropdown {
   padding: 10px;
 }
+.uk-h1,
+.uk-h2,
+.uk-h3,
+.uk-h4,
+.uk-h5,
+.uk-h6 {
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI" , Roboto, "Helvetica Neue", Arial, sans-serif;
+}
 .uk-form-label {
   font-weight: 600;
 }
+.uk-form-small {
+  height: 30px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
 .uk-link {
   color: #1976d2;
+}
+.uk-logo {
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI" , Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.uk-navbar-item,
+.uk-navbar-nav>li>a,
+.uk-navbar-toggle {
+  font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI" , Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 .uk-navbar-toggle,
 .uk-navbar-toggle.uk-open,
@@ -50,10 +147,29 @@
 .uk-textarea {
   border-color: #c5c5c5;
 }
+.uk-input,
+.uk-select,
+.uk-textarea {
+  width: auto;
+}
 .uk-input:focus,
 .uk-select:focus,
 .uk-textarea:focus {
   border-color: #1976d2;
+}
+.uk-checkbox,
+.uk-radio {
+  background-color: #fff;
+}
+.uk-select {
+  background-image: none !important;
+  width: auto;
+  -webkit-appearance: menulist !important;
+}
+.uk-table-striped tbody tr:nth-of-type(odd),
+.uk-table-striped>tr:nth-of-type(odd) {
+  border-top-color: #ddd;
+  border-bottom-color: #ddd;
 }
 
 @-moz-keyframes spin {

@@ -25,3 +25,9 @@ regions_hidden:
 
 libraries:
   - uikit_admin/global-style
+
+libraries-extend:
+  system/admin:
+    - uikit_admin/system.admin
+  user/drupal.user:
+    - uikit_admin/user

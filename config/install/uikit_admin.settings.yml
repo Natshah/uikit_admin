@@ -4,6 +4,7 @@ mobile_sidebar_positions: sidebars-stacked
 page_container: 1
 page_centering: 1
 page_margin: uk-margin
+sticky_navbar: 1
 primary_tasks_style: uk-tab
 secondary_tasks_style: uk-subnav-divider
 display_breadcrumbs: 1
