@@ -9,9 +9,6 @@ html {
   background: #ececec;
   font-family: Montserrat, -apple-system, BlinkMacSystemFont, "Segoe UI" , Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-body {
-  overflow-y: scroll;
-}
 a {
   color: #1976d2;
 }
@@ -35,4 +32,19 @@ summary {
 }
 summary:focus {
   outline: 0;
+}
+
+
+/**
+ * Responsive tables.
+ */
+@media screen and (max-width: 37.5em) { /* 600px */
+  table {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 60em) { /* 920px */
+  table {
+    font-size: 14px;
+  }
 }

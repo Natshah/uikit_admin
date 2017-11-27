@@ -31,3 +31,6 @@ libraries-extend:
     - uikit_admin/system.admin
   user/drupal.user:
     - uikit_admin/user
+
+libraries-override:
+  uikit/tableheader: uikit_admin/tableheader

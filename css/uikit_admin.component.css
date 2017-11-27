@@ -172,6 +172,30 @@ table#blocks tr.region-message {
   border-bottom-color: #ddd;
 }
 
+
+/**
+ * Responsive tables.
+ */
+@media screen and (max-width: 37.5em) { /* 600px */
+  .uk-table th {
+    font-size: 12px;
+  }
+  .uk-table-small td,
+  .uk-table-small th {
+    padding: 5px 6px;
+  }
+}
+@media screen and (max-width: 60em) { /* 920px */
+  .uk-table th {
+    font-size: 14px;
+    text-transform: none;
+  }
+  .uk-table-small td,
+  .uk-table-small th {
+    padding: 8px 10px;
+  }
+}
+
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(180deg);

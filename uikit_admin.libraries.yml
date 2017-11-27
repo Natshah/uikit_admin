@@ -22,6 +22,17 @@ system.admin:
     theme:
       css/uikit_admin.system.admin.css: { weight: -10 }
 
+tableheader:
+  version: VERSION
+  js:
+    js/uikit_admin.tableheader.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
+    - core/drupal.displace
+
 user:
   version: VERSION
   css:
