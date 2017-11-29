@@ -31,6 +31,8 @@ libraries-extend:
     - uikit_admin/system.admin
   user/drupal.user:
     - uikit_admin/user
+  views_ui/admin.styling:
+    - uikit_admin/views_ui.admin.styling
 
 libraries-override:
   uikit/tableheader: uikit_admin/tableheader
