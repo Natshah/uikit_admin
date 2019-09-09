@@ -17,7 +17,7 @@ INTRODUCTION
 A one-column administration theme based on
  [UIkit](https://www.drupal.org/project/uikit) for Drupal.
 
- * For a full description of the module, visit the project page:
+ * For a full description of the admin theme, visit the project page:
    https://www.drupal.org/project/uikit_admin
 
  * To submit bug reports and feature suggestions, or to track changes:
@@ -27,7 +27,7 @@ A one-column administration theme based on
 REQUIREMENTS
 ------------
 
-This module requires following modules outside of Drupal core:
+This theme requires following theme outside of Drupal core:
 
  * UIkit - https://www.drupal.org/project/uikit
 
@@ -36,7 +36,7 @@ RECOMMENDED
 -----------
 
 Use With Webship Distribution:
-This module is best used with Webship distribution.
+This theme is best used with Webship distribution.
 
  * Webship - https://www.drupal.org/project/webship
 
@@ -44,9 +44,10 @@ This module is best used with Webship distribution.
 INSTALLATION
 ------------
 
- * Install the Varbase Media module as you would normally install a contributed
-   Drupal module. Visit 
-   https://www.drupal.org/node/1897420 for further information.
+ * Install the UIkit Admin theme as you would normally install a contributed
+   Drupal theme. Visit 
+   https://www.drupal.org/docs/8/extending-drupal-8/installing-themes
+   for further information.
 
 
 FEATURES
