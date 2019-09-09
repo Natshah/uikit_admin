@@ -15,7 +15,8 @@
 .item-list--comma-list {
   display: inline;
 }
-.item-list__comma-list, .item-list__comma-list li {
+.item-list__comma-list,
+.item-list__comma-list li {
   display: inline;
 }
 .item-list__comma-list {
@@ -199,18 +200,18 @@ table#blocks tr.region-message {
 @-moz-keyframes spin {
   100% {
     -moz-transform: rotate(180deg);
-    transform:rotate(180deg);
+    transform: rotate(180deg);
   }
 }
 @-webkit-keyframes spin {
   100% {
     -webkit-transform: rotate(180deg);
-    transform:rotate(180deg);
+    transform: rotate(180deg);
   }
 }
 @keyframes spin {
   100% {
     -webkit-transform: rotate(180deg);
-    transform:rotate(180deg);
+    transform: rotate(180deg);
   }
 }

@@ -117,11 +117,11 @@ function uikit_admin_preprocess_links__dropbutton(&$variables) {
     $options = $variables['dropbutton']['link']['#options'];
     $classes = isset($options['attributes']['class']) ? $options['attributes']['class'] : [];
 
-    if ($classes && ($key = array_search('uk-button', $classes)) !== false) {
+    if ($classes && ($key = array_search('uk-button', $classes)) !== FALSE) {
       unset($variables['dropbutton']['link']['#options']['attributes']['class'][$key]);
     }
 
-    if ($classes && ($key = array_search('uk-button-default', $classes)) !== false) {
+    if ($classes && ($key = array_search('uk-button-default', $classes)) !== FALSE) {
       unset($variables['dropbutton']['link']['#options']['attributes']['class'][$key]);
     }
 
