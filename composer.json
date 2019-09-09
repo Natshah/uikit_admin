@@ -1,0 +1,33 @@
+{
+  "name": "drupal/uikit_admin",
+  "description": "A one-column administration theme based on UIkit for Drupal.",
+  "type": "drupal-theme",
+  "homepage": "https://www.drupal.org/project/uikit_admin",
+  "license": "GPL-2.0-or-later",
+  "minimum-stability": "dev",
+  "authors": [
+    {
+      "name": "Webship",
+      "homepage": "https://www.drupal.org/webship",
+      "role": "Maintainer"
+    }
+  ],
+  "support": {
+    "issues": "http://drupal.org/project/issues/uikit_admin",
+    "source": "http://cgit.drupalcode.org/uikit_admin"
+  },
+  "repositories": {
+    "drupal": {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  },
+  "require": {
+    "drupal/uikit": "~3.0"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-8.x-3.x": "8.3.x-dev"
+    }
+  }
+}
