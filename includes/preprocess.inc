@@ -58,7 +58,7 @@ function uikit_admin_preprocess_region(&$variables) {
       break;
 
     case 'status_messages':
-      $messages = drupal_get_messages(NULL, FALSE);
+      $messages = \Drupal::messenger()->all();
 
       if (empty($messages)) {
         $variables['content'] = [];
