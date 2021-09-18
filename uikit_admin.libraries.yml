@@ -44,7 +44,7 @@ tableheader:
     - core/drupalSettings
     - core/jquery.once
     - core/drupal.displace
-    - uikit/tableheader
+    - uikit/uikit
 
 user:
   version: VERSION
