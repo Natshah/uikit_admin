@@ -1,9 +1,8 @@
 name: 'UIkit Admin'
 type: theme
 description: 'A one-column administration theme based on UIkit for Drupal.'
-core: 8.x
-project: uikit_admin
 base theme: uikit
+core_version_requirement: ^8 || ^9
 
 regions:
   navbar: 'Navigation Bar'
